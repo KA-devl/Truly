@@ -19,6 +19,14 @@ module.exports = [
           "street": "9997 Pink Crest",
           "city": "Segbwema"
       }
+  },
+  ,
+  {
+      "full name": "Amelia Conn",
+      "address": {
+          "street": "9997 Pink Crest",
+          "city": "Segbwema"
+      }
   }
 ]
 
