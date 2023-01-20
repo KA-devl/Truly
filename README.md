@@ -8,6 +8,8 @@ Zaheer Quraishi (zaheerqur), frontend web development, experience with HTML, CSS
 
 Hugo Morin (SlygoPika), HTML/CSS/JavaScript, React, Node, Front-End, Vue
 
+Anes khadiri, Full-stack development (Front-end & back-end) - (VueJS, NodeJS, ExpressJS)
+
 -What languages & techniques do you plan to use (if haven't decided, then write sth like TBD)
 
 -Update the readme.md to show the description / objective / core features of the project
