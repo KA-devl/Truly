@@ -7,8 +7,7 @@ const port = 3000;
 app.get('/', (req, res) => {
   res.send('HELLO, THIS IS THE SOEN341 REST API. Go to the route /dummy-data to acess the dummy data')
 })
-
-
+console.log('Test commit')
 
 
 //Routes : To have a clean code, i have refactored all the "routes" a.k.a endpoints so everything is well structured and separated in different files.
