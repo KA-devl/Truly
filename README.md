@@ -26,7 +26,6 @@ For the candidates: Create an account/register, login, create a profile, and upl
 
 For the website admin: Manage all user profiles and postings.
 
-
 **Objectives:** 
 
 -Create a modern and clean website (Home page, pricing page, contact us page, profile page, employers page, etc)
