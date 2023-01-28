@@ -1,4 +1,5 @@
 # VueLovers-soen341project2023
+
 SOEN 341 Project
 -Info of your team members (real name and GitHub user name, role/Strengths of the member in the project)
 SOEN 341 Project of VueLovers Team Winter 2023
@@ -6,7 +7,7 @@ SOEN 341 Project of VueLovers Team Winter 2023
 Anas Senouci (Sanassah), Front-end development, Experience with Html, Js and CSS.
 **Information about team members:**
 
-Zaheer Quraishi (zaheerqur), frontend web development, experience with HTML, CSS and JavaScript. 
+Zaheer Quraishi (zaheerqur), frontend web development, experience with HTML, CSS and JavaScript. Interested in learning Tailwind CSS and Vue.js.
 -Anas Senouci (Sanassah), wants to learn about back-end development and has experience with HTML, JS, and CSS.
 
 Hugo Morin (SlygoPika), HTML/CSS/JavaScript, React, Node, Front-End, Vue
@@ -29,13 +30,13 @@ Build a full-stack career services platform that allows employers to post jobs a
 
 **Core features of the project:**
 
-For the employer: Create an account/register, login, browse candidates, add job offers, select candidates that have already applied to an offer for interview 
+For the employer: Create an account/register, login, browse candidates, add job offers, select candidates that have already applied to an offer for interview
 
-For the candidates: Create an account/register, login, create a profile, and upload their resume; browse for job offers; apply for those postings 
+For the candidates: Create an account/register, login, create a profile, and upload their resume; browse for job offers; apply for those postings
 
 For the website admin: Manage all user profiles and postings.
 
-**Objectives:** 
+**Objectives:**
 
 -Create a modern and clean website (Home page, pricing page, contact us page, profile page, employers page, etc)
 
@@ -51,6 +52,6 @@ For the website admin: Manage all user profiles and postings.
 
 **Languages & techniques we plan to use:**
 
-Front-end: Vue (HTML, CSS, JavaScript) 
+Front-end: Vue (HTML, CSS, JavaScript)
 
 Back-end: Node.js and express.js (JavaScript) and MongoDB for the database.
