@@ -22,7 +22,7 @@ Anes khadiri, Full-stack development (Front-end & back-end) - (VueJS, NodeJS, Ex
 -Update the readme.md to show the description / objective / core features of the project
 -Nicholas Piperni (npiperni), experienced in back-end development (Node), and databases (MongoDB)
 
--Arjun Gautam (put your git hun), no experience with web development but eager to learn.
+-Arjun Gautam (agautam8103), no experience with web development but eager to learn.
 
 **Description of the project:**
 
