@@ -1,6 +1,8 @@
 <template>
-  <div v-for="data in dummyDate" :key="data">
-    <ProductCard :name="data.name" :price="data.price" :description="data.description" />
+  <div>
+    <div v-for="data in dummyDate" :key="data">
+      <ProductCard :name="data.name" :price="data.price" :description="data.description" />
+    </div>
   </div>
 </template>
 
