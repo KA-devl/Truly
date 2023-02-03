@@ -1,10 +1,10 @@
-# H1 SOEN 341 Project of VueLovers Team Winter 2023
+# SOEN 341 Project of VueLovers Team Winter 2023
 
-## H2 Information about team members:
+## Information about team members:
 
 -Anas Senouci (Sanassah), wants to learn about back-end development and has experience with HTML, JS, and CSS.
 
--Zaheer Quraishi (zaheerqur), interested in front-end web development, has experience with HTML.
+-Zaheer Quraishi (zaheerqur), interested in front-end web development, has experience with HTML, CSS and JavaScript.
 
 -Hugo Morin (SlygoPika), experienced in HTML/CSS/JavaScript, Node, Front-End, Vue.
 
@@ -12,15 +12,15 @@
 
 -Nicholas Piperni (npiperni), experienced in back-end development (Node), and databases (MongoDB)
 
--Arjun Gautam (put your git hun), no experience with web development but eager to learn.
+-Arjun Gautam (agautam8103), no experience with web development but eager to learn.
 
 -Mickelson Benjamin (MikelsonB), experience with WordPress, HTML, CSS, JavaScript and Node.
 
-## H2 Description of the project:
+## Description of the project:
 
 Build a full-stack career services platform that allows employers to post jobs and employees to apply for them. Candidates and employers will have different sessions, both can create a profile.
 
-## H2 Core features of the project:
+## Core features of the project:
 
 For the employer: Create an account/register, login, browse candidates, add job offers, select candidates that have already applied to an offer for interview 
 
@@ -28,7 +28,7 @@ For the candidates: Create an account/register, login, create a profile, and upl
 
 For the website admin: Manage all user profiles and postings.
 
-## H2 Objectives:
+## Objectives:
 
 -Create a modern and clean website (Home page, pricing page, contact us page, profile page, employers page, etc)
 
@@ -42,7 +42,7 @@ For the website admin: Manage all user profiles and postings.
 
 -Add an area for job pay scale input by current employees.
 
-## H2 Languages & techniques we plan to use:
+## Languages & techniques we plan to use:
 
 Front-end: Vue (HTML, CSS, JavaScript) 
 
