@@ -2,14 +2,20 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend part of the application",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "set NODE_ENV=production && node server",
+    "dev": "nodemon server"
   },
   "author": "Anes and his soen341 team",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongoose": "^6.9.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.20"
   }
 }
