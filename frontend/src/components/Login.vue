@@ -4,7 +4,7 @@
   <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
     <!-- form -->
     <div class="md:w-1/2 px-8 md:px-16">
-      <h2 class="font-bold text-2xl text-[#002D74]">Login</h2>
+      <h2 class="font-bold text-2xl text-blue-500">Login</h2>
       <p class="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
 
       <form action="" class="flex flex-col gap-4">
@@ -16,7 +16,7 @@
             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
           </svg>
         </div>
-        <button class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Login</button>
+        <button class="bg-blue-500 rounded-xl text-white py-2 hover:scale-105 duration-300">Login</button>
       </form>
 
       <div class="mt-6 grid grid-cols-3 items-center text-gray-400">
@@ -55,20 +55,39 @@
 
 
 <script>
-export default {
-  name: 'Login',
-  data()
-  {
-    return{
-      email: '',
-      password:''
+import {ref} from 'vue';
+//Composition API
+
+export default{
+  setup(){
+    const email = ref('');
+    const password = ref('');
+
+    const login = (email, password)=>{
+      console.log(email.value, password.value)
     }
-  },
-  methods:{
-    login()
-    {
-      console.log(this.email, this.password)
-    }
+
+
+    return {email, password, login}
+
   }
-};
+
+}
+
+// export default {
+//   name: 'Login',
+//   data()
+//   {
+//     return{
+//       email: '',
+//       password:''
+//     }
+//   },
+//   methods:{
+//     login()
+//     {
+//       console.log(this.email, this.password)
+//     }
+//   }
+// };
 </script>

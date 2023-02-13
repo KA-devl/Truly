@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "at-light-green": "#44ba9f",
-        "at-green": "#286d5d",
-        "light-grey": "#f1f1f1",
+        "at-medium-blue": "#1C86EE",
+        "at-light-blue": "#499DF5",
+        "at-super-light-blue": "#60AFFE",
         primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"}
       },
       screens : {
