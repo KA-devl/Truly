@@ -1,13 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 
-//lOAD  ENV VAR
-dotenv.config({ path: "./config/config.env" });
-
-// Connect to database by running method in './config/db'
-connectDB();
 
 // Dev logging middleware
 const app = express();
@@ -15,13 +11,20 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+app
+.use(bodyParser.json())
+
 //  app running on deffault port or port 5000
 const PORT = process.env.PORT || 5000;
 
-server = app.listen(
-  PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} on ${PORT}`)
-);
+
+
+//lOAD  ENV VAR
+dotenv.config({ path: "./config/config.env" });
+
+// Connect to database by running method in './config/db'
+connectDB();
+
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
@@ -39,5 +42,10 @@ app.get("/", (req, res) => {
 
 //Routes : To have a clean code, i have refactored all the "routes" a.k.a endpoints so everything is well structured and separated in different files.
 require("./routes/getDummyData")(app);
+require("./routes/user/createUser")(app);
 
 
+server = app.listen(
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} on ${PORT}`)
+);
