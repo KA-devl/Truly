@@ -6,24 +6,36 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   name:{
     type: String,
-    required: true
+    required: true,
+    trim:true,
+    maxlength :50
   },
   email:{
     type: String,
+    match: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     required: true,
     unique: true
   },
   username: {
     type: String,
     required: true,
-    unique : true
+    unique : true,
+    trim:true,
+    maxlength :50
   },
   age: {
-    type : Number
+    type : Number,
+    required : true,
+    min: 18,
+    max: 110,
+
   },
   mobileNumber: {
     type: String,
+    match : /^(\(\+[0-9]{2}\))?([0-9]{3}-?)?([0-9]{3})\-?([0-9]{4})(\/[0-9]{4})?$/ ,
+    unique : true,
     required: true
+    
   },
   createdAt: {
     type: Date,
