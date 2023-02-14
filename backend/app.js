@@ -4,9 +4,11 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 
-
+//lOAD  ENV VAR
+dotenv.config({ path: "./config/config.env" });
 // Dev logging middleware
 const app = express();
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -16,11 +18,6 @@ app
 
 //  app running on deffault port or port 5000
 const PORT = process.env.PORT || 5000;
-
-
-
-//lOAD  ENV VAR
-dotenv.config({ path: "./config/config.env" });
 
 // Connect to database by running method in './config/db'
 connectDB();
@@ -44,6 +41,7 @@ app.get("/", (req, res) => {
 require("./routes/getDummyData")(app);
 require("./routes/user/createUser")(app);
 require("./routes/user/updateUserProfile")(app);
+require("./routes/job-posting/jobPosting")(app);
 
 
 server = app.listen(
