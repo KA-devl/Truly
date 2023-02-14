@@ -11,7 +11,7 @@ app.post("/api/create-job-post", async (req, res) => {
     res.status(200).json({sucess:true,data:jobpost});
     }
     catch(err){
-    res.status(500).json({sucess:false});}
+    res.status(500).json({sucess:false, message:err.message});}
     })
     }
     
