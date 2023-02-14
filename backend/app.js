@@ -19,10 +19,6 @@ app
 //  app running on deffault port or port 5000
 const PORT = process.env.PORT || 5000;
 
-
-
-
-
 // Connect to database by running method in './config/db'
 connectDB();
 
