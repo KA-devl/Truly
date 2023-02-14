@@ -43,6 +43,7 @@ app.get("/", (req, res) => {
 //Routes : To have a clean code, i have refactored all the "routes" a.k.a endpoints so everything is well structured and separated in different files.
 require("./routes/getDummyData")(app);
 require("./routes/user/createUser")(app);
+require("./routes/user/updateUserProfile")(app);
 
 
 server = app.listen(

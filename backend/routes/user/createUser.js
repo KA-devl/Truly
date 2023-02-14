@@ -10,7 +10,7 @@ module.exports = (app) =>
     //   username: "bawfgsdffg",
     //   age: "60",
     //   mobileNumber: "514-999-999594",
-    //   userType: "Member",
+    //   userType: "candidate",
     // });
     let user = new User({
       name: req.body.name,
