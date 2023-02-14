@@ -36,7 +36,7 @@ process.on("unhandledRejection", (err, promise) => {
 //This is the main route in the backend, hence why we have /. There is no "data" to get from this endpoint
 app.get("/", (req, res) => {
   res.send(
-    "HELLO, THIS IS THE SOEN341 REST API. Go to the route /dummy-data to acess the dummy data (Benjamin) - test1 "
+    "HELLO, THIS IS THE SOEN341 REST API"
   );
 });
 
