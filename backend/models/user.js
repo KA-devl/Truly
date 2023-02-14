@@ -23,8 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   mobileNumber: {
     type: String,
-    required: true,
-    unique : true
+    required: true
   },
   createdAt: {
     type: Date,

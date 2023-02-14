@@ -22,7 +22,8 @@ module.exports = (app) =>
     });
     try {
       const newUser = await user.save();
-      res.status(201).json(newUser);
+      let message = 'The account was successfully created'
+      res.status(201).json({message, data: newUser});
     } catch (error) {
       res.status(400).json({ message: error.message });
     }

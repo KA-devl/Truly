@@ -19,8 +19,9 @@ module.exports = (app) =>
    }
   
     try {
-      const newUser = await User.findOneAndUpdate(filter, update)
-      res.status(201).json(newUser);
+      let newUser = await User.findOneAndUpdate(filter, update, {new:true});
+      let message = 'The account parameters were successfully edited'
+      res.status(201).json({message : message, data: newUser});
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
