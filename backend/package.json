@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend part of the application",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "set NODE_ENV=production && node server",
     "dev": "nodemon server"
