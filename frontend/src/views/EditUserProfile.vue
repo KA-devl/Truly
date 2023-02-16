@@ -24,9 +24,6 @@
                         </li>
                     </ul>
                 </div>
-               
-               
-      
             </div>
             <!-- Right Side -->
             <div class="w-full md:w-9/12 mx-2 h-64">
