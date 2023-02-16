@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../models/user');
 
 const JobPostingSchema = new mongoose.Schema({
   name: {
@@ -7,9 +8,19 @@ const JobPostingSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-  authouId: {
-    type : String,
-    required : true
+
+  authorId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'user',
+    required: true,
+    validate: {
+      validator: async function (value) {
+        const user = await User.findOne({ _id: value, userType: 'employer' });
+        return !!user;
+      },
+      message:
+        'authorId must be the ObjectId of a user with userType "employer"',
+    },
   },
   description: {
     type: String,
@@ -50,24 +61,11 @@ const JobPostingSchema = new mongoose.Schema({
   creationDate: {
     type: Date,
     default: Date.now,
-  }, 
-  is_faulfilled : {
-    type : Boolean, 
-    default : false
-  }
+  },
+  is_faulfilled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model('JobPost', JobPostingSchema);
-
-// To do
-// // job_id : 35235344314,
-
-// is_faulfilled : false,
-
-// author_id : 213213dfia3423,
-
-// created_at : 12/01/2022
-
-// title : Software engineer intern,
-
-// description : blablabla,
