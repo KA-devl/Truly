@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
+const cors = require('cors')
 
 //lOAD  ENV VAR
 dotenv.config({ path: './config/config.env' });
@@ -13,7 +14,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+    .use(cors());
 
 //  app running on deffault port or port 5000
 const PORT = process.env.PORT || 5000;

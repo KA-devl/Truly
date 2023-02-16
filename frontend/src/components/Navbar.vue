@@ -1,5 +1,5 @@
 <template>
-<header class="flex justify-between items-center border-b py-4 md:py-8 mb-8 md:mb-12 xl:mb-16 max-w-screen-2xl px-4 md:px-8 mx-auto">
+<header class="flex justify-between items-center border-b py-4 md:py-8  max-w-screen-2xl px-4 md:px-8 mx-auto">
       <!-- logo - start -->
       <div href="/" class="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5" aria-label="logo">
        <img src="../assets/truly-logo.png" class="h-20 w-18" alt="">
