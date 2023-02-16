@@ -1,7 +1,7 @@
 <template>
 <!-- THE HOME PAGE OF THE WHOLE WEBSITE-->
   
-<h1>home page</h1>
+<h1>ADD CODE HERE</h1>
 
 
 
