@@ -39,6 +39,7 @@ require('./routes/user/createUser')(app);
 require('./routes/user/updateUserProfile')(app);
 require('./routes/employer/createJob')(app);
 require('./routes/employer/getJob')(app);
+require('./routes/employer/deleteJob')(app);
 
 server = app.listen(
   PORT,
