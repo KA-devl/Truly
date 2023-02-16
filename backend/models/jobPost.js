@@ -7,11 +7,13 @@ const JobPostingSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-
+  _authourId: {
+    type : String,
+    required : true
+  },
   description: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
     maxlength: 50,
   },
@@ -21,13 +23,6 @@ const JobPostingSchema = new mongoose.Schema({
     match:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   },
-
-  location: {
-    type: String,
-    enum: ['Point'],
-    required: true,
-  },
-
   careersFields: {
     type: [String],
     required: true,
@@ -52,16 +47,14 @@ const JobPostingSchema = new mongoose.Schema({
     required: true,
     enum: ['contractual', 'permanent', 'temporary', 'full-time', 'part-time'],
   },
-
-  hourlyRate: {
-    type: Number,
-    required: true,
-    min: 15.25,
-  },
   creationDate: {
     type: Date,
     default: Date.now,
-  },
+  }, 
+  is_faulfilled : {
+    type : Boolean, 
+    default : false
+  }
 });
 
 module.exports = mongoose.model('JobPost', JobPostingSchema);
