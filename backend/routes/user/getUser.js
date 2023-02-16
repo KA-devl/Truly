@@ -5,7 +5,11 @@ const getUser = (app) => {
     try {
       const user = await User.findById(req.params.id);
 
-      if (user === null) return res.status(400).json({ sucess: false });
+      if (!user) {
+        const message =
+          "The user doesn't exist";
+        return res.status(404).json({ message });
+      }
 
       res.status(201).json({ sucess: true, data: user });
     } catch (err) {
