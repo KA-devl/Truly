@@ -6,7 +6,7 @@
   <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
     <!-- form -->
     <div class="md:w-1/2 px-8 md:px-16">
-      <h2 class="font-bold text-3xl text-[#002D74]">Register</h2>
+      <h2 class="font-bold text-3xl text-blue-500">Register</h2>
 
       <form action="" class="flex flex-col gap-4">
         <input class="p-2 mt-8 rounded-xl border" type="First Name" name="First Name" placeholder="First Name">
@@ -26,14 +26,14 @@
             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
           </svg>
         </div>
-        <button class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
+        <button class="bg-blue-500 rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
       </form>
 
 
-      <div class="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+      <div class="mt-5 text-xs border-b border-blue-500 py-4 text-blue-500">
       </div>
 
-      <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+      <div class="mt-3 text-xs flex justify-between items-center text-blue-500">
         <p>Already have an account?</p>
         <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Log in</button>
       </div>
