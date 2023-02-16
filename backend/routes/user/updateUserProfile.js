@@ -1,6 +1,6 @@
 const User = require('../../models/user');
 const updateUser = (app) => {
-  app.put('/api/update-job/:id', async (req, res) => {
+  app.put('/api/edit-profile/:id', async (req, res) => {
     try {
       const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
