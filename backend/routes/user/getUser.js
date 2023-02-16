@@ -6,14 +6,13 @@ const getUser = (app) => {
       const user = await User.findById(req.params.id);
 
       if (!user) {
-        const message =
-          "The user doesn't exist";
+        const message = "The user doesn't exist";
         return res.status(404).json({ message });
       }
 
       res.status(201).json({ sucess: true, data: user });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
+      res.status(400).json({ sucess: false, message: `The user doesnt exist` });
     }
   });
 };
