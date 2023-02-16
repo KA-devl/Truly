@@ -3,6 +3,7 @@ import Login from '../views/Login.vue';
 import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
 import EditUserProfile from '../views/EditUserProfile.vue';
+import Dashboard from '../views/Dashboard.vue';
 
 const routes = [
   {
@@ -10,6 +11,11 @@ const routes = [
    name: 'Home',
    component: Home,
   },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+   },
   {
     name: "Login",
     component : Login,
