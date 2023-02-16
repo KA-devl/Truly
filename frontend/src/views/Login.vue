@@ -1,11 +1,11 @@
 <template>
-  <section class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <section class="bg-gray-50 min-h-screen flex items-center justify-center ">
   <!-- login container -->
   <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
     <!-- form -->
     <div class="md:w-1/2 px-8 md:px-16">
       <h2 class="font-bold text-2xl text-blue-500">Login</h2>
-      <p class="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
+      <p class="text-xs mt-4 text-blue-500">If you are already a member, easily log in</p>
 
       <form action="" class="flex flex-col gap-4">
         <input class="p-2 mt-8 rounded-xl border" type="email" name="email" placeholder="Email">
@@ -20,11 +20,11 @@
       </form>
 
 
-      <div class="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+      <div class="mt-5 text-xs border-b border-blue-500 py-4 text-blue-500">
         <a href="#">Forgot your password?</a>
       </div>
 
-      <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+      <div class="mt-3 text-xs flex justify-between items-center text-blue-500">
         <p>Don't have an account?</p>
         <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Register</button>
       </div>
