@@ -7,7 +7,7 @@ const JobPostingSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-  _authourId: {
+  authouId: {
     type : String,
     required : true
   },
