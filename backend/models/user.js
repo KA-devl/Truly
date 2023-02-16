@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 50,
+  },
   mobileNumber: {
     type: String,
     match:
@@ -39,7 +44,6 @@ const userSchema = new mongoose.Schema({
   userType: {
     type: String,
     required: true,
-    enum: ['employer', 'candidate'],
   },
 });
 
