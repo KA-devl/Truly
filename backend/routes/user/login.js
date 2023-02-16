@@ -1,23 +1,30 @@
 const User = require('../../models/user');
 
 const Login = (app) => {
-  app.get('/api/login', async (req, res) => {
+  app.post('/api/login', async (req, res) => {
     try {
-      console.log('REQ BODY IS ', req.body.username)
       const user = await User.findOne({username : req.body.username});
 
      //Search in db for username equivalent to request username
      if (!user) {
       const message =
         "The username does not exist. Please enter a valid username and password";
-      return res.status(404).json({ message });
-    }   
+      return res.status(403).json({ message });
+    }
 
-    console.log('the user is ', user)
+    if (user.password !== req.body.password){
+      const message =
+        "You have entered an invalid username or password."; //Always be less descriptive when the password is bad
+      return res.status(403).json({ message });
+    } 
 
-      res.status(201).json({ sucess: true, data: user });
-    } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
+      const message = `The user have been connected with success`;
+      return res.status(201).json({ message, data: user });
+  
+      
+    } catch (error) {
+      const message = "Unable to login. Please try again later.";
+        return res.status(400).json({ message, data: error.message });
     }
   });
 };
