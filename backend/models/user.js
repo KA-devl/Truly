@@ -24,12 +24,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-  age: {
-    type: Number,
-    required: true,
-    min: 18,
-    max: 110,
-  },
+
   mobileNumber: {
     type: String,
     match:
