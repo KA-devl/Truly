@@ -1,9 +1,16 @@
 const jobPosting = require('../../models/jobpost');
 
-const getJob = (app) => {
-  app.get('/api/get-job/:id', async (req, res) => {
+const updateJob = (app) => {
+  app.put('/api/update-job/:id', async (req, res) => {
     try {
-      const jobpost = await jobPosting.findById(req.params.id);
+      const jobpost = await jobPosting.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
 
       if (jobpost === null)
         return res.status(400).json({ sucess: false, message: `invalid id` });
@@ -15,4 +22,4 @@ const getJob = (app) => {
   });
 };
 
-module.exports = getJob;
+module.exports = updateJob;
