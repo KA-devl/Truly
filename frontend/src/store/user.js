@@ -8,32 +8,33 @@ export const useUserStore = defineStore("user", {
   }),
 
   actions: {
-    async fetchUser() {
-      const res = await fetch("https://localhost:5000/user");
+    // async fetchUser() {
+    //   const res = await fetch("https://localhost:5000/user");
 
-      const user = await res.json();
-      this.user = user;
-    },
-    async signUp(email, password) {
-      const res = await fetch("https://localhost:5000/signup", {
+    //   const user = await res.json();
+    //   this.user = user;
+    // },
+    async signUp(username, password) {
+      const res = await fetch("https://localhost:5000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
       });
       const user = await res.json()
       this.user = user;
     },
-    async login(email, password) {
-      const res = await fetch("https://localhost:5000/login", {
+    async login(username, password) {
+      const res = await fetch("http://localhost:5000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
       });
       const user = await res.json();
+      console.log('THE USER IS ', user)
       this.user = user;
     },
   },
