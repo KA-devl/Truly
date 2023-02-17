@@ -4,6 +4,7 @@
   <div class="bg-white pb-6 sm:pb-8 lg:pb-12 mt-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <section class="relative flex flex-col">
+        
         <div
           class="overflow-hidden rounded-lg relative mb-6 md:mb-8 mt-20"
         >
@@ -110,11 +111,13 @@
             </button>
           </div>
 
-          <button
+          <router-link :to="{name: 'Login'}" >
+            <button
             class="bg-blue-500 text-white px-2 rounded-lg hover:bg-blue-600 py-2 px-3 text-lg font-semibold"
           >
             Find jobs
           </button>
+          </router-link>
         </div>
         <p class="text-center mt-6">
           <a class="font-semibold text-blue-500 hover:underline cursor-pointer"
