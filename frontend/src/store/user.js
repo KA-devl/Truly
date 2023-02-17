@@ -41,5 +41,10 @@ export const useUserStore = defineStore("user", {
       localStorage.removeItem("user");
       console.log("the user is now", this.user);
     },
+    setUser(payload) {
+      this.user = payload ? payload : null;
+      localStorage.setItem("user", this.user);
+      console.log("the user is now", this.user);
+    },
   },
 });
