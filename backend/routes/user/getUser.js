@@ -3,16 +3,15 @@ const User = require('../../models/user');
 const getUser = (app) => {
   app.get('/api/get-user/:id', async (req, res) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id).populate('jobPost');
 
       if (!user) {
-        const message = "The user doesn't exist";
-        return res.status(404).json({ message });
+        return res.status(404).json({ message: err.message });
       }
 
       res.status(201).json({ sucess: true, data: user });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: `The user doesnt exist` });
+      res.status(400).json({ sucess: false, message: err.message });
     }
   });
 };
