@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+//UPDATE JOB POSTING BY ITS ID
 const updateJob = (app) => {
   app.put('/api/update-job/:id', async (req, res) => {
     try {

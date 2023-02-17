@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+// GET ALL JOBS POSTING OF AN EMPLOYER BY EMPLYR ID
 const getJobs = (app) => {
   app.get('/api/get-jobs/:id', async (req, res) => {
     try {

@@ -1,4 +1,6 @@
 const User = require('../../models/user');
+
+//UPDATE USER BY HIS ID
 const updateUser = (app) => {
   app.put('/api/edit-profile/:id', async (req, res) => {
     try {

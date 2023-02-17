@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+// GET A JOB BY ITS ID
 const getJob = (app) => {
   app.get('/api/get-job/:id', async (req, res) => {
     try {

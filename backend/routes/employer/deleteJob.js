@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+// DELETE JOBPOSTING BY ITS ID
 const deleteJobPosting = (app) => {
   app.delete('/api/delete-job/:id', async (req, res) => {
     try {

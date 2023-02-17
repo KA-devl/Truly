@@ -1,5 +1,6 @@
 const user = require('../../models/user');
 
+// CREATE A USER
 // its better to define a name for this function so that we can understand what it does)
 const createUser = (app) =>
   app.post('/api/signup', async (req, res) => {

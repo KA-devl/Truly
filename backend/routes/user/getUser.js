@@ -1,5 +1,6 @@
 const User = require('../../models/user');
 
+// GET USER BY HIS ID
 const getUser = (app) => {
   app.get('/api/get-user/:id', async (req, res) => {
     try {
