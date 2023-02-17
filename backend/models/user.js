@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 /**
  * User Schema
@@ -47,12 +47,12 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.post("save", function (error, doc, next) {
-  if (error.name === "MongoServerError" && error.code === 11000) {
-    next(new Error("The user already exists"));
+userSchema.post('save', function (error, doc, next) {
+  if (error.name === 'MongoServerError' && error.code === 11000) {
+    next(new Error('The user already exists'));
   } else {
     next();
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);
