@@ -1,5 +1,6 @@
 <template>
-  <section class="bg-gray-50 min-h-screen flex items-center justify-center ">
+  <Navbar/>
+  <section class=" min-h-screen flex items-center justify-center mt-32">
     <!-- login container -->
     <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
       <!-- form -->
@@ -43,7 +44,10 @@
 
         <div class="mt-3 text-xs flex justify-between items-center text-gray-500">
           <p>Don't have an account?</p>
-          <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Register</button>
+          <router-link 
+          :to="{name: 'SignUp'}">
+          <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Register</button></router-link>
+          
         </div>
       </div>
 
@@ -61,9 +65,12 @@
 import { ref } from 'vue';
 import { useUserStore } from '../store/user';
 import { useRouter } from "vue-router";
-
+import Navbar from '../components/Navbar.vue';
 
 export default {
+  components: {
+    Navbar,
+  },
   setup() {
     const router = useRouter();
     const userStore = useUserStore();

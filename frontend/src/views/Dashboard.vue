@@ -50,10 +50,6 @@ export default {
   setup() {
     const user = useUserStore().user;
 
-
-
-
-
     return { user }
   }
 }
