@@ -44,6 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     userType: {
       type: String,
+      enum: ['employer', 'candidate'],
       required: true,
     },
   },
@@ -68,4 +69,4 @@ userSchema.post('save', function (error, doc, next) {
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);
