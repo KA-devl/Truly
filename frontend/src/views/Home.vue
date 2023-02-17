@@ -1,17 +1,17 @@
 <template>
   <!-- THE HOME PAGE OF THE WHOLE WEBSITE-->
   <Navbar />
-  <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
+  <div class="bg-white pb-6 sm:pb-8 lg:pb-12 mt-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <section class="relative flex flex-col">
         <div
-          class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8"
+          class="overflow-hidden rounded-lg relative mb-6 md:mb-8 mt-20"
         >
           <img
             src="https://thisisbien.com/wp-content/uploads/2021/10/InMoDe_Why_Cover.png"
             loading="lazy"
             alt="Illustration by Carlos Alegria"
-            class="w-auto h-auto object-cover object-center"
+            class="w-1/2 h-1/2 object-right object-contain mx-auto"
           />
         </div>
 
@@ -111,7 +111,7 @@
           </div>
 
           <button
-            class="bg-blue-500 text-white px-2 rounded-lg hover:bg-blue-600 py-2"
+            class="bg-blue-500 text-white px-2 rounded-lg hover:bg-blue-600 py-2 px-3 text-lg font-semibold"
           >
             Find jobs
           </button>
@@ -187,7 +187,7 @@
           </blockquote>
 
           <div
-            class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8"
+            class="bg-gray-100 overflow-hidden rounded-lg relative mb-6 md:mb-8"
           >
             <img
               src="https://unblast.com/wp-content/uploads/2020/05/Job-Hunting-Illustration.jpg"
