@@ -5,12 +5,17 @@ import Home from '../views/Home.vue';
 import EditUserProfile from '../views/EditUserProfile.vue';
 import Dashboard from '../views/Dashboard.vue';
 import { useUserStore } from '../store/user';
+import CreateJob from '../views/CreateJob.vue';
 
 const routes = [
   {
    path: '/',
    name: 'Home',
    component: Home,
+   meta: {
+    title: "Home",
+    auth: false
+  }
   },
   {
     path: '/dashboard',
@@ -45,6 +50,15 @@ const routes = [
   path: "/edit-user-profile",
   meta: {
     title: "Edit profile",
+    auth: true
+  }
+},
+{
+  name: "CreateJob",
+  component : CreateJob,
+  path: "/create-job",
+  meta: {
+    title: "Create-job",
     auth: true
   }
 }
