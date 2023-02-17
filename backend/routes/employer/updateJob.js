@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+//UPDATE JOB POSTING BY ITS ID
 const updateJob = (app) => {
   app.put('/api/update-job/:id', async (req, res) => {
     try {
@@ -17,7 +18,9 @@ const updateJob = (app) => {
 
       res.status(201).json({ sucess: true, data: jobpost });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
+      res
+        .status(400)
+        .json({ sucess: false, message: `The job id entered is invalid` });
     }
   });
 };

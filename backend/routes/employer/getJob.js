@@ -1,5 +1,6 @@
 const jobPosting = require('../../models/jobpost');
 
+// GET A JOB BY ITS ID
 const getJob = (app) => {
   app.get('/api/get-job/:id', async (req, res) => {
     try {
@@ -10,7 +11,9 @@ const getJob = (app) => {
 
       res.status(201).json({ sucess: true, data: jobpost });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
+      res
+        .status(400)
+        .json({ sucess: false, message: `The job id entered is invalid` });
     }
   });
 };
