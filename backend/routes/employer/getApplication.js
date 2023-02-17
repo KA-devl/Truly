@@ -2,16 +2,13 @@ const Application = require('../../models/jobApplication');
 
 // GET THE JOBS WHERE CANDIDATES APPLIED
 const getApplication = (app) => {
-  app.get('/api/get-job-candidate', async (req, res) => {
+  app.get('/api/get-job-candidate/:id', async (req, res) => {
     try {
-      const application = await Application.find();
+      const getAllApplication = await Application.find({
+        authorId: req.params.id,
+      });
 
-      const populatedApplication = await Application.populate(application, [
-        { path: 'candidateId', model: 'user' },
-        { path: 'jobPostId', model: 'jobPost' },
-      ]);
-
-      res.status(201).json({ sucess: true, data: application });
+      res.status(201).json({ sucess: true, data: getAllApplication });
     } catch (err) {
       res.status(400).json({ sucess: false, message: err.message });
     }

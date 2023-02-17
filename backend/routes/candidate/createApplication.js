@@ -10,6 +10,8 @@ const createApplication = (app) => {
         { path: 'jobPostId', model: 'jobPost' },
       ]);
 
+      populatedApplication.data;
+
       res.status(201).json({ sucess: true, data: populatedApplication });
     } catch (err) {
       res.status(400).json({ sucess: false, message: err.message });
