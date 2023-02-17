@@ -1,10 +1,9 @@
 // /store/user.js
 
 import { defineStore } from "pinia";
-
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: JSON.parse(localStorage.getItem('user')),
+    user: JSON.parse(localStorage.getItem("user")),
   }),
 
   actions: {
@@ -22,7 +21,7 @@ export const useUserStore = defineStore("user", {
         },
         body: JSON.stringify({ username, password }),
       });
-      const user = await res.json()
+      const user = await res.json();
       this.user = user;
     },
     async login(username, password) {
@@ -34,10 +33,15 @@ export const useUserStore = defineStore("user", {
         body: JSON.stringify({ username, password }),
       });
       const user = await res.json();
-      console.log('THE USER IS ', user)
+      console.log("THE USER IS ", user);
       this.user = user;
-       // store user details and jwt in local storage to keep user logged in between page refreshes
-       localStorage.setItem('user', JSON.stringify(user));
+      // store user details and jwt in local storage to keep user logged in between page refreshes
+      localStorage.setItem("user", JSON.stringify(user));
+    },
+    logout() {
+      this.user = null;
+      localStorage.removeItem("user");
+      console.log("the user is now", this.user);
     },
   },
 });

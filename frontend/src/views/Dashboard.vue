@@ -1,5 +1,5 @@
 <template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
-
+  <UserSideBar/>
   <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
@@ -40,9 +40,12 @@
   </div>
 </template>
 <script>
-//import { onMounted } from 'vue';
 import { useUserStore } from '../store/user';
+import UserSideBar from '../components/UserSideBar.vue';
 export default {
+  components:{
+    UserSideBar
+  },
   setup() {
     const user = useUserStore().user;
 
