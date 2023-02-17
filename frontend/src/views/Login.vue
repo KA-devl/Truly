@@ -104,7 +104,7 @@ export default {
       if (isUsernameValid.value && isPasswordValid.value) {
 
         await userStore.login(username.value, password.value);
-        console.log('my user is ', userStore.user.message);
+        console.log('my user is ', userStore.user);
         if (userStore.user.data) {
           console.log('SUCCESSFULLY GOT THE USER DATA', userStore.user.data);
           router.push({ name: "Dashboard" });

@@ -15,21 +15,37 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+    meta: {
+      title: "Dashboard",
+      auth: false
+    }
    },
   {
     name: "Login",
     component : Login,
     path: "/login",
+    meta: {
+      title: "Login",
+      auth: false
+    }
 },
 {
   name: "SignUp",
   component : SignUp,
   path: "/signup",
+  meta: {
+    title: "Register",
+    auth: false
+  }
 },
 {
   name: "EditUserProfile",
   component : EditUserProfile,
   path: "/edit-user-profile",
+  meta: {
+    title: "Edit profile",
+    auth: true
+  }
 }
 
 ]
