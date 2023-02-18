@@ -2,9 +2,9 @@
 
 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-  <a href="https://flowbite.com/" class="flex items-center">
+  <router-link :to="{name: 'Home'}" class="flex items-center">
       <img src="../assets/truly-logo.png" class="h-8 mr-3 sm:h-9" alt="Flowbite Logo">
-  </a>
+  </router-link>
   <div class="flex md:order-2">
       <router-link :to="{name: 'SignUp'}">
         <button type="button" class="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-3 md:mr-0 ">Become a member</button>
