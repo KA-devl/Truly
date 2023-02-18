@@ -4,6 +4,7 @@ import SignUp from '../views/SignUp.vue';
 import Home from '../views/Home.vue';
 import EditUserProfile from '../views/EditUserProfile.vue';
 import Dashboard from '../views/Dashboard.vue';
+import JobDescription from '../views/JobDescription.vue';
 import { useUserStore } from '../store/user';
 import CreateJob from '../views/CreateJob.vue';
 
@@ -23,6 +24,15 @@ const routes = [
     component: Dashboard,
     meta: {
       title: "Dashboard",
+      auth: true
+    }
+   },
+   {
+    path: '/job',
+    name: 'JobDescription',
+    component: JobDescription,
+    meta: {
+      title: "JobDescription",
       auth: true
     }
    },
