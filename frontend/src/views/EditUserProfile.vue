@@ -62,9 +62,8 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email</div>
-                            <div v-if="!isEdit" class="px-4 py-2">{{ email }}</div>
-                            <input v-if="isEdit" class="py-2 px-4 rounded-xl border mt-1" v-model=email type="email"
-                                name="email" placeholder="Email">
+                            <div class="px-4 py-2">{{ email }}</div>
+                          
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Contact No.</div>
@@ -117,7 +116,6 @@ export default {
                     ...user.data,
                     name: name.value,
                     username: username.value,
-                    email: email.value,
                     mobileNumber: mobileNumber.value
                 }
             }
