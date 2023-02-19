@@ -48,16 +48,26 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
   },
+
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
 
+// create a virtual field jobPost that diplay all the jobsPost that correspond to a author id (employer)
 userSchema.virtual('jobPost', {
   ref: 'jobPost',
   localField: '_id',
   foreignField: 'authorId',
+  justOne: false,
+});
+
+// create a virtual field jobApplication that diplay all the jobApplication that correspond to a candidate id
+userSchema.virtual('jobApplication', {
+  ref: 'jobApplication',
+  localField: '_id',
+  foreignField: 'candidateId',
   justOne: false,
 });
 
