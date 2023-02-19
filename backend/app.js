@@ -46,6 +46,8 @@ require('./routes/employer/updateJob')(app);
 require('./routes/employer/getApplication')(app);
 require('./routes/user/login')(app);
 require('./routes/candidate/createApplication')(app);
+require('./routes/candidate/getAllJobs')(app);
+require('./routes/candidate/getJobAppliedFor')(app);
 
 server = app.listen(
   PORT,
