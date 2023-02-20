@@ -4,10 +4,12 @@ const jobPosting = require('../../models/jobpost');
 const deleteJobPosting = (app) => {
   app.delete('/api/delete-job/:id', async (req, res) => {
     try {
-      const jobpost = await jobPosting.findByIdAndDelete(req.params.id);
+      const jobpost = await jobPosting.findById(req.params.id);
 
       if (jobpost === null)
         return res.status(400).json({ sucess: false, message: err.message });
+
+      jobpost.remove();
 
       res.status(201).json({
         sucess: true,
