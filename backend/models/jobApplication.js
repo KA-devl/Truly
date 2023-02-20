@@ -38,8 +38,8 @@ const JobApplicationSchema = new mongoose.Schema({
   applicationStatus: {
     type: [String],
     required: true,
-    default: ['pending'],
-    enum: ['pending', 'under review', 'rejected'],
+    default: ['active'],
+    enum: ['under review', 'rejected', 'active', 'inactive'],
   },
 
   creationDate: {

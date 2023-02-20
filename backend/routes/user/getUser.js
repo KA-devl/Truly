@@ -4,14 +4,15 @@ const User = require('../../models/user');
 const getUser = (app) => {
   app.get('/api/get-user/:id', async (req, res) => {
     try {
-      const user = await User.findById(req.params.id).populate([
-        {
+      const user = await User.findById(req.params.id)
+        .populate({
           path: 'jobApplication',
-        },
-        {
+          options: { strict: false },
+        })
+        .populate({
           path: 'jobPost',
-        },
-      ]);
+          options: { strict: false },
+        });
 
       if (!user) {
         return res.status(404).json({ message: err.message });
