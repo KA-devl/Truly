@@ -3,7 +3,7 @@
   <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
-      <h2 class="text-3xl font-semibold ">Dashboard</h2>
+      <h2 class="text-3xl font-semibold ">Dashboard </h2>
       <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.data.name }}</span></h2>
       <div class="flex flex-row justify-between w-full mb-1 mt-4 sm:mb-0">
         <h2 class="text-2xl leading-tight">
@@ -20,7 +20,6 @@
           </form>
         </div>
       </div>
-
       <div class="grid grid-cols-3 gap-4 mb-4 mt-4">
       </div>
       <div class="flex items-center justify-center mb-4 rounded">
@@ -55,7 +54,7 @@
                               </tr>
                           </thead>
                           <tbody>
-                              <tr>
+                              <tr v-for="job in data" :key="job._id">
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <div class="flex items-center">
                                           <div class="flex-shrink-0">
@@ -65,7 +64,7 @@
                                           </div>
                                           <div class="ml-3">
                                               <p class="text-gray-900 whitespace-no-wrap">
-                                                  Data analyst
+                                                  {{job.name}}
                                               </p>
                                           </div>
                                       </div>
@@ -77,7 +76,7 @@
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <p class="text-gray-900 whitespace-no-wrap">
-                                          Full time
+                                          {{job.jobStatus[0]}}
                                       </p>
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
@@ -87,72 +86,28 @@
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <p class="text-gray-900 whitespace-no-wrap">
-                                          17/02/2023
+                                         {{job.creationDate}}
                                       </p>
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                      <span v-if="!job.is_faulfilled" class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
                                           <span aria-hidden="true" class="absolute inset-0 bg-green-200 rounded-full opacity-50">
                                           </span>
                                           <span class="relative">
                                               active
+                                          </span>
+                                      </span>
+                                      <span v-if="job.is_faulfilled" class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                          <span aria-hidden="true" class="absolute inset-0 bg-red-200 rounded-full opacity-50">
+                                          </span>
+                                          <span class="relative">
+                                              filled
                                           </span>
                                       </span>
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <a href="#" class="text-indigo-600 hover:text-indigo-900">
                                         Apply
-                                      </a>
-                                  </td>
-                              </tr>
-
-                              <tr>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <div class="flex items-center">
-                                          <div class="flex-shrink-0">
-                                              <a href="#" class="relative block">
-                                                  <img alt="Logo" src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" class="mx-auto object-cover rounded-full h-10 w-10 "/>
-                                              </a>
-                                          </div>
-                                          <div class="ml-3">
-                                              <p class="text-gray-900 whitespace-no-wrap">
-                                                  Software Engineer
-                                              </p>
-                                          </div>
-                                      </div>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
-                                          Google
-                                      </p>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
-                                          Full time
-                                      </p>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
-                                          Montreal, QC
-                                      </p>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
-                                          18/02/2023
-                                      </p>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
-                                          <span aria-hidden="true" class="absolute inset-0 bg-green-200 rounded-full opacity-50">
-                                          </span>
-                                          <span class="relative">
-                                              active
-                                          </span>
-                                      </span>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                          Apply
                                       </a>
                                   </td>
                               </tr>
@@ -216,14 +171,24 @@
 <script>
 import { useUserStore } from '../store/user';
 import UserSideBar from '../components/UserSideBar.vue';
+import { onMounted,ref } from 'vue';
+import getCreatedJobsService from '../services/employerApi/getCreatedJobsService';
+
 export default {
   components:{
     UserSideBar
   },
   setup() {
     const user = useUserStore().user;
+    const data = ref(null);
 
-    return { user }
+    onMounted(async () => {
+        const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
+        data.value = res;
+        
+    })
+
+    return { user, data }
   }
 }
 
