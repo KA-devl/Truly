@@ -68,4 +68,14 @@ const JobPostingSchema = new mongoose.Schema({
   },
 });
 
+// when a job post is deleted it set all its candidates applications to inactive
+JobPostingSchema.pre('remove', async function (next) {
+  console.log('preremove function is called');
+  await mongoose
+    .model('jobApplication')
+    .updateMany({ jobPostId: this._id }, { applicationStatus: 'inactive' });
+
+  next();
+});
+
 module.exports = mongoose.model('jobPost', JobPostingSchema);
