@@ -6,8 +6,10 @@ const getAllJobs = (app) => {
     try {
       const jobpost = await jobPosting.find();
 
-      if (jobpost === null)
-        return res.status(400).json({ sucess: false, message: err.message });
+      if (jobpost == 0)
+        return res
+          .status(400)
+          .json({ sucess: false, message: 'No job posting' });
 
       res.status(201).json({ sucess: true, data: jobpost });
     } catch (err) {

@@ -1,12 +1,14 @@
 const userModel = require('../../models/user');
 
 const deleteUser = (app) =>
-  app.post('/api/delete-user/:id', async (req, res) => {
+  app.delete('/api/delete-user/:id', async (req, res) => {
     try {
-      const user = await userModel.findByIdAndDelete(req.params.id);
-
+      const user = await userModel.findById(req.params.id);
+      user.remove();
       if (user === null)
-        return res.status(400).json({ sucess: false, message: err.message });
+        return res
+          .status(400)
+          .json({ sucess: false, message: `This user wasnt found` });
 
       res.status(201).json({
         sucess: true,
@@ -14,7 +16,9 @@ const deleteUser = (app) =>
         data: user,
       });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: `The user id is invalid` });
+      res
+        .status(400)
+        .json({ sucess: false, message: `The user id is invalid` });
     }
   });
 

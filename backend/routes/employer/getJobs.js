@@ -5,9 +5,12 @@ const getJobs = (app) => {
   app.get('/api/get-jobs/:id', async (req, res) => {
     try {
       const jobpost = await jobPosting.find({ authorId: req.params.id });
+      console.log(jobpost);
 
-      if (jobpost === null)
-        return res.status(400).json({ sucess: false, message: err.message });
+      if (jobpost == 0)
+        return res
+          .status(400)
+          .json({ sucess: false, message: `No job posting found` });
 
       res.status(201).json({ sucess: true, data: jobpost });
     } catch (err) {
