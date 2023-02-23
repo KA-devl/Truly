@@ -6,7 +6,7 @@ const connectDB = require('./config/db');
 const cors = require('cors');
 
 //lOAD  ENV VAR
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './config/.env' });
 // Dev logging middleware
 const app = express();
 
