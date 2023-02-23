@@ -1,7 +1,13 @@
 <template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
   <UserSideBar/>
-  <CandidateDashboard v-if="isCandidate" />
-  <EmployerDashboard v-else />
+  <div >
+    <div class="p-4 sm:ml-64">
+      <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <CandidateDashboard v-if="user.data.userType === 'candidate'" />
+        <EmployerDashboard v-else />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,18 +27,14 @@ export default {
   setup() {
     const user = useUserStore().user;
     const data = ref(null);
-    const headers = ["Job Title", "Organization", "Position Type", "Location", "Date Created", "Status"];
-    
-    // TEMPORARY VARIABLE
-    const isCandidate = true;
 
     onMounted(async () => {
         const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
         data.value = res;
-        
+        console.log(user.data);
     })
 
-    return { user, data, headers, isCandidate }
+    return { user, data,}
   }
 }
 

@@ -1,7 +1,4 @@
 <template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
-
-  <div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
       <h2 class="text-3xl font-semibold ">Dashboard </h2>
       <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.data.name }}</span></h2>
@@ -48,8 +45,6 @@
 
       
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
