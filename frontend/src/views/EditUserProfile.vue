@@ -21,7 +21,7 @@
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Member since</span>
-                            <span class="ml-auto">{{ user.data.createdAt }}</span>
+                            <span class="ml-auto">{{ formatDate }}</span>
                         </li>
                     </ul>
                 </div>
@@ -90,9 +90,10 @@
 </template>
 <script>
 import UserSideBar from '../components/UserSideBar.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useUserStore } from '../store/user';
 import userService from '../services/userService.js';
+import { DateTime } from "luxon";
 
 export default {
     components: {
@@ -108,6 +109,10 @@ export default {
         const email = ref(user.data.email);
         const mobileNumber = ref(user.data.mobileNumber);
 
+        const formatDate = computed(() => {
+        const date = DateTime.fromISO(user.data.createdAt);
+        return date.toLocaleString(DateTime.DATETIME_MED);
+        });
         const saveEdit = () => {
 
             let newUser = {
@@ -140,7 +145,7 @@ export default {
         }
 
 
-        return { isEdit, user, userStore, username, name, email, mobileNumber, saveEdit }
+        return { isEdit, user, userStore, username, name, email, mobileNumber, saveEdit, formatDate }
 
     }
 }
