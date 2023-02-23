@@ -27,19 +27,10 @@
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <p class="text-gray-900 whitespace-no-wrap">
-                                          Microsoft
-                                      </p>
-                                  </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
                                           {{job.jobStatus[0]}}
                                       </p>
                                   </td>
-                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                                      <p class="text-gray-900 whitespace-no-wrap">
-                                          Montreal, QC
-                                      </p>
-                                  </td>
+                                 
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <p class="text-gray-900 whitespace-no-wrap">
                                          {{job.creationDate}}
@@ -104,22 +95,12 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 
 export default {
-    props: {
-        data: Object,
-        headers: Array
-    },
-    setup(props)
+    props: ["data", "headers"],
+    setup()
     {
-        const data = ref(props.data);
-        const headers = ref(props.headers);
-
-        return {
-            data,
-            headers
-        }
+        
     }
 }
 </script>

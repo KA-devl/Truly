@@ -40,12 +40,7 @@
           <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
             <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
           </div>
-   
-   
-  
-        
-        
-      
+
     </div>
   </template>
   
@@ -54,7 +49,7 @@
   import UserSideBar from '../components/UserSideBar.vue';
   import PostingTable from '../components/PostingTable.vue';
   import { onMounted,ref } from 'vue';
-  import getCreatedJobsService from '../services/employerApi/getCreatedJobsService';
+  import getCreatedJobsService from '../services/employerService';
   
   export default {
     components:{
