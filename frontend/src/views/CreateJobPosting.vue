@@ -30,11 +30,11 @@
         <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Type*</label>
         <select v-model="type" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2">
           <option selected disabled value="">Choose a job type</option>
-          <option value="contract">Contractual</option>
-          <option value="perm">Permanent</option>
-          <option value="temp">Temporary</option>
-          <option value="full">Full-time</option>
-          <option value="part">Part-time</option>
+          <option value="contractual">Contractual</option>
+          <option value="permanent">Permanent</option>
+          <option value="temporary">Temporary</option>
+          <option value="full-time">Full-time</option>
+          <option value="part-time">Part-time</option>
         </select>
       </div>
 
@@ -96,27 +96,36 @@
 <script>
 import UserSideBar from '../components/UserSideBar.vue';
 import { ref } from 'vue';
+import { useUserStore } from '../store/user';
+import employerService from '../services/employerService';
+
 export default {
   components: {
         UserSideBar
   },
   setup() {
+    const user = useUserStore().user;
     const title = ref('');
     const type = ref('');
     const field = ref('');
     const description = ref('');
     const errorMsg = ref('');
 
-    const addJob = () => {
+    const addJob = async () => {
       if (title.value && type.value && field.value && description.value)
       {
-        // TEMPORARY
-        alert('Job Posting created');
         let newJob = {
-          title : title.value,
-          type : type.value,
-          field : field.value,
+          authorId:user.data._id,
+          name : title.value,
+          jobStatus : type.value,
+          careersFields : field.value,
           description : description.value, 
+          is_faulfilled : false
+        } 
+        try {
+          await employerService.createJob(newJob);
+        }catch(error){
+          console.log('ERROR', error.message)
         }
       }
       else
