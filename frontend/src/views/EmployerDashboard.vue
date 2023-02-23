@@ -57,7 +57,7 @@ import { useUserStore } from '../store/user';
 import UserSideBar from '../components/UserSideBar.vue';
 import PostingTable from '../components/PostingTable.vue';
 import { onMounted,ref } from 'vue';
-import getCreatedJobsService from '../services/employerApi/getCreatedJobsService';
+import getCreatedJobsService from '../services/employerService';
 
 export default {
   components:{
