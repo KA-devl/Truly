@@ -9,6 +9,9 @@ import AddPosting from "../views/AddPosting.vue";
 import { useUserStore } from "../store/user";
 import CreateJob from "../views/CreateJob.vue";
 
+// TEMPORARY
+import EmployerDashboard from "../views/EmployerDashboard.vue";
+
 const routes = [
   {
     path: "/",
