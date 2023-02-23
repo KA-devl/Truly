@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('../models/user');
-const jobpost = require('./jobpost');
 
 const JobApplicationSchema = new mongoose.Schema({
   authorId: {
@@ -8,11 +6,12 @@ const JobApplicationSchema = new mongoose.Schema({
     ref: 'user',
     validate: {
       validator: async function (value) {
-        const user = await User.findOne({ _id: value, userType: 'employer' });
+        const user = await mongoose
+          .model('user')
+          .findOne({ _id: value, userType: 'employer' });
         return !!user;
       },
-      message:
-        'authorId must be the ObjectId of a user with userType "employer"',
+      message: 'This employer does not exist',
     },
   },
   candidateId: {
@@ -21,11 +20,12 @@ const JobApplicationSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: async function (value) {
-        const user = await User.findOne({ _id: value, userType: 'candidate' });
+        const user = await mongoose
+          .model('user')
+          .findOne({ _id: value, userType: 'candidate' });
         return !!user;
       },
-      message:
-        'candidateId must be the ObjectId of a user with userType "candidate"',
+      message: 'This candidate does not exist',
     },
   },
 
@@ -33,6 +33,15 @@ const JobApplicationSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'jobPost',
     required: true,
+    validate: {
+      validator: async function (value) {
+        const jobPostId = await mongoose
+          .model('jobPost')
+          .findOne({ _id: value });
+        return !!jobPostId;
+      },
+      message: 'This job posting does not exist',
+    },
   },
 
   applicationStatus: {

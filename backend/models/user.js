@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const JobPosting = require('./jobpost');
+const jobApplication = require('./jobApplication');
 
 /**
  * User Schema
@@ -74,6 +76,27 @@ userSchema.post('save', function (error, doc, next) {
   } else {
     next();
   }
+});
+
+userSchema.pre('remove', async function (next) {
+  // before an employer is deleted , all it jobs posting are deleted
+  if (this.userType === 'employer') {
+    await JobPosting.remove({ authorId: this._id });
+
+    // // before an employer
+    // is deleted , all the jobs application associated with this employer are set to innactive
+    await mongoose
+      .model('jobApplication')
+      .updateMany({ authorId: this._id }, { applicationStatus: 'inactive' });
+    next();
+
+    // before a candidate is deleted , all it jobs application are deleted
+  } else if (this.userType === 'candidate') {
+    const jobApp = await jobApplication.findById(this._id);
+    jobApp.remove();
+    next();
+  }
+  next();
 });
 
 module.exports = mongoose.model('user', userSchema);
