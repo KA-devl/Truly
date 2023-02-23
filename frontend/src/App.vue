@@ -3,10 +3,15 @@
 </template>
 
 <script>
+
+import { useUserStore } from './store/user';
 export default {
   name: 'App',
-  components:{
-    
+
+  setup(){
+    const user = useUserStore().user;
+
+    return {user};
   }
 }
 </script>

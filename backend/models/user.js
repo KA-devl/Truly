@@ -3,51 +3,72 @@ const mongoose = require('mongoose');
 /**
  * User Schema
  */
-const userSchema = new mongoose.Schema({
-  name:{
-    type: String,
-    required: true,
-    trim:true,
-    maxlength :50
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 50,
+    },
+    email: {
+      type: String,
+      match:
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      required: true,
+      unique: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      maxlength: 50,
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 50,
+    },
+    mobileNumber: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    userType: {
+      type: String,
+      enum: ['employer', 'candidate'],
+      required: true,
+    },
   },
-  email:{
-    type: String,
-    match: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    required: true,
-    unique: true
-  },
-  username: {
-    type: String,
-    required: true,
-    unique : true,
-    trim:true,
-    maxlength :50
-  },
-  age: {
-    type : Number,
-    required : true,
-    min: 18,
-    max: 110,
 
-  },
-  mobileNumber: {
-    type: String,
-    match : /^(\(\+[0-9]{2}\))?([0-9]{3}-?)?([0-9]{3})\-?([0-9]{4})(\/[0-9]{4})?$/ ,
-    unique : true,
-    required: true
-    
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  userType: {
-    type: String,
-    required : true
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
+);
+
+// create a virtual field jobPost that diplay all the jobsPost that correspond to a author id (employer)
+userSchema.virtual('jobPost', {
+  ref: 'jobPost',
+  localField: '_id',
+  foreignField: 'authorId',
+  justOne: false,
 });
 
-userSchema.post('save', function(error, doc, next) {
+// create a virtual field jobApplication that diplay all the jobApplication that correspond to a candidate id
+userSchema.virtual('jobApplication', {
+  ref: 'jobApplication',
+  localField: '_id',
+  foreignField: 'candidateId',
+  justOne: false,
+});
+
+userSchema.post('save', function (error, doc, next) {
   if (error.name === 'MongoServerError' && error.code === 11000) {
     next(new Error('The user already exists'));
   } else {
@@ -55,4 +76,4 @@ userSchema.post('save', function(error, doc, next) {
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);

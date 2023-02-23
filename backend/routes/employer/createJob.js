@@ -8,7 +8,9 @@ const createJobPosting = (app) => {
       const jobpost = await jobPosting.create(req.body);
       res.status(201).json({ sucess: true, data: jobpost });
     } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
+      res
+        .status(400)
+        .json({ sucess: false, message: `The job cannot be created` });
     }
   });
 };

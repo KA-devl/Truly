@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../models/user');
 
 const JobPostingSchema = new mongoose.Schema({
   name: {
@@ -8,10 +9,22 @@ const JobPostingSchema = new mongoose.Schema({
     maxlength: 50,
   },
 
+  authorId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'user',
+    required: true,
+    validate: {
+      validator: async function (value) {
+        const user = await User.findOne({ _id: value, userType: 'employer' });
+        return !!user;
+      },
+      message:
+        'authorId must be the ObjectId of a user with userType "employer"',
+    },
+  },
   description: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
     maxlength: 50,
   },
@@ -20,27 +33,7 @@ const JobPostingSchema = new mongoose.Schema({
     type: String,
     match:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-
-    location: {
-      type: String,
-      enum: ['Point'],
-      required: true,
-    },
-
-    coordinates: {
-      type: [Number],
-      required: true,
-      index: '2dsphere',
-    },
-
-    formattedLocation: String,
-    street: String,
-    city: String,
-    state: String,
-    zipcode: String,
-    country: String,
   },
-
   careersFields: {
     type: [String],
     required: true,
@@ -65,29 +58,24 @@ const JobPostingSchema = new mongoose.Schema({
     required: true,
     enum: ['contractual', 'permanent', 'temporary', 'full-time', 'part-time'],
   },
-
-  hourlyRate: {
-    type: Number,
-    required: true,
-    min: 15.25,
-  },
   creationDate: {
     type: Date,
     default: Date.now,
   },
+  is_faulfilled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-module.exports = mongoose.model('JobPost', JobPostingSchema);
+// when a job post is deleted it set all its candidates applications to inactive
+JobPostingSchema.pre('remove', async function (next) {
+  console.log('preremove function is called');
+  await mongoose
+    .model('jobApplication')
+    .updateMany({ jobPostId: this._id }, { applicationStatus: 'inactive' });
 
-// To do
-// // job_id : 35235344314,
+  next();
+});
 
-// is_faulfilled : false,
-
-// author_id : 213213dfia3423,
-
-// created_at : 12/01/2022
-
-// title : Software engineer intern,
-
-// description : blablabla,
+module.exports = mongoose.model('jobPost', JobPostingSchema);
