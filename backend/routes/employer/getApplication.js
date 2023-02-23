@@ -7,6 +7,13 @@ const getApplication = (app) => {
       const getAllApplication = await Application.find({
         authorId: req.params.id,
       });
+      if (!getAllApplication)
+        return res
+          .status(400)
+          .json({
+            sucess: false,
+            message: `No job application was found for this employer`,
+          });
 
       res.status(201).json({ sucess: true, data: getAllApplication });
     } catch (err) {

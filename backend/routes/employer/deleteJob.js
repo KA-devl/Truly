@@ -6,7 +6,7 @@ const deleteJobPosting = (app) => {
     try {
       const jobpost = await jobPosting.findById(req.params.id);
 
-      if (jobpost === null)
+      if (!jobpost)
         return res.status(400).json({ sucess: false, message: err.message });
 
       jobpost.remove();

@@ -16,7 +16,7 @@ import UserSideBar from '../components/UserSideBar.vue';
 import CandidateDashboard from '../views/CandidateDashboard.vue'
 import EmployerDashboard from '../views/EmployerDashboard.vue'
 import { onMounted,ref } from 'vue';
-import getCreatedJobsService from '../services/employerApi/getCreatedJobsService';
+import getCreatedJobsService from '../services/employerService';
 
 export default {
   components:{
@@ -29,9 +29,13 @@ export default {
     const data = ref(null);
 
     onMounted(async () => {
+       try{
         const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
         data.value = res;
-        console.log(user.data);
+       }catch(error){
+        console.log('ERROR', error.message)
+       }
+
     })
 
     return { user, data,}

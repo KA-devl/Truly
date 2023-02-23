@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('../models/user');
+const jobApplication = require('./jobApplication');
 
 const JobPostingSchema = new mongoose.Schema({
   name: {
@@ -15,7 +15,9 @@ const JobPostingSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: async function (value) {
-        const user = await User.findOne({ _id: value, userType: 'employer' });
+        const user = await mongoose
+          .model('user')
+          .findOne({ _id: value, userType: 'employer' });
         return !!user;
       },
       message:
@@ -25,8 +27,6 @@ const JobPostingSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    trim: true,
-    maxlength: 50,
   },
 
   email: {
@@ -70,10 +70,10 @@ const JobPostingSchema = new mongoose.Schema({
 
 // when a job post is deleted it set all its candidates applications to inactive
 JobPostingSchema.pre('remove', async function (next) {
-  console.log('preremove function is called');
-  await mongoose
-    .model('jobApplication')
-    .updateMany({ jobPostId: this._id }, { applicationStatus: 'inactive' });
+  const jobApp = await jobApplication.updateMany(
+    { jobPostId: this._id },
+    { applicationStatus: 'inactive' }
+  );
 
   next();
 });

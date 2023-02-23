@@ -5,9 +5,8 @@ import Home from "../views/Home.vue";
 import EditUserProfile from "../views/EditUserProfile.vue";
 import Dashboard from "../views/Dashboard.vue";
 import JobDescription from "../views/JobDescription.vue";
-import AddPosting from "../views/AddPosting.vue";
+import CreateJobPosting from "../views/CreateJobPosting.vue";
 import { useUserStore } from "../store/user";
-import CreateJob from "../views/CreateJob.vue";
 
 // TEMPORARY
 import EmployerDashboard from "../views/EmployerDashboard.vue";
@@ -69,7 +68,7 @@ const routes = [
   },
   {
     name: "CreateJob",
-    component: AddPosting,
+    component: CreateJobPosting,
     path: "/create-job",
     meta: {
       title: "Create-job",
