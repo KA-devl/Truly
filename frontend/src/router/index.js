@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import EditUserProfile from "../views/EditUserProfile.vue";
 import Dashboard from "../views/Dashboard.vue";
 import JobDescription from "../views/JobDescription.vue";
+import AddPosting from "../views/AddPosting.vue";
 import { useUserStore } from "../store/user";
 import CreateJob from "../views/CreateJob.vue";
 
