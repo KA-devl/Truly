@@ -27,8 +27,6 @@ const JobPostingSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    trim: true,
-    maxlength: 50,
   },
 
   email: {

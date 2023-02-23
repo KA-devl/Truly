@@ -13,7 +13,7 @@ const updateJob = (app) => {
         }
       );
 
-      if (jobpost === null)
+      if (!jobpost)
         return res
           .status(400)
           .json({ sucess: false, message: `The job id entered is invalid` });

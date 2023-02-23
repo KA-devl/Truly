@@ -7,7 +7,7 @@ const getApplication = (app) => {
       const getAllApplication = await Application.find({
         authorId: req.params.id,
       });
-      if (getAllApplication == 0)
+      if (!getAllApplication)
         return res
           .status(400)
           .json({
