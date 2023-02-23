@@ -33,7 +33,7 @@
                                  
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <p class="text-gray-900 whitespace-no-wrap">
-                                         {{job.creationDate}}
+                                        {{ formatDate(job.creationDate)}}
                                       </p>
                                   </td>
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
@@ -95,11 +95,17 @@
 </template>
 
 <script>
-
+import { DateTime } from 'luxon';
 export default {
     props: ["data", "headers"],
     setup()
     {
+        const formatDate = (unformattedDate) => {
+        const date = DateTime.fromISO(unformattedDate);
+        return date.toLocaleString(DateTime.DATETIME_MED);
+        };
+
+        return {formatDate}
         
     }
 }
