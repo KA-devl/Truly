@@ -85,6 +85,7 @@
 
 import { ref } from "vue";
 import Navbar from '../components/Navbar.vue';
+import userService from "../services/userService";
 
 export default {
   components: {
@@ -106,6 +107,16 @@ export default {
 
         console.log('SUCCESSFULLY CREATED NEW ACCOUNT!');
         console.log(name.value, username.value, email.value, mobileNumber.value, userType.value, password.value);
+        let newUser = {
+          name : name.value,
+          email : email.value,
+          username : username.value,
+          password : password.value,
+          mobileNumber : mobileNumber.value,
+          userType : userType.value,
+        }
+        //to-do add error reponses on the UI of the services
+        await userService.createUser(newUser)
         //router.push({ name: 'Login' })
       }
       else {
