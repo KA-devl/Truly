@@ -49,7 +49,7 @@
   import UserSideBar from '../components/UserSideBar.vue';
   import PostingTable from '../components/PostingTable.vue';
   import { onMounted,ref } from 'vue';
-  import getCreatedJobsService from '../services/employerService';
+  import userService from '../services/userService';
   
   export default {
     components:{
@@ -59,10 +59,11 @@
     setup() {
       const user = useUserStore().user;
       const data = ref(null);
-      const headers = ["Job Title", "Organization", "Position Type", "Location", "Date Created", "Status"];
+      const headers = ["Job Title", "Position Type","Created at", "Status", ""];
+
   
       onMounted(async () => {
-          const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
+          const res =  await userService.getAllJobs();
           data.value = res;
           
       })

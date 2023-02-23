@@ -6,6 +6,10 @@ export default {
     const res = await axios.post(`${localUrl}/signup`, user);
     return res;
   },
+  async getAllJobs(user) {
+    const res = await axios.get(`${localUrl}/get-jobs`);
+    return res.data.data;
+  },
   async updateUserProfile(userId, tempUser) {
     console.log("the temp data is", tempUser.data);
     const res = await axios.put(

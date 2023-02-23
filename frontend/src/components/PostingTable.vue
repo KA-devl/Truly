@@ -9,7 +9,9 @@
                                   </th>
                               </tr>
                           </thead>
-                          <tbody>
+                          
+                          <!-- EMPLOYER TABLE BODY-->
+                          <tbody v-if="user.data.userType === 'employer'">
                               <tr v-for="job in data" :key="job._id">
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                                       <div class="flex items-center">
@@ -29,6 +31,63 @@
                                       <p class="text-gray-900 whitespace-no-wrap">
                                           {{job.jobStatus[0]}}
                                       </p>
+                                  </td>
+                                 
+                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                      <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ formatDate(job.creationDate)}}
+                                      </p>
+                                  </td>
+                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                      <span v-if="!job.is_faulfilled" class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                          <span aria-hidden="true" class="absolute inset-0 bg-green-200 rounded-full opacity-50">
+                                          </span>
+                                          <span class="relative">
+                                              active
+                                          </span>
+                                      </span>
+                                      <span v-if="job.is_faulfilled" class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                          <span aria-hidden="true" class="absolute inset-0 bg-red-200 rounded-full opacity-50">
+                                          </span>
+                                          <span class="relative">
+                                              filled
+                                          </span>
+                                      </span>
+                                  </td>
+                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                      <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                        Apply
+                                      </a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                          <!-- CANDIDATE TABLE BODY -->
+                          <tbody v-if="user.data.userType === 'candidate'">
+                              <tr v-for="job in data" :key="job._id">
+                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                      <div class="flex items-center">
+                                          <div class="flex-shrink-0">
+                                              <a href="#" class="relative block">
+                                                  <img alt="Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAlJ6No3s5MBB3r7JyNzE7_fIR_24RYS_FcXC8qoiL4lvtuSghgUzYC7jBmGflwLWTfZg&usqp=CAU" class="mx-auto object-cover rounded-full h-10 w-10 "/>
+                                              </a>
+                                          </div>
+                                          <div class="ml-3">
+                                              <p class="text-gray-900 whitespace-no-wrap">
+                                                  {{job.name}}
+                                              </p>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+
+                                    <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-blue-900">
+                                          <span aria-hidden="true" class="absolute inset-0 bg-blue-200 rounded-full ">
+                                          </span>
+                                          <span class="relative">
+                                            {{job.jobStatus[0]}}
+                                          </span>
+                                      </span>
+                                    
                                   </td>
                                  
                                   <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
@@ -96,16 +155,19 @@
 
 <script>
 import { DateTime } from 'luxon';
+import { useUserStore } from '../store/user';
+
 export default {
     props: ["data", "headers"],
     setup()
     {
+        const user = useUserStore().user;
         const formatDate = (unformattedDate) => {
         const date = DateTime.fromISO(unformattedDate);
         return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return {formatDate}
+        return {formatDate, user}
         
     }
 }
