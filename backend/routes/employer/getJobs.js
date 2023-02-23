@@ -7,7 +7,7 @@ const getJobs = (app) => {
       const jobpost = await jobPosting.find({ authorId: req.params.id });
       console.log(jobpost);
 
-      if (jobpost == 0)
+      if (!jobpost)
         return res
           .status(400)
           .json({ sucess: false, message: `No job posting found` });
