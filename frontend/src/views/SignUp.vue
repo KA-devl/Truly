@@ -104,7 +104,7 @@ export default {
 
     // Register
     const register = async () => {
-      if (name && username && mobileNumber && (password.value === confirmPassword.value)) {
+      if (name.value && username.value && mobileNumber.value && (password.value === confirmPassword.value)) {
 
         console.log('SUCCESSFULLY CREATED NEW ACCOUNT!');
         console.log(name.value, username.value, email.value, mobileNumber.value, userType.value, password.value);
