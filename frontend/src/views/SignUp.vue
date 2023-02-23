@@ -86,12 +86,13 @@
 import { ref } from "vue";
 import Navbar from '../components/Navbar.vue';
 import userService from "../services/userService";
-
+import { useRouter } from "vue-router";
 export default {
   components: {
     Navbar,
   },
   setup() {
+    const router = useRouter();
     const name = ref('');
     const username = ref('');
     const email = ref('');
@@ -116,7 +117,18 @@ export default {
           userType : userType.value,
         }
         //to-do add error reponses on the UI of the services
-        await userService.createUser(newUser)
+        try{
+          const res = await userService.createUser(newUser)
+          if (res) {
+            router.push({ name: 'Login' })
+          }
+        }catch(error){
+          console.log('ERROR', error.message)
+          errorMsg.value = "Oops, something went wrong.."
+          setTimeout(() => {
+            errorMsg.value = null
+          }, 6000)
+        }
         //router.push({ name: 'Login' })
       }
       else {

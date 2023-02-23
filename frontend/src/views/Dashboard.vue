@@ -183,8 +183,12 @@ export default {
     const data = ref(null);
 
     onMounted(async () => {
+       try{
         const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
         data.value = res;
+       }catch(error){
+        console.log('ERROR', error.message)
+       }
         
     })
 

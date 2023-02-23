@@ -1,20 +1,19 @@
-import axios from "axios"
+import axios from "axios";
+const localUrl = 'http://localhost:5000/api';
 
 export default {
   async createUser(user) {
-    console.log('the user to be created is ' , user)
-    try{
-      const res = await axios.post(`http://localhost:5000/api/signup`, user);
-    }catch(error){
-      console.log(error.message)
-    }
+    const res = await axios.post(`${localUrl}/signup`, user);
+    return res;
   },
   async updateUserProfile(userId, tempUser) {
-    console.log('the temp data is' , tempUser.data)
-    const res = await axios.put(`http://localhost:5000/api/edit-profile/${userId}`, tempUser.data );
-
+    console.log("the temp data is", tempUser.data);
+    const res = await axios.put(
+      `${localUrl}/edit-profile/${userId}`,
+      tempUser.data
+    );
     // store user details and jwt in local storage to keep user logged in between page refreshes
-    localStorage.setItem('user', JSON.stringify(tempUser));
-    console.log('the result is ', res)
-  }
-}
+    localStorage.setItem("user", JSON.stringify(tempUser));
+    return res;
+  },
+};
