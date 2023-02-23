@@ -34,24 +34,6 @@ const JobPostingSchema = new mongoose.Schema({
     match:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   },
-  careersFields: {
-    type: [String],
-    required: true,
-    enum: [
-      'Agriculture, Food, and Natural Resources',
-      'Architecture and Construction',
-      'Arts, Audio/Video Technology, and Communication',
-      'Business and Finance',
-      'Education and Training',
-      'Government and Public Administration',
-      'Health Science.',
-      'Information Technology',
-      'Marketing',
-      'Science, Technology, Engineering, and Math',
-      'Law, Public Safety, Corrections, and Security',
-      'Other',
-    ],
-  },
 
   jobStatus: {
     type: [String],
