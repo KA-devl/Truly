@@ -4,25 +4,8 @@
                     <table class="min-w-full leading-normal">
                           <thead>
                               <tr>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Job Titles
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Organization
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Position type
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Location
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Date created
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
-                                      Status
-                                  </th>
-                                  <th scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                  <th v-for="header in headers" :key="header" scope="col" class="px-10 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+                                      {{ header }}
                                   </th>
                               </tr>
                           </thead>
@@ -124,9 +107,19 @@
 import { ref } from 'vue';
 
 export default {
+    props: {
+        data: Object,
+        headers: Array
+    },
     setup(props)
     {
-        const data = ref(null);
+        const data = ref(props.data);
+        const headers = ref(props.headers);
+
+        return {
+            data,
+            headers
+        }
     }
 }
 </script>

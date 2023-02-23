@@ -1,13 +1,10 @@
 <template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
-  <UserSideBar/>
-  <div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
       <h2 class="text-3xl font-semibold ">Dashboard </h2>
       <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.data.name }}</span></h2>
       <div class="flex flex-row justify-between w-full mb-1 mt-4 sm:mb-0">
         <h2 class="text-2xl leading-tight">
-          Job Postings
+          Your Postings
         </h2>
         <div class="text-end">
           <form class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
@@ -25,7 +22,7 @@
       <div class="flex items-center justify-center mb-4 rounded">
         <div class=" w-full">
          
-          <PostingTable data="data" />
+          <PostingTable :data="data" :headers="headers" />
               
           
       </div>
@@ -48,8 +45,6 @@
 
       
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -67,6 +62,8 @@ export default {
   setup() {
     const user = useUserStore().user;
     const data = ref(null);
+    const headers = ["Job Title", "Position Type", "Date Created", "Status"]
+
 
     onMounted(async () => {
         const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
@@ -74,7 +71,7 @@ export default {
         
     })
 
-    return { user, data }
+    return { user, data, headers }
   }
 }
 
