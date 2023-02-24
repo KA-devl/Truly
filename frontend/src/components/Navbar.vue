@@ -1,6 +1,6 @@
 <template>
 
-<nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+<nav class="bg-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
   <router-link :to="{name: 'Home'}" class="flex items-center">
       <img src="../assets/truly-logo.png" class="h-8 mr-3 sm:h-9" alt="Flowbite Logo">
