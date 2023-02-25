@@ -16,13 +16,26 @@
             <!-- form - start -->
             <form @submit.prevent="" class="max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto">
 
-              <AddTags title="Skills" :tags="skills" :handleRemove="removeSkill" :handleAdd="addSkill" />
+            <label class="inline-block text-gray-800 text-sm sm:text-base mb-2">Skills</label>
+              <AddTags :tags="skills" :handleRemove="removeSkill" :handleAdd="addSkill" />
+            
+              
+              <div class="sm:col-span-2">
+              <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Education</label>
+              <div v-for="education in educations">
+                <EducationCard :education="education" :removeEducation="removeEducation"/>
+              </div>
+              
+              </div>
+              <div class="sm:col-span-2 flex justify-between items-center">
+                
+                <button @click="addEducation"
+                  class="inline-block bg-blue-500 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-5 py-2">
+                  Add Education
+                </button>
   
-              <!-- <div class="sm:col-span-2">
-          <label for="salary" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Tags*</label>
-          <span class="text-sm font-normal text-gray-600 dark:text-gray-400"> (Separate tags with ';')</span>
-          <input type="text" name="salary" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
-        </div> -->
+                <span class="text-gray-500 text-sm"></span>
+              </div>
   
               <div class="sm:col-span-2">
                 <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Type*</label>
@@ -62,19 +75,14 @@
           <input type="date" name="salary" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
         </div> -->
   
-              <div class="sm:col-span-2">
-                <label for="message" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Description*</label>
-                <textarea name="message"
-                  class="w-full h-64 bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2"></textarea>
-              </div>
   
               <div class="sm:col-span-2 flex justify-between items-center">
-                <button
+                <button @click="saveResume"
                   class="inline-block bg-blue-500 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
                   Save
                 </button>
   
-                <span class="text-gray-500 text-sm"></span>
+                <span class="text-gray-500 text-sm">*Required</span>
               </div>
               <div v-if="errorMsg" class="alert alert-error shadow-lg">
                 <div class="px-3 py-6 bg-red-400 text-white flex justify-between rounded">
@@ -100,6 +108,7 @@
   <script>
   import UserSideBar from '../components/UserSideBar.vue';
   import AddTags from '../components/AddTags.vue';
+  import EducationCard from '../components/EducationCard.vue';
   import { ref } from 'vue';
   import { useUserStore } from '../store/user';
   import employerService from '../services/employerService';
@@ -108,6 +117,7 @@
     components: {
       UserSideBar,
       AddTags,
+      EducationCard,
     },
     setup() {
       const user = useUserStore().user;
@@ -115,6 +125,61 @@
       // FETCH SKILLS FROM BACKEND. SKILLS SHOULD BE A STRING ARRAY
         //Temporary skills array
       const skills = ref(["C++", "Java", "C#", "JavaScript", "React"]);
+
+      // Dummy Educations array variable 
+    //   const educations = ref([
+    //     {
+    //         id: 1,
+    //         school: "Concordia",
+    //         degreeType: "bachelor",
+    //         specialization: "Software Engineering",
+    //         grade: "4.20",
+    //         start: "2022-01",
+    //         end: "2025-12",
+    //     },
+    //     {
+    //         id: 2,
+    //         school: "Polytechnique",
+    //         degreeType: "bachelor",
+    //         specialization: "Mechanical Engineering",
+    //         grade: "3.54",
+    //         start: "2021-07",
+    //         end: "2021-12",
+    //     }
+    //   ]);
+
+    const educations = ref([]);
+
+
+      const saveResume = () => {
+        //NEED TO CHECK IF FIELDS ARE EMPTY
+
+        let newResume = {
+            skills: skills.value,
+            educations: educations.value,
+        }
+
+        console.log(newResume);
+      }
+
+      const removeEducation = (education) => {
+        educations.value.splice(educations.value.find((edu) => edu.id === education.id), 1)
+      }
+
+      const addEducation = () => {
+        let ID = Math.floor(Math.random() * 100)
+        let newEducation = {
+            id: ID,
+            school: "",
+            degreeType: "",
+            specialization: "",
+            grade: "",
+            start: "",
+            end: "",
+        }
+
+        educations.value.push(newEducation);
+      }
 
       const removeSkill = (skill) => {
         skills.value.splice(skills.value.indexOf(skill), 1);
@@ -126,8 +191,12 @@
   
       return {
         skills,
+        educations,
         removeSkill,
         addSkill,
+        removeEducation,
+        addEducation,
+        saveResume,
       };
     },
   

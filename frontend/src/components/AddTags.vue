@@ -1,7 +1,7 @@
 <template>
 
             <div class="sm:col-span-2">
-                <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">{{ title }}</label>
+                
     <div class="flex">
         <div class="relative w-full">
             <input name="jobtitle" autocomplete="off" v-model="tagText"
@@ -28,7 +28,7 @@ import { ref } from 'vue';
 import Tag from './Tag.vue';
 
 export default {
-    props: ["title", "tags", "handleRemove", "handleAdd"],
+    props: ["tags", "handleRemove", "handleAdd"],
     components: {
         Tag,
     },
