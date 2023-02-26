@@ -17,7 +17,7 @@
           <form @submit.prevent="addJob" class="max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto">
             <div class="sm:col-span-2">
               <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Title*</label>
-              <input v-model="title" name="jobtitle"
+              <input v-model="title" name="jobtitle" autocomplete="off"
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
 
