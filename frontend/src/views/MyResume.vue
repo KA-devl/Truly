@@ -36,21 +36,51 @@
   
                 <span class="text-gray-500 text-sm"></span>
               </div>
-  
+              <br />
               <div class="sm:col-span-2">
-                <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Type*</label>
-                <select
-                  class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2">
-                  <option selected disabled value="">Choose a job type</option>
-                  <option value="contractual">Contractual</option>
-                  <option value="permanent">Permanent</option>
-                  <option value="temporary">Temporary</option>
-                  <option value="full-time">Full-time</option>
-                  <option value="part-time">Part-time</option>
-                </select>
+              <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Work Experience</label>
+              <div v-for="experience in workExperiences">
+                <WorkExperienceCard :work="experience" :remove="removeWorkExperience" />
               </div>
+              
+              </div>
+              <div class="sm:col-span-2 flex justify-between items-center">
+                
+                <button @click="addWorkExperience"
+                  class="inline-block bg-blue-500 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-5 py-2">
+                  Add Work Experience
+                </button>
   
+                <span class="text-gray-500 text-sm"></span>
+              </div>
+
+              <br />
               <div class="sm:col-span-2">
+              <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Projects</label>
+              <div v-for="project in projects">
+                <ProjectCard :project="project" :remove="removeProject" />
+              </div>
+              
+              </div>
+              <div class="sm:col-span-2 flex justify-between items-center">
+                
+                <button @click="addProject"
+                  class="inline-block bg-blue-500 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-5 py-2">
+                  Add Project
+                </button>
+  
+                <span class="text-gray-500 text-sm"></span>
+              </div>
+
+
+
+              <div class="sm:col-span-2">
+                <br />
+              <hr />
+              </div>
+              
+  
+              <!-- <div class="sm:col-span-2">
                 <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Field*</label>
                 <select
                   class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2">
@@ -68,7 +98,7 @@
                   <option value="law">Law, Public Safety, Corrections, and Security</option>
                   <option value="other">Other</option>
                 </select>
-              </div>
+              </div> -->
   
               <!-- <div class="sm:col-span-2">
           <label for="salary" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Start Date*</label>
@@ -109,6 +139,8 @@
   import UserSideBar from '../components/UserSideBar.vue';
   import AddTags from '../components/AddTags.vue';
   import EducationCard from '../components/EducationCard.vue';
+  import WorkExperienceCard from '../components/WorkExperienceCard.vue';
+  import ProjectCard from '../components/ProjectCard.vue';
   import { ref } from 'vue';
   import { useUserStore } from '../store/user';
   import employerService from '../services/employerService';
@@ -118,11 +150,13 @@
       UserSideBar,
       AddTags,
       EducationCard,
+      WorkExperienceCard,
+      ProjectCard,
     },
     setup() {
       const user = useUserStore().user;
     
-      // FETCH SKILLS FROM BACKEND. SKILLS SHOULD BE A STRING ARRAY
+      // FETCH SKILLS, EDUCATIONS, WORK EXPERIENCES, AND PROJECTS FROM BACKEND. SKILLS SHOULD BE A STRING ARRAY
         //Temporary skills array
       const skills = ref(["C++", "Java", "C#", "JavaScript", "React"]);
 
@@ -150,6 +184,52 @@
 
     const educations = ref([]);
 
+    // DUMMY WORK EXPERIENCES VARIABLE
+    // const workExperiences = ref([
+    //   {
+    //     id: 1,
+    //     company: "Google",
+    //     start: "2021-07",
+    //     end: "2021-12",
+    //     jobtype: "full-time",
+    //     location: "Pasadena",
+    //     jobtitle: "Automation Engineer",
+    //     message: "Built the mars rover from A to Z alone.",
+    //     competencies: [
+    //       "C++",
+    //       "AutoCAD",
+    //       "Arduino",
+    //       "SolidWorks",
+    //       "VSCode",
+    //       "Excel"
+    //     ]
+    //   }
+    // ]);
+
+      const workExperiences = ref([]);
+
+    //   const projects = ref([
+    //   {
+    //     id: 1,
+    //     start: "2021-07",
+    //     end: "2021-12",
+    //     title: "Mars Rover",
+    //     role: "Backend Dev",
+    //     description: "Built the mars rover from A to Z alone.",
+    //     competencies: [
+    //       "C++",
+    //       "AutoCAD",
+    //       "Arduino",
+    //       "SolidWorks",
+    //       "VSCode",
+    //       "Excel"
+    //     ]
+    //   }
+    // ]);
+
+      const projects = ref([]);
+
+      const errorMsg = ref("")
 
       const saveResume = () => {
         //NEED TO CHECK IF FIELDS ARE EMPTY
@@ -157,6 +237,21 @@
         let newResume = {
             skills: skills.value,
             educations: educations.value,
+            workExperiences: workExperiences.value,
+            projects: projects.value
+        }
+
+        let error = defineError(newResume);
+
+        if (!error)
+        {
+          // SEND RESUME TO BACKEND
+        }
+        else {
+          errorMsg.value = error;
+          setTimeout(() => {
+            errorMsg.value = '';
+          }, 6000)
         }
 
         console.log(newResume);
@@ -164,6 +259,31 @@
 
       const removeEducation = (education) => {
         educations.value.splice(educations.value.find((edu) => edu.id === education.id), 1)
+      }
+
+      const removeWorkExperience = (work) => {
+        workExperiences.value.splice(workExperiences.value.find((exp) => exp.id === work.id), 1)
+      }
+
+      const removeProject = (proj) => {
+        projects.value.splice(projects.value.find((project) => project.id === proj.id), 1)
+      }
+
+      const addWorkExperience = () => {
+        let ID = Math.floor(Math.random() * 100)
+        let newExperience = {
+          id: ID,
+          company: "",
+          start: "",
+          end: "",
+          jobtype: "",
+          location: "",
+          jobtitle: "",
+          message: "",
+          competencies: []
+      }
+
+        workExperiences.value.push(newExperience);
       }
 
       const addEducation = () => {
@@ -181,6 +301,21 @@
         educations.value.push(newEducation);
       }
 
+      const addProject = () => {
+        let ID = Math.floor(Math.random() * 100)
+        let newProject = {
+          id: ID,
+          start: "",
+          end: "",
+          title: "",
+          role: "",
+          description: "",
+          competencies: []
+      }
+
+        projects.value.push(newProject);
+      }
+
       const removeSkill = (skill) => {
         skills.value.splice(skills.value.indexOf(skill), 1);
       }
@@ -188,14 +323,80 @@
       const addSkill = (skill) => {
         skills.value.push(skill);
       }
+
+      const defineError = (resume) => {
+        for (let education of resume.educations)
+        {
+          if (!education.school) {
+            return "School input is missing"
+          }
+          else if (!education.degreeType) {
+            return "Degree type input is missing"
+          }
+          else if (!education.specialization) {
+            return "Specialization input is missing"
+          }
+          else if (!education.start) {
+            return "Start date input is missing"
+          }
+          else if (!education.end) {
+            return "End date input is missing"
+          }
+        }
+
+        for (let work of resume.workExperiences)
+        {
+          if (!work.company) {
+            return "Company input is missing"
+          } else if (!work.jobtitle) {
+            return "Job title input is missing"
+          } else if (!work.location) {
+            return "Location input is missing"
+          } else if (!work.jobtype) {
+            return "Job type input is missing"
+          } else if (!work.start) {
+            return "Start date input is missing"
+          } else if (!work.end) {
+            return "End date input is missing"
+          }
+        }
+
+        for (let project of resume.projects)
+        {
+          if (!project.title) {
+            return "Project title input is missing"
+          }
+          else if (!project.role) {
+            return "Role input is missing"
+          }
+          else if (!project.start) {
+            return "Start date input is missing"
+          }
+          else if (!project.end) {
+            return "End date input is missing"
+          }
+          else if (!project.description) {
+            return "Project description input is missing"
+          }
+        }
+
+        return "";
+      }
   
       return {
         skills,
         educations,
+        workExperiences,
+        projects,
+        errorMsg,
         removeSkill,
         addSkill,
         removeEducation,
         addEducation,
+        removeWorkExperience,
+        addWorkExperience,
+        removeProject,
+        addProject,
         saveResume,
       };
     },

@@ -28,7 +28,7 @@
     </div>
     <br />
     <div class="sm:col-span-2">
-        <label for="grade" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Grade*</label>
+        <label for="grade" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Grade</label>
         <input name="grade" autocomplete="off" @input="editEducationInfo($event)" :value="education.grade"
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
     </div>
