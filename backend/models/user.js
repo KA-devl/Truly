@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema(
       enum: ['employer', 'candidate'],
       required: true,
     },
+    imgProfileUrl: {
+      type: String,
+      default : '',
+    }
   },
 
   {
