@@ -38,6 +38,8 @@ app.get('/', (req, res) => {
 require('./routes/user/createUser')(app);
 require('./routes/user/getUser')(app);
 require('./routes/user/updateUserProfile')(app);
+require('./routes/user/updateResume')(app);
+require('./routes/user/updateAvatar')(app);
 require('./routes/employer/createJob')(app);
 require('./routes/employer/getJob')(app);
 require('./routes/employer/getJobs')(app);
