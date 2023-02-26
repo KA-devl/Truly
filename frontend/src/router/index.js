@@ -6,6 +6,7 @@ import EditUserProfile from "../views/EditUserProfile.vue";
 import Dashboard from "../views/Dashboard.vue";
 import JobDescription from "../views/JobDescription.vue";
 import CreateJobPosting from "../views/CreateJobPosting.vue";
+import MyResume from "../views/MyResume.vue";
 import { useUserStore } from "../store/user";
 
 // TEMPORARY
@@ -72,6 +73,15 @@ const routes = [
     path: "/create-job",
     meta: {
       title: "Create-job",
+      auth: true,
+    },
+  },
+  {
+    name: "MyResume",
+    component: MyResume,
+    path: "/my-resume",
+    meta: {
+      title: "My-Resume",
       auth: true,
     },
   },

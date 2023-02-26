@@ -55,6 +55,10 @@ const userSchema = new mongoose.Schema(
       resumeUrl: { type: String, default: 'undefined' },
       cloudinaryId: { type: String, default: 'undefined' },
     },
+    imgProfileUrl: {
+      type: String,
+      default: '',
+    },
   },
 
   {
