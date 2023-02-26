@@ -3,6 +3,7 @@ const upload = require('../../config/multer');
 const User = require('../../models/user');
 const path = require('path');
 
+// UPDATE CANDIDATE RESUME
 const updateResume = (app) =>
   app.put('/update-resume/:id', upload.single('resume'), async (req, res) => {
     //array of accepted files
@@ -11,10 +12,10 @@ const updateResume = (app) =>
     const fileExtension = path.extname(req.file.originalname);
 
     try {
-      // if file is in the authorizedMimeTypes list
+      // if file .ext is in the authorizedMimeTypes list
       if (authorizedMimeTypes.includes(fileExtension)) {
         let user = await User.findById(req.params.id);
-
+        // if user not a candidate ---> error
         if (user.userType === 'employer') {
           res.status(400).json({
             sucess: false,

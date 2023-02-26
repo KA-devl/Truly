@@ -3,6 +3,7 @@ const upload = require('../../config/multer');
 const User = require('../../models/user');
 const path = require('path');
 
+// UPDATE USER PROFILE AVATAR
 const uploadAvatar = (app) =>
   app.put('/update-avatar/:id', upload.single('image'), async (req, res) => {
     //array of accepted files
