@@ -46,10 +46,19 @@ const userSchema = new mongoose.Schema(
       enum: ['employer', 'candidate'],
       required: true,
     },
+
+    avatar: {
+      imageUrl: { type: String, default: 'undefined' },
+      cloudinaryId: { type: String, default: 'undefined' },
+    },
+    resume: {
+      resumeUrl: { type: String, default: 'undefined' },
+      cloudinaryId: { type: String, default: 'undefined' },
+    },
     imgProfileUrl: {
       type: String,
-      default : '',
-    }
+      default: '',
+    },
   },
 
   {
@@ -97,6 +106,10 @@ userSchema.pre('remove', async function (next) {
     // before a candidate is deleted , all it jobs application are deleted
   } else if (this.userType === 'candidate') {
     const jobApp = await jobApplication.findById(this._id);
+    if (!jobApp) {
+      next();
+      return;
+    }
     jobApp.remove();
     next();
   }

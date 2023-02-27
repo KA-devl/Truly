@@ -50,6 +50,7 @@ const JobApplicationSchema = new mongoose.Schema({
     default: ['active'],
     enum: ['under review', 'rejected', 'active', 'inactive'],
   },
+  cv: { type: String, required: true },
 
   creationDate: {
     type: Date,

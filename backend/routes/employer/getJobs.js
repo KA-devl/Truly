@@ -5,7 +5,6 @@ const getJobs = (app) => {
   app.get('/api/get-jobs/:id', async (req, res) => {
     try {
       const jobpost = await jobPosting.find({ authorId: req.params.id });
-      console.log(jobpost);
 
       if (!jobpost)
         return res
