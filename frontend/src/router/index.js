@@ -8,11 +8,13 @@ import JobDescription from "../views/JobDescription.vue";
 import CreateJobPosting from "../views/CreateJobPosting.vue";
 import MyResume from "../views/MyResume.vue";
 import { useUserStore } from "../store/user";
+import AboutUs from "../views/AboutUs.vue";
 
 // TEMPORARY
 import EmployerDashboard from "../views/EmployerDashboard.vue";
 
 const routes = [
+
   {
     path: "/",
     name: "Home",
@@ -85,6 +87,15 @@ const routes = [
       auth: true,
     },
   },
+  {
+    name: "AboutUs",
+    component: AboutUs,
+    path: "/aboutus",
+    meta: {
+      title: "AboutUs",
+      auth: false,
+    },
+  }
 ];
 
 const router = createRouter({

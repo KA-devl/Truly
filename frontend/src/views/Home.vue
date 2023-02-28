@@ -1,13 +1,11 @@
 <template>
   <!-- THE HOME PAGE OF THE WHOLE WEBSITE-->
+
   <Navbar />
   <div class="bg-white pb-6 sm:pb-8 lg:pb-12 mt-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <section class="relative flex flex-col">
-        
-        <div
-          class="overflow-hidden rounded-lg relative mb-6 md:mb-8 mt-20"
-        >
+        <div class="overflow-hidden rounded-lg relative mb-6 md:mb-8 mt-20">
           <img
             src="https://thisisbien.com/wp-content/uploads/2021/10/InMoDe_Why_Cover.png"
             loading="lazy"
@@ -164,43 +162,7 @@
             team. <br /><br />
           </p>
 
-          <h2
-            class="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4"
-          >
-            About us
-          </h2>
 
-          <p class="text-gray-500 sm:text-lg mb-6 md:mb-8">
-            At Truly, we're committed to making the job search and hiring
-            process as efficient and effective as possible. We're constantly
-            innovating and improving our platform to ensure that job seekers and
-            employers have access to the best possible tools and resources.
-            Thank you for choosing Truly, and we look forward to helping you
-            achieve your career goals.
-          </p>
-          <blockquote
-            class="text-gray-500 sm:text-lg italic border-l-4 pl-4 md:pl-6 mb-6 md:mb-8"
-          >
-            “I was struggling to find job opportunities in my field, but then I
-            came across Truly and it was a game-changer for me. The platform's
-            user-friendly interface allowed me to easily search for relevant job
-            postings and apply with just a few clicks. I landed a great job
-            within a few weeks of using this platform. Highly recommend it!” -
-            John D.
-          </blockquote>
-
-          <div
-            class="bg-gray-100 overflow-hidden rounded-lg relative mb-6 md:mb-8"
-          >
-            <img
-              src="https://unblast.com/wp-content/uploads/2020/05/Job-Hunting-Illustration.jpg"
-              loading="lazy"
-              alt="Photo by Minh Pham"
-              class="w-full h-full object-cover object-center"
-            />
-          </div>
-        </div>
-      </div>
       <!--Content - end-->
 
       <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -641,7 +603,10 @@
       <!--Footer - end-->
     </div>
   </div>
+</div>
+</div>
 </template>
+
 <script>
 import Navbar from "../components/Navbar.vue";
 
