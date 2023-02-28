@@ -233,124 +233,102 @@
     </div>
   </div>
 </div>
-
+<!--Testimonials - start-->
 <div class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-    <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8 xl:mb-12">Customer Reviews</h2>
+          <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
+            <h2
+              class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12"
+            >
+              What others say about us
+            </h2>
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-      <!-- review - start -->
-      <div class="flex flex-col border rounded-lg gap-3 p-4 md:p-6">
-        <div>
-          <span class="block text-sm md:text-base font-bold">John McCulling</span>
-          <span class="block text-gray-500 text-sm">August 28, 2021</span>
+            <div class="grid md:grid-cols-2 gap-4 md:gap-8">
+              <!-- quote - start -->
+              <div
+                class="flex flex-col items-center bg-blue-500 rounded-lg gap-4 md:gap-6 px-8 py-6"
+              >
+                <div class="max-w-md text-white lg:text-lg text-center">
+                  “Truly provided me with resources and tools that helped me to
+                  optimize my resume and cover letter. Thanks to this platform, I
+                  was able to secure a job within a few weeks of using it. I would
+                  highly recommend it to anyone looking for job opportunities.”
+                </div>
+
+                <div
+                  class="flex flex-col sm:flex-row items-center gap-2 md:gap-3"
+                >
+                  <div
+                    class="w-12 md:w-14 h-12 md:h-14 bg-gray-100 border-2 border-blue-100 rounded-full overflow-hidden"
+                  >
+                    <img
+                      src="https://cdn.discordapp.com/attachments/690784181373894706/1076006542886846555/image.png"
+                      loading="lazy"
+                      alt="Photo by Radu Florin"
+                      class="w-full h-full object-cover object-center"
+                    />
+                  </div>
+
+                  <div>
+                    <div
+                      class="text-blue-50 text-sm md:text-base font-bold text-center sm:text-left"
+                    >
+                      Dann K.
+                    </div>
+                    <p
+                      class="text-blue-200 text-sm md:text-sm text-center sm:text-left"
+                    >
+                      Game Developer / Blizzard Entertainment
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- quote - end -->
+
+              <!-- quote - start -->
+              <div
+                class="flex flex-col items-center bg-blue-500 rounded-lg gap-4 md:gap-6 px-8 py-6"
+              >
+                <div class="max-w-md text-white lg:text-lg text-center">
+                  “I've used a lot of job search websites over the years, but
+                  Truly stands out as the best. The user interface is intuitive
+                  and easy to use, and there are always a wide variety of job
+                  postings available. I found my current job through this portal
+                  and couldn't be happier.”
+                </div>
+
+                <div
+                  class="flex flex-col sm:flex-row items-center gap-2 md:gap-3"
+                >
+                  <div
+                    class="w-12 md:w-14 h-12 md:h-14 bg-gray-100 border-2 border-blue-100 rounded-full overflow-hidden"
+                  >
+                    <img
+                      src="https://media.licdn.com/dms/image/C4D22AQH3TF4CVead9g/feedshare-shrink_1280/0/1666977589847?e=1679529600&v=beta&t=shB5QJr6q-JKqkB1RuGh61iepita5thXs2Yb_yY2pI8"
+                      loading="lazy"
+                      alt="Photo by christian ferrer"
+                      class="w-full h-full object-cover object-center"
+                    />
+                  </div>
+
+                  <div>
+                    <div
+                      class="text-blue-50 text-sm md:text-base font-bold text-center sm:text-left"
+                    >
+                      Garvit B.
+                    </div>
+                    <p
+                      class="text-blue-200 text-sm md:text-sm text-center sm:text-left"
+                    >
+                      Junior Analyst / Lehman Brothers
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- quote - end -->
+            </div>
+          </div>
         </div>
-
-        <!-- stars - start -->
-        <div class="flex gap-0.5 -ml-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        </div>
-        <!-- stars - end -->
-
-        <p class="text-gray-600">I was struggling to find job opportunities in my field, but then I
-            came across Truly and it was a game-changer for me. </p>
-      </div>
-      <!-- review - end -->
-
-      <!-- review - start -->
-      <div class="flex flex-col border rounded-lg gap-3 p-4 md:p-6">
-        <div>
-          <span class="block text-sm md:text-base font-bold">Kate Berg</span>
-          <span class="block text-gray-500 text-sm">July 21, 2021</span>
-        </div>
-
-        <!-- stars - start -->
-        <div class="flex gap-0.5 -ml-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        </div>
-        <!-- stars - end -->
-
-        <p class="text-gray-600">The platform's
-            user-friendly interface allowed me to easily search for relevant job
-            postings and apply with just a few clicks. </p>
-      </div>
-      <!-- review - end -->
-
-      <!-- review - start -->
-      <div class="flex flex-col border rounded-lg gap-3 p-4 md:p-6">
-        <div>
-          <span class="block text-sm md:text-base font-bold">Greg Jackson</span>
-          <span class="block text-gray-500 text-sm">March 16, 2021</span>
-        </div>
-
-        <!-- stars - start -->
-        <div class="flex gap-0.5 -ml-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        </div>
-        <!-- stars - end -->
-
-        <p class="text-gray-600">I landed a great job
-            within a few weeks of using this platform. Highly recommend it! But the website could have some improvements.</p>
-      </div>
-      <!-- review - end -->
     </div>
-  </div>
-</div>
-        </div>
 </template>
 
 <script>

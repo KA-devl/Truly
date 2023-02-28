@@ -1,4 +1,5 @@
 <template>
+  <div>
   <Navbar/>
   <section class=" min-h-screen flex items-center justify-center mt-32">
     <!-- login container -->
@@ -58,6 +59,7 @@
       </div>
     </div>
   </section>
+</div>
 </template>
 
 

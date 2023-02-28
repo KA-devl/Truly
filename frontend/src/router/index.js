@@ -9,6 +9,7 @@ import CreateJobPosting from "../views/CreateJobPosting.vue";
 import MyResume from "../views/MyResume.vue";
 import { useUserStore } from "../store/user";
 import AboutUs from "../views/AboutUs.vue";
+import Services from "../views/Services.vue";
 
 // TEMPORARY
 import EmployerDashboard from "../views/EmployerDashboard.vue";
@@ -93,6 +94,15 @@ const routes = [
     path: "/aboutus",
     meta: {
       title: "AboutUs",
+      auth: false,
+    },
+  },
+  {
+    name: "Services",
+    component: Services,
+    path: "/services",
+    meta: {
+      title: "Services",
       auth: false,
     },
   }
