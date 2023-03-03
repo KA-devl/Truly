@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import axios from "axios";
 export const useUserStore = defineStore("user", {
   state: () => ({
     user: JSON.parse(localStorage.getItem("user")),
@@ -6,10 +7,12 @@ export const useUserStore = defineStore("user", {
 
   actions: {
     async fetchUser() {
-      const res = await fetch("http://localhost:5000/user");
-
-      const user = await res.json();
+      console.log(this.user.data.id)
+      const res = await axios.get(`http://localhost:5000/api/get-user/${this.user.data.id}`);
+      console.log('the new user is ', res.data)
+      const user = res.data;
       this.user = user;
+      localStorage.setItem("user", this.user)
     },
     async signUp(username, password) {
       const res = await fetch("http://localhost:5000/api/signup", {

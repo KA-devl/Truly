@@ -20,4 +20,16 @@ export default {
     localStorage.setItem("user", JSON.stringify(tempUser));
     return res;
   },
+  async updateUserResume(userId, resume) {
+    const res = await axios.put(
+      `${localUrl}/update-resume/${userId}`,
+      resume,
+      {
+        headers: {
+            'Content-Type': 'multipart/resume'
+        }
+      }
+    );
+    return res;
+  },
 };

@@ -7,6 +7,7 @@ import Dashboard from "../views/Dashboard.vue";
 import JobDescription from "../views/JobDescription.vue";
 import CreateJobPosting from "../views/CreateJobPosting.vue";
 import MyResume from "../views/MyResume.vue";
+import MyResumev2 from "../views/MyResumev2.vue";
 import { useUserStore } from "../store/user";
 import AboutUs from "../views/AboutUs.vue";
 import Services from "../views/Services.vue";
@@ -85,6 +86,15 @@ const routes = [
     path: "/my-resume",
     meta: {
       title: "My-Resume",
+      auth: true,
+    },
+  },
+  {
+    name: "MyResumev2",
+    component: MyResumev2,
+    path: "/my-resumev2",
+    meta: {
+      title: "My-Resumev2",
       auth: true,
     },
   },
