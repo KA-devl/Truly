@@ -2,9 +2,9 @@
   <UserSideBar/>
   <div >
     <div class="p-4 sm:ml-64">
-      <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <CandidateDashboard v-if="user.data.userType === 'candidate'" />
-        <EmployerDashboard  v-if="user.data.userType === 'employer'"/>
+      <div v-if="user" class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+        <CandidateDashboard v-if="user.userType === 'candidate'" :user="user"/>
+        <EmployerDashboard  v-if="user.userType === 'employer'" :user="user" /> 
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@ import { useUserStore } from '../store/user';
 import UserSideBar from '../components/UserSideBar.vue';
 import CandidateDashboard from '../views/CandidateDashboard.vue'
 import EmployerDashboard from '../views/EmployerDashboard.vue'
-//import { onMounted,ref } from 'vue';
+import { onMounted,ref } from 'vue';
 //import getCreatedJobsService from '../services/employerService';
 
 export default {
@@ -25,9 +25,13 @@ export default {
     EmployerDashboard,
   },
   setup() {
-    const user = useUserStore().user;
+    const user = ref(null);
+    const userStore = useUserStore();
 
-    return { user}
+    onMounted(async () => {
+      user.value = await userStore.fetchUser();
+    })
+    return { user }
   }
 }
 

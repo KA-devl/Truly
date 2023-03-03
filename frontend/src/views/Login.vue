@@ -114,11 +114,11 @@ export default {
 
         await userStore.login(username.value, password.value);
         console.log('my user is ', userStore.user);
-        if (userStore.user.data) {
-          console.log('SUCCESSFULLY GOT THE USER DATA', userStore.user.data);
+        if (userStore.user) {
+          console.log('SUCCESSFULLY GOT THE USER DATA', userStore.user);
           router.push({ name: "Dashboard" });
         } else {
-          errorMsg.value = userStore.user.message;
+          errorMsg.value = userStore.user;
           setTimeout(() => {
             errorMsg.value = null;
           }, 5000)

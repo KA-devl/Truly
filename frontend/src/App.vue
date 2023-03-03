@@ -4,14 +4,14 @@
 
 <script>
 
-import { useUserStore } from './store/user';
+
 export default {
   name: 'App',
 
   setup(){
-    const user = useUserStore().user;
 
-    return {user};
+
+    return {};
   }
 }
 </script>

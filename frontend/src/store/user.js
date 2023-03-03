@@ -2,17 +2,19 @@ import { defineStore } from "pinia";
 import axios from "axios";
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: JSON.parse(localStorage.getItem("user")),
+    user: localStorage.getItem("user"),
   }),
 
   actions: {
     async fetchUser() {
-      console.log(this.user.data.id)
-      const res = await axios.get(`http://localhost:5000/api/get-user/${this.user.data.id}`);
-      console.log('the new user is ', res.data)
-      const user = res.data;
-      this.user = user;
-      localStorage.setItem("user", this.user)
+      if(!this.user){
+      return;
+      }
+      const {data} = await axios.get(`http://localhost:5000/api/get-user/${this.user}`);
+      console.log('the new user is ', data)
+    
+      return data.data;
+      
     },
     async signUp(username, password) {
       const res = await fetch("http://localhost:5000/api/signup", {
@@ -33,11 +35,12 @@ export const useUserStore = defineStore("user", {
         },
         body: JSON.stringify({ username, password }),
       });
-      const user = await res.json();
-      console.log("THE USER IS ", user);
-      this.user = user;
+      const {data} = await res.json();
+      console.log("THE USER IS ", data.id);
+      this.user = data.id;
+      console.log('LOGINNNNN this.user ', this.user)
       // store user details and jwt in local storage to keep user logged in between page refreshes
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", data.id);
     },
     logout() {
       this.user = null;

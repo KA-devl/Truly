@@ -124,8 +124,8 @@ const router = createRouter({
 });
 
 // Route guard for auth routes
-router.beforeEach((to, from, next) => {
-  const user = useUserStore().user;
+router.beforeEach(async(to, from, next) => {
+  const user = await useUserStore().fetchUser();
 
   if (to.matched.some((res) => res.meta.auth)) {
     //require auth? if yes :

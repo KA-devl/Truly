@@ -2,7 +2,7 @@
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
       <div>
       <h2 class="text-3xl font-semibold ">Dashboard </h2>
-      <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.data.name }}</span></h2>
+      <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.name }}</span></h2>
       <div class="flex flex-row justify-between w-full mb-1 mt-4 sm:mb-0">
         <h2 class="text-2xl leading-tight">
           Your Postings
@@ -21,8 +21,9 @@
       <div class="grid grid-cols-3 gap-4 mb-4 mt-4">
       </div>
       <div class="flex items-center justify-center mb-4 rounded">
-        <div class=" w-full">
-          <PostingTable :data="data" :headers="headers" />
+        <div v-if="data" class=" w-full">
+        
+         <PostingTable :data="data" :headers="headers" :user="user" />
       </div>
       </div>
       <div class="grid grid-cols-2 gap-4 mb-4">
@@ -43,30 +44,30 @@
 </template>
 
 <script>
-import { useUserStore } from '../store/user';
 import UserSideBar from '../components/UserSideBar.vue';
 import PostingTable from '../components/PostingTable.vue';
 import { onMounted,ref } from 'vue';
 import getCreatedJobsService from '../services/employerService';
 
 export default {
+  props : ["user"],
   components:{
     UserSideBar,
     PostingTable
   },
-  setup() {
-    const user = useUserStore().user;
+  setup(props) {
     const data = ref(null);
     const headers = ["Job Title", "Position Type", "Date Created", "Status"]
 
 
     onMounted(async () => {
-        const res =  await getCreatedJobsService.getCreatedJobs(user.data._id);
-        data.value = res;
+        data.value =  await getCreatedJobsService.getCreatedJobs(props.user._id);
+
+     
         
     })
 
-    return { user, data, headers }
+    return { headers, data }
   }
 }
 
