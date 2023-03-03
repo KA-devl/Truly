@@ -5,7 +5,7 @@ const path = require('path');
 
 // UPDATE CANDIDATE RESUME
 const updateResume = (app) =>
-  app.put('/update-resume/:id', upload.single('resume'), async (req, res) => {
+  app.put('/api/update-resume/:id', upload.single('resume'), async (req, res) => {
     //array of accepted files
     const authorizedMimeTypes = ['.docx', '.doc', '.pdf', '.txt'];
     // get the extension of the uploaded file

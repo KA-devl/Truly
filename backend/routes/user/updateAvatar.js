@@ -5,7 +5,7 @@ const path = require('path');
 
 // UPDATE USER PROFILE AVATAR
 const uploadAvatar = (app) =>
-  app.put('/update-avatar/:id', upload.single('image'), async (req, res) => {
+  app.put('/api/update-avatar/:id', upload.single('image'), async (req, res) => {
     //array of accepted files
     const authorizedMimeTypes = ['.jpg', '.jpeg', '.png'];
     // get the extension of the uploaded file
