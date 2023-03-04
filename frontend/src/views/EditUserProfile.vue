@@ -10,11 +10,11 @@
             <!-- Left Side -->
             <div class="w-full  mt-4">
                 <!-- Profile Card -->
-                <div class="bg-white p-3 border-t-4 border-blue-500 bg-gray-50 rounded-lg">
+                <div v-if="user" class="bg-white p-3 border-t-4 border-blue-500 bg-gray-50 rounded-lg">
                     <div class="image overflow-hidden">
                     </div>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user.data.name }}</h1>
-                    <h3 class="text-gray-600 font-lg text-semibold leading-6">@{{ user.data.username }}</h3>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user.name }}</h1>
+                    <h3 class="text-gray-600 font-lg text-semibold leading-6">@{{ user.username }}</h3>
                     <ul
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
@@ -43,7 +43,7 @@
                     </span>
                     <span class="tracking-wide">About</span>
                 </div>
-                <div class="text-gray-700">
+                <div v-if="user" class="text-gray-700">
                     <div class="grid md:grid-cols-2 text-sm">
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Name</div>
@@ -61,7 +61,7 @@
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Email</div>
                             <div class="px-4 py-2">{{ email }}</div>
-                          
+
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="px-4 py-2 font-semibold">Contact No.</div>
@@ -72,7 +72,8 @@
                     </div>
                 </div>
                 <button v-if="!isEdit
-                " class="block w-full text-blue-500 text-sm font-semibold rounded-lg hover:bg-gray-100 hover:shadow-xs p-3 my-4"
+                "
+                    class="block w-full text-blue-500 text-sm font-semibold rounded-lg hover:bg-gray-100 hover:shadow-xs p-3 my-4"
                     @click="isEdit = !isEdit">Edit profil information</button>
                 <button v-if="isEdit"
                     class="block w-full text-red-400 text-sm font-semibold rounded-lg hover:bg-gray-100 hover:shadow-xs p-3 my-4"
@@ -88,7 +89,7 @@
 </template>
 <script>
 import UserSideBar from '../components/UserSideBar.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useUserStore } from '../store/user';
 import userService from '../services/userService.js';
 import { DateTime } from "luxon";
@@ -98,18 +99,27 @@ export default {
         UserSideBar
     },
     setup() {
+        const user = ref(null);
         const userStore = useUserStore();
-        const user = userStore.user;
         const isEdit = ref(false);
 
-        const name = ref(user.data.name);
-        const username = ref(user.data.username);
-        const email = ref(user.data.email);
-        const mobileNumber = ref(user.data.mobileNumber);
+        const name = ref(null);
+        const username = ref(null);
+        const email = ref(null);
+        const mobileNumber = ref(null);
+
+        onMounted(async () => {
+            user.value = await userStore.fetchUser();
+            name.value = user.value.name;
+            username.value = user.value.username;
+            email.value = user.value.email;
+            mobileNumber.value = user.value.mobileNumber;
+
+        })
 
         const formatDate = computed(() => {
-        const date = DateTime.fromISO(user.data.createdAt);
-        return date.toLocaleString(DateTime.DATETIME_MED);
+            const date = DateTime.fromISO(user.value.createdAt);
+            return date.toLocaleString(DateTime.DATETIME_MED);
         });
         const saveEdit = () => {
 
@@ -122,24 +132,14 @@ export default {
                     mobileNumber: mobileNumber.value
                 }
             }
-            console.log('the old user is ', user)
+            console.log('the old user is ', user.value)
             console.log('the new  user is ', newUser)
-            userService.updateUserProfile(user.data._id, newUser);
-            userStore.setUser(newUser);
-            let someUser = userStore.user;
-            console.log('some user is now', someUser.data);
+            userService.updateUserProfile(user.value.id, newUser);
 
-            name.value = someUser.data.name;
-            console.log('name.value is now', name.value)
-            username.value = someUser.data.username;
-            email.value = someUser.data.email;
-            mobileNumber.value = someUser.data.mobileNumber;
-
-       
 
             isEdit.value = false;
 
-            
+
         }
 
 

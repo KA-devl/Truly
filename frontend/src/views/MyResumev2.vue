@@ -100,7 +100,6 @@ export default {
       try {
         await userService.updateUserResume(user.data._id, formData);
 
-        userStore.fetchUser
         successMsg.value = 'File uploaded successfully';
         setTimeout(() => {
           successMsg.value = '';

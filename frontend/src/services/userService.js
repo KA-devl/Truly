@@ -16,8 +16,7 @@ export default {
       `${localUrl}/edit-profile/${userId}`,
       tempUser.data
     );
-    // store user details and jwt in local storage to keep user logged in between page refreshes
-    localStorage.setItem("user", JSON.stringify(tempUser));
+   
     return res;
   },
   async updateUserResume(userId, resume) {
