@@ -1,6 +1,6 @@
 <template>
   <UserSideBar />
-  <div class="p-4 sm:ml-64">
+  <div v-if="user" class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg ">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
 
@@ -8,7 +8,7 @@
       <h2 class="text-2xl font-md text-gray-500 mt-4 ">Upload your resume for your applications</h2>
 
 
-      <div v-if="user.data.resume.resumeUrl === 'undefined'" class="mt-10 bg-white border border-gray-200 rounded-lg shadow-md w-full">
+      <div v-if="user.resume.resumeUrl === 'undefined'" class="mt-10 bg-white border border-gray-200 rounded-lg shadow-md w-full">
         <div class="p-5">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Current resume</h5>
 
@@ -17,13 +17,13 @@
         </div>
       </div>
 
-      <div v-if="user.data.resume.resumeUrl !== 'undefined'" class="mt-10 bg-white border border-gray-200 rounded-lg shadow-md w-full">
+      <div v-if="user.resume.resumeUrl !== 'undefined'" class="mt-10 bg-white border border-gray-200 rounded-lg shadow-md w-full">
         <div class="p-5">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Current resume</h5>
 
   
         </div>
-        <embed :src="user.data.resume.resumeUrl" class="w-full h-screen" />
+        <embed :src="user.resume.resumeUrl" class="w-full h-screen" />
       </div>
 
 
@@ -80,27 +80,33 @@
 import UserSideBar from '../components/UserSideBar.vue';
 import { useUserStore } from '../store/user';
 import userService from '../services/userService';
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   components: {
     UserSideBar
   },
   setup() {
+     const user = ref(null);
     const userStore = useUserStore();
-    const user = userStore.user;
     const file = ref(null);
     const errorMsg = ref(null);
     const successMsg = ref(null);
+
+      onMounted(async () => {
+      user.value = await userStore.fetchUser();
+    })
 
     const handleFileUpload = async () => {
       let formData = new FormData();
       formData.append('resume', file.value.files[0]);
 
       try {
-        await userService.updateUserResume(user.data._id, formData);
-
+     
+        await userService.updateUserResume(user.value.id, formData);
         successMsg.value = 'File uploaded successfully';
+
+        user.value = await userStore.fetchUser();
         setTimeout(() => {
           successMsg.value = '';
         }, 6000)
