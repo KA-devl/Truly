@@ -5,7 +5,7 @@
         <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.name }}</span></h2>
         <div class="flex flex-row justify-between w-full mb-1 mt-4 sm:mb-0">
           <h2 class="text-2xl leading-tight">
-            Job Postings
+            Open positions
           </h2>
           <div class="text-end">
             <form class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">

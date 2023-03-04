@@ -16,17 +16,6 @@ export const useUserStore = defineStore("user", {
       return data.data;
       
     },
-    async signUp(username, password) {
-      const res = await fetch("http://localhost:5000/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      const user = await res.json();
-      this.user = user;
-    },
     async login(username, password) {
       const res = await axios.post( `http://localhost:5000/api/login`,
       JSON.stringify({ username, password }), 
