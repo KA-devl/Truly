@@ -107,6 +107,7 @@ export default {
         successMsg.value = 'File uploaded successfully';
 
         user.value = await userStore.fetchUser();
+  
         setTimeout(() => {
           successMsg.value = '';
         }, 6000)

@@ -12,9 +12,21 @@
             <!-- <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto"></p> -->
           </div>
           <!-- text - end -->
+          <div v-if="successMsg" class=" hadow-lg mt-10">
+              <div class="px-3 py-6 bg-green-400 text-white flex justify-between rounded">
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mr-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <p>{{ successMsg }}</p>
+                </div>
+              </div>
+            </div>
 
           <!-- form - start -->
-          <form @submit.prevent="addJob" class="max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto">
+          <form @submit.prevent="addJob" class="max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto mt-3">
             <div class="sm:col-span-2">
               <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Title*</label>
               <input v-model="title" name="jobtitle" autocomplete="off"
@@ -89,6 +101,7 @@
                 </div>
               </div>
             </div>
+           
             <!-- <p class="text-gray-400 text-xs">By signing up to our newsletter you agree to our <a href="#" class="hover:text-indigo-500 active:text-indigo-600 underline transition duration-100">Privacy Policy</a>.</p> -->
           </form>
           <!-- form - end -->
@@ -100,7 +113,7 @@
 
 <script>
 import UserSideBar from '../components/UserSideBar.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useUserStore } from '../store/user';
 import employerService from '../services/employerService';
 
@@ -109,17 +122,23 @@ export default {
     UserSideBar
   },
   setup() {
-    const user = useUserStore().user;
+    const user = ref(null);
+    const userStore = useUserStore();
     const title = ref('');
     const type = ref('');
     const field = ref('');
     const description = ref('');
     const errorMsg = ref('');
+    const successMsg = ref(null);
+
+    onMounted(async () => {
+      user.value = await userStore.fetchUser();
+    })
 
     const addJob = async () => {
       if (title.value && type.value && field.value && description.value) {
         let newJob = {
-          authorId: user.data._id,
+          authorId: user.value.id,
           name: title.value,
           jobStatus: type.value,
           careersFields: field.value,
@@ -129,13 +148,23 @@ export default {
         try {
           await employerService.createJob(newJob);
 
+          successMsg.value = 'Successfully created job'
+
+          setTimeout(() => {
+            successMsg.value = '';
+          }, 6000)
+
           title.value = '';
-           type.value= '';
+          type.value = '';
           field.value = '';
-           description.value = '';
+          description.value = '';
 
         } catch (error) {
-          console.log('ERROR', error.message)
+          console.log('ERROR', error)
+          errorMsg.value = error.response.data.message;
+          setTimeout(() => {
+            errorMsg.value = '';
+          }, 6000)
         }
       }
       else {
@@ -171,6 +200,7 @@ export default {
       description,
       errorMsg,
       addJob,
+      successMsg
     };
   },
 
