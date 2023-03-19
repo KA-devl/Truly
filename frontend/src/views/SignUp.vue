@@ -1,7 +1,7 @@
 <template>
   <!-- NavBar -->
   <Navbar/>
-
+<!-- testing pipline -->
   <section class=" min-h-screen flex items-center justify-center mt-32">
     <!-- Signup container -->
     <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
@@ -176,3 +176,5 @@ export default {
 };
 
 </script>
+
+
