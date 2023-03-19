@@ -4,9 +4,7 @@ on: [pull_request, push]
 
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: frontend
+  
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,7 +18,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: npm install
-      run: npm ci
-    - name: tests
-      run: npm test
+        cache-dependency-path: frontend/package-lock.json
+    - run: npm install
+    - run: npm test
