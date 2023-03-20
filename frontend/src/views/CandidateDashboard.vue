@@ -2,7 +2,6 @@
     
         <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
 
-
         <h2 class="text-3xl font-semibold ">Dashboard</h2>
         <h2 class="text-2xl font-md text-gray-500 mt-4 ">Welcome back, <span class="text-blue-500">{{ user.name }}</span></h2>
         <br> <br>
@@ -32,8 +31,8 @@
                 </div>
               </div>
               <div class="mt-1 lg:flex lg:justify-between lg:items-center">
-                <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                  10
+                <h3 v-if="data" class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                  {{data.length}}
                 </h3>
               </div>
             </div>
@@ -56,8 +55,8 @@
                 Total Applications
               </p>
               <div class="mt-1 lg:flex lg:justify-between lg:items-center">
-                <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                  23
+                <h3 v-if="user" class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                  {{user.jobApplication.length}}
                 </h3>
               </div>
             </div>

@@ -25,15 +25,15 @@
             <div class="mt-3">
               <div class="flex items-center gap-x-2">
                 <p class="text-xs uppercase tracking-wide text-gray-500">
-                  Toal job postings
+                  Total created job postings
                 </p>
                 <div class="hs-tooltip">
                  
                 </div>
               </div>
               <div class="mt-1 lg:flex lg:justify-between lg:items-center">
-                <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                  10
+                <h3 v-if="data" class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                 {{ data.length }}
                 </h3>
               </div>
             </div>
@@ -56,8 +56,8 @@
                 Total Applications
               </p>
               <div class="mt-1 lg:flex lg:justify-between lg:items-center">
-                <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                  23
+                <h3 v-if="totalAppliedJobs" class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
+                  {{totalAppliedJobs.length}}
                 </h3>
               </div>
             </div>
@@ -103,7 +103,7 @@
 import UserSideBar from '../components/UserSideBar.vue';
 import PostingTable from '../components/PostingTable.vue';
 import { onMounted, ref } from 'vue';
-import getCreatedJobsService from '../services/employerService';
+import JobsService from '../services/employerService';
 
 export default {
   props: ["user"],
@@ -113,17 +113,19 @@ export default {
   },
   setup(props) {
     const data = ref(null);
+    const totalAppliedJobs = ref(null);
     const headers = ["Job Title", "Position Type", "Date Created", "Status"]
 
 
     onMounted(async () => {
-      data.value = await getCreatedJobsService.getCreatedJobs(props.user._id);
+      data.value = await JobsService.getCreatedJobs(props.user._id);
+      totalAppliedJobs.value = await JobsService.getAllJobsWhereCandidatesApplied(props.user._id);
 
 
 
     })
 
-    return { headers, data }
+    return { headers, data, totalAppliedJobs }
   }
 }
 
