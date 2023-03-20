@@ -1,4 +1,4 @@
-const jobPosting = require('../../models/jobpost');
+const jobPosting = require('../../models/jobPost');
 
 // GET ALL JOBS POSTING
 const getAllJobs = (app) => {
