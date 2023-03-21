@@ -59,7 +59,7 @@
                                 </span>
                             </span>
                         </td>
-                        <td  class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <!-- <a href="#" class="text-indigo-600 hover:text-indigo-900">
                                 Apply
                             </a> -->
@@ -120,11 +120,18 @@
                                 </span>
                             </span>
                         </td>
-                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                Apply
-                            </a>
+                        <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                            <button  class=" text-green-500  rounded-full cursor-not-allowed" disabled>
+                                Applied
+                            </button>
                         </td>
+                        <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                            <button  @click="applyForJob" class="text-indigo-600 hover:text-indigo-900">
+                                Apply
+                            </button>
+                        </td>
+
+                        
                     </tr>
                 </tbody>
             </table>
@@ -173,10 +180,20 @@
 
 <script>
 import { DateTime } from 'luxon';
+import { ref } from 'vue';
 
 export default {
     props: ["data", "headers", "user"],
-    setup() {
+    setup(props) {
+     
+
+        const isJobApplied = (jobId) => {
+            if (props.user.jobApplication.find(e => e.jobPostId === jobId)) {
+                console.log('job have been applied')
+                return true;
+            } return false;
+
+        }
 
         const formatDate = (unformattedDate) => {
             const date = DateTime.fromISO(unformattedDate);
@@ -184,10 +201,10 @@ export default {
         };
 
 
-    
 
 
-        return { formatDate }
+
+        return { formatDate, isJobApplied }
 
     }
 }
