@@ -43,7 +43,7 @@
                         </td>
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <span v-if="!job.is_faulfilled"
-                                class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+                                class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900 z-3">
                                 <span aria-hidden="true" class="absolute inset-0 bg-green-200 rounded-full opacity-50">
                                 </span>
                                 <span class="relative">
@@ -68,8 +68,11 @@
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
                 <tbody v-if="user.userType === 'candidate'">
-                    <div class="text-red-500">{{ errorMsg }}ewf</div>
-                    <div class="text-green-500">{{ successMsg }}dfef</div>
+                    
+                   <Alert :errorMsg="errorMsg"/>
+                   <Alert :applyLoading="applyLoading"/>
+                   <Alert :successMsg="successMsg"/>
+                    
                     <tr v-for="job in data" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
@@ -128,11 +131,10 @@
                             </button>
                         </td>
                         <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <button  @click="applyForJob(job._id)"
-                                class="text-indigo-600 hover:text-indigo-900">
+                            <button @click="applyForJob(job._id)" class="text-indigo-600 hover:text-indigo-900">
                                 Apply
                             </button>
-                           
+
                         </td>
 
 
@@ -186,17 +188,25 @@
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
 import { ref } from "vue";
-
+import Alert from "../components/Alert.vue";
 export default {
     emits: ["appliedForJobSignal"],
     props: ["data", "headers", "user"],
+    components : {
+        Alert
+    },
     setup(props) {
         const errorMsg = ref(null);
         const successMsg = ref(null);
+        const applyLoading = ref(null);
+
         const applyForJob = async (jobPostId) => {
+            applyLoading.value = 'Applying for job...';
+                setTimeout(() => {
+                    applyLoading.value = '';
+                }, 3000)
             const date = new Date();
             const isoDate = date.toISOString();
-            console.log('applying for job..', isoDate)
             let jobPackage = {
                 candidateId: props.user._id,
                 jobPostId: jobPostId,
@@ -235,7 +245,7 @@ export default {
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return { formatDate, isJobApplied, applyForJob, errorMsg, successMsg }
+        return { formatDate, isJobApplied, applyForJob, errorMsg, successMsg, applyLoading }
 
     }
 }
