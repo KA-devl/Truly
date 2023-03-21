@@ -68,6 +68,8 @@
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
                 <tbody v-if="user.userType === 'candidate'">
+                    <div class="text-red-500">{{ errorMsg }}ewf</div>
+                    <div class="text-green-500">{{ successMsg }}dfef</div>
                     <tr v-for="job in data" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
@@ -121,17 +123,19 @@
                             </span>
                         </td>
                         <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <button  class=" text-green-500  rounded-full cursor-not-allowed" disabled>
+                            <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
                                 Applied
                             </button>
                         </td>
                         <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <button  @click="applyForJob" class="text-indigo-600 hover:text-indigo-900">
+                            <button  @click="applyForJob(job._id)"
+                                class="text-indigo-600 hover:text-indigo-900">
                                 Apply
                             </button>
+                           
                         </td>
 
-                        
+
                     </tr>
                 </tbody>
             </table>
@@ -180,19 +184,50 @@
 
 <script>
 import { DateTime } from 'luxon';
-import { ref } from 'vue';
+import candidateService from "../services/candidateService";
+import { ref } from "vue";
 
 export default {
+    emits: ["appliedForJobSignal"],
     props: ["data", "headers", "user"],
     setup(props) {
-     
+        const errorMsg = ref(null);
+        const successMsg = ref(null);
+        const applyForJob = async (jobPostId) => {
+            const date = new Date();
+            const isoDate = date.toISOString();
+            console.log('applying for job..', isoDate)
+            let jobPackage = {
+                candidateId: props.user._id,
+                jobPostId: jobPostId,
+                applicationStatus: "active",
+                cv: props.user.resume.resumeUrl,
+                creationDate: isoDate
+            }
+
+            try {
+                await candidateService.applyForJob(jobPackage);
+                successMsg.value = 'Successfully applied for the job!'
+
+                setTimeout(() => {
+                    successMsg.value = '';
+                }, 6000)
+
+
+            } catch (error) {
+                console.log('ERROR', error)
+                errorMsg.value = error.response.data.message;
+                setTimeout(() => {
+                    errorMsg.value = '';
+                }, 6000)
+            }
+
+        }
 
         const isJobApplied = (jobId) => {
             if (props.user.jobApplication.find(e => e.jobPostId === jobId)) {
-                console.log('job have been applied')
                 return true;
             } return false;
-
         }
 
         const formatDate = (unformattedDate) => {
@@ -200,11 +235,7 @@ export default {
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-
-
-
-
-        return { formatDate, isJobApplied }
+        return { formatDate, isJobApplied, applyForJob, errorMsg, successMsg }
 
     }
 }
