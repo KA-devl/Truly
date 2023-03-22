@@ -1,4 +1,4 @@
-const jobPosting = require('../../models/jobpost');
+const jobPosting = require('../../models/jobPost');
 
 // GET ALL JOBS POSTING OF AN EMPLOYER BY EMPLYR ID
 const getJobs = (app) => {

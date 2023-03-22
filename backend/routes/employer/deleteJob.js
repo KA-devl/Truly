@@ -1,4 +1,4 @@
-const jobPosting = require('../../models/jobpost');
+const jobPosting = require('../../models/jobPost');
 
 // DELETE JOBPOSTING BY ITS ID
 const deleteJobPosting = (app) => {

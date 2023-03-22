@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const JobPosting = require('./jobpost');
+const JobPosting = require('./jobPost');
 const jobApplication = require('./jobApplication');
 
 /**

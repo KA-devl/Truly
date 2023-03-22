@@ -1,4 +1,4 @@
-const jobPosting = require('../../models/jobpost');
+const jobPosting = require('../../models/jobPost');
 
 //UPDATE JOB POSTING BY ITS ID
 const updateJob = (app) => {

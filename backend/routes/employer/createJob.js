@@ -1,4 +1,4 @@
-const jobPosting = require('../../models/jobpost');
+const jobPosting = require('../../models/jobPost');
 
 //CREATE A JOBPOSTING ( its better to define a name to the function so that we can understand what it does)
 
