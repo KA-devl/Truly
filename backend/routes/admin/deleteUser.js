@@ -5,7 +5,9 @@ const deleteUser = (app) =>
   app.delete('/api/delete-user/:id', async (req, res) => {
     try {
       const user = await userModel.findById(req.params.id);
+      // delete the user resume from the cloud
       await cloudinary.uploader.destroy(user.resume.cloudinaryId);
+      // delete the user avatar from the cloud
       await cloudinary.uploader.destroy(user.avatar.cloudinaryId);
       user.remove();
       console.log('user deleted successfully');
