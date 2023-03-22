@@ -13,7 +13,7 @@ const getUser = (app) => {
           path: 'jobPost',
           options: { strict: false },
         });
-      console.log(user);
+
       if (user === null) {
         return res.status(404).json({ message: `no users found` });
       }

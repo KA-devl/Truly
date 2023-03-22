@@ -1,19 +1,20 @@
 const Application = require('../../models/jobApplication');
 
-// GET ALL THE JOB APPLICATIONS THAT A EMPLOYER RECEIVED
-const getApplication = (app) => {
-  app.get('/api/get-application-employer/:id', async (req, res) => {
+// GET ALL THE APPLICATIONS FOR A SPECIFIC JOB POST BY ITS ID
+const getApplicationJob = (app) => {
+  app.get('/api/get-application-job/:jobid', async (req, res) => {
     try {
       const getAllApplication = await Application.find({
-        authorId: req.params.id,
+        jobPostId: req.params.jobid,
+      }).populate({
+        path: 'candidateId',
+        model: 'user',
       });
       if (!getAllApplication)
         return res.status(400).json({
           sucess: false,
-          message: `No job application was found for this employer`,
+          message: `No job application was found for this job post`,
         });
-
-      console.log(typeof getAllApplication);
 
       res.status(201).json({ sucess: true, data: getAllApplication });
     } catch (err) {
@@ -22,4 +23,4 @@ const getApplication = (app) => {
   });
 };
 
-module.exports = getApplication;
+module.exports = getApplicationJob;
