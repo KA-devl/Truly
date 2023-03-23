@@ -97,7 +97,8 @@
       </div>
     </div>
 
-</div></template>
+</div>
+</template>
 
 <script>
 import UserSideBar from '../components/UserSideBar.vue';

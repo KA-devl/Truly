@@ -11,6 +11,7 @@ import MyResumev2 from "../views/MyResumev2.vue";
 import { useUserStore } from "../store/user";
 import AboutUs from "../views/AboutUs.vue";
 import Services from "../views/Services.vue";
+import Candidates from "../views/Candidates.vue";
 
 // TEMPORARY
 import EmployerDashboard from "../views/EmployerDashboard.vue";
@@ -114,6 +115,15 @@ const routes = [
     meta: {
       title: "Services",
       auth: false,
+    },
+  },
+  {
+    name: "Candidates",
+    component: Candidates,
+    path: "/candidates",
+    meta: {
+      title: "Candidates",
+      auth: true,
     },
   }
 ];
