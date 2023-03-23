@@ -23,11 +23,11 @@
                                             class="mx-auto object-cover rounded-full h-10 w-10 " />
                                     </a>
                                 </div>
-                                <div class="ml-3">
-                                    <p class="text-gray-900 whitespace-no-wrap">
+                                <router-link v-if="job._id" :to="{ name: 'Candidates', params: { jobId: job._id } }">
+                                    <p class="text-gray-900 whitespace-no-wrap hover:text-blue-500">
                                         {{ job.name }}
                                     </p>
-                                </div>
+                                </router-link>
                             </div>
                         </td>
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
@@ -68,11 +68,11 @@
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
                 <tbody v-if="user.userType === 'candidate'">
-                    
-                   <Alert :errorMsg="errorMsg"/>
-                   <Alert :applyLoading="applyLoading"/>
-                   <Alert :successMsg="successMsg"/>
-                    
+
+                    <Alert :errorMsg="errorMsg" />
+                    <Alert :applyLoading="applyLoading" />
+                    <Alert :successMsg="successMsg" />
+
                     <tr v-for="job in data" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
@@ -192,7 +192,7 @@ import Alert from "../components/Alert.vue";
 export default {
     emits: ["appliedForJobSignal"],
     props: ["data", "headers", "user"],
-    components : {
+    components: {
         Alert
     },
     setup(props) {
@@ -202,9 +202,9 @@ export default {
 
         const applyForJob = async (jobPostId) => {
             applyLoading.value = 'Applying for job...';
-                setTimeout(() => {
-                    applyLoading.value = '';
-                }, 3000)
+            setTimeout(() => {
+                applyLoading.value = '';
+            }, 3000)
             const date = new Date();
             const isoDate = date.toISOString();
             let jobPackage = {

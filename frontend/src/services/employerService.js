@@ -15,5 +15,9 @@ export default {
   async getAllJobsWhereCandidatesApplied(authorId){
     const res = await axios.get(`${localUrl}/get-application-employer/${authorId}`);
     return res.data.data;
+  },
+  async getAllCandidatesOfJob(jobId){
+    const res = await axios.get(`${localUrl}/get-application-job/${jobId}`);
+    return res.data.data;
   }
 }
