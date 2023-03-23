@@ -2,12 +2,9 @@ const Application = require('../../models/jobApplication');
 
 //CREATE A APPLICATION FOR CANDIDATE
 const createApplication = (app) => {
-  app.post('/api/apply-for-job/:jobid', async (req, res) => {
+  app.post('/api/apply-for-job', async (req, res) => {
     try {
-      const application = await Application.create({
-        jobPostId: req.params.jobid,
-        candidateId: req.body.candidateId,
-      });
+      const application = await Application.create(req.body);
       const populatedApplication = await Application.populate(application, [
         { path: 'candidateId', model: 'user' },
         { path: 'jobPostId', model: 'jobPost' },
