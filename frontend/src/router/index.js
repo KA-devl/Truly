@@ -13,8 +13,6 @@ import AboutUs from "../views/AboutUs.vue";
 import Services from "../views/Services.vue";
 import Candidates from "../views/Candidates.vue";
 
-// TEMPORARY
-import EmployerDashboard from "../views/EmployerDashboard.vue";
 
 const routes = [
 
@@ -120,7 +118,7 @@ const routes = [
   {
     name: "Candidates",
     component: Candidates,
-    path: "/candidates",
+    path: "/candidates/:jobId",
     meta: {
       title: "Candidates",
       auth: true,
