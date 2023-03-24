@@ -1,22 +1,8 @@
-const Application = require('../../models/jobApplication');
+const {
+  getApplication,
+} = require('../../controllers/candidate/getJobAppliedFor');
 
 // GET THE JOBS WHERE A CANDIDATE HAS APPLIED USING HIS USER ID
-const getApplication = (app) => {
-  app.get('/api/get-application-candidate/:id', async (req, res) => {
-    try {
-      const getAllApplication = await Application.find({
-        candidateId: req.params.id,
-      });
-      if (getAllApplication == 0)
-        return res
-          .status(400)
-          .json({ sucess: false, message: `No job applications found` });
-
-      res.status(201).json({ sucess: true, data: getAllApplication });
-    } catch (err) {
-      res.status(400).json({ sucess: false, message: err.message });
-    }
-  });
+module.exports = (app) => {
+  app.get('/api/get-application-candidate/:id', getApplication);
 };
-
-module.exports = getApplication;
