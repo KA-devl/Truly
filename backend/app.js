@@ -47,6 +47,9 @@ require('./routes/employer/deleteJob')(app);
 require('./routes/employer/updateJob')(app);
 require('./routes/employer/getApplication')(app);
 require('./routes/employer/getApplicationForAJob')(app);
+require('./routes/employer/updateApplicationStatusToInterview')(app);
+require('./routes/employer/updateApplicationStatusToRejected')(app);
+
 require('./routes/user/login')(app);
 require('./routes/candidate/createApplication')(app);
 require('./routes/candidate/getAllJobs')(app);
