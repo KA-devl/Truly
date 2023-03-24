@@ -1,11 +1,11 @@
 const jobApplication = require('../../models/jobApplication');
 
-//Update a job Application Status of a candidate to Interview
-async function interview(req, res) {
+//Update a job Application Status of a candidate to rejected
+async function rejected(req, res) {
   try {
     const jobApp = await jobApplication.findByIdAndUpdate(
       req.params.applicationId,
-      { applicationStatus: 'interview' },
+      { applicationStatus: 'rejected' },
       {
         new: true,
         runValidators: true,
@@ -27,4 +27,4 @@ async function interview(req, res) {
   }
 }
 
-module.exports = { interview };
+module.exports = { rejected };
