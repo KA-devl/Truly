@@ -12,10 +12,10 @@ import { useUserStore } from "../store/user";
 import AboutUs from "../views/AboutUs.vue";
 import Services from "../views/Services.vue";
 import Candidates from "../views/Candidates.vue";
-
+import ManageJobs from "../views/ManageJobs.vue";
+import ManageUsers from "../views/ManageUsers.vue";
 
 const routes = [
-
   {
     path: "/",
     name: "Home",
@@ -40,6 +40,25 @@ const routes = [
     component: JobDescription,
     meta: {
       title: "JobDescription",
+      auth: true,
+    },
+  },
+  {
+    path: "/manage-jobs",
+    name: "ManageJobs",
+    component: ManageJobs,
+    meta: {
+      title: "ManageJobs",
+      auth: true,
+    },
+  },
+
+  {
+    path: "/manage-users",
+    name: "ManageUsers",
+    component: ManageUsers,
+    meta: {
+      title: "ManageUsers",
       auth: true,
     },
   },
@@ -123,7 +142,7 @@ const routes = [
       title: "Candidates",
       auth: true,
     },
-  }
+  },
 ];
 
 const router = createRouter({
@@ -132,7 +151,7 @@ const router = createRouter({
 });
 
 // Route guard for auth routes
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const user = await useUserStore().fetchUser();
 
   if (to.matched.some((res) => res.meta.auth)) {
