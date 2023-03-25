@@ -5,7 +5,7 @@
       <div v-if="user" class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
         <CandidateDashboard v-if="user.userType === 'candidate'" :user="user"/>
         <EmployerDashboard  v-if="user.userType === 'employer'" :user="user" />
-        <ManageJobs v-if="user.userType === 'admin'" :user="user" />
+        <AdminPanel v-if="user.userType === 'admin'" :user="user" />
       </div>
     </div>
   </div>
@@ -18,6 +18,7 @@ import CandidateDashboard from '../views/CandidateDashboard.vue'
 import EmployerDashboard from '../views/EmployerDashboard.vue'
 import ManageJobs from './ManageJobs.vue';
 import { onMounted,ref } from 'vue';
+import AdminPanel from './AdminPanel.vue';
 //import getCreatedJobsService from '../services/employerService';
 
 export default {
@@ -26,7 +27,8 @@ export default {
     CandidateDashboard,
     EmployerDashboard,
     ManageJobs,
-  },
+    AdminPanel
+},
   setup() {
     const user = ref(null);
     const userStore = useUserStore();
