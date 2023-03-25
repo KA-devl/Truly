@@ -11,10 +11,9 @@
                     </tr>
                 </thead>
                 <tbody v-if="user.userType === 'admin' ">
-                   
                     <Alert :errorMsg="errorMsg" />
                     <Alert :successMsg="successMsg" />
-                    <tr v-for = "data in data" :key= "data._id">
+                    <tr v-for="data in paginatedData" :key="data._id">
                         <td class="px-12 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
@@ -74,32 +73,66 @@
                             </div>
                         </td> 
                     </tr>
-                    
                 </tbody>
             </table>
+            <div class="flex items-center justify-between mt-4">
+                <button @click="prevPage"
+                    :disabled="currentPage === 1"
+                    class="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out disabled:opacity-50">
+                    Previous
+                </button>
+                <div class="mx-4">
+                    Page {{ currentPage }} of {{ totalPages }}
+                </div>
+                <button @click="nextPage"
+                    :disabled="currentPage === totalPages"
+                    class="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-150 ease-in-out disabled:opacity-50">
+                    Next
+                </button>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import { DateTime } from 'luxon';
 import adminService from '../services/adminService';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Alert from "../components/Alert.vue";
-export default{
+
+export default {
     props: ["data", "headers", "user"],
     components: {
         Alert
     },
-
-    setup(props){
+    setup(props) {
         const errorMsg = ref(null);
         const successMsg = ref(null);
+        const currentPage = ref(1);
+        const pageSize = 10; // set a fixed page size
+
+        const totalPages = computed(() => Math.ceil(props.data.length / pageSize));
+
+        const paginatedData = computed(() => {
+            const startIndex = (currentPage.value - 1) * pageSize;
+            const endIndex = startIndex + pageSize;
+            return props.data.slice(startIndex, endIndex);
+        });
 
         const formatDate = (unformattedDate) => {
             const date = DateTime.fromISO(unformattedDate);
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
-        return { formatDate, errorMsg, successMsg }
-}
-}
-</script>
+
+        const prevPage = () => {
+            currentPage.value -= 1;
+        };
+
+        const nextPage = () => {
+            currentPage.value += 1;
+        };
+
+        return { formatDate, errorMsg, successMsg, currentPage, totalPages, paginatedData, prevPage, nextPage };
+    }
+};
+</script> 
+The modified code adds a pagination component with "Previous" and "Next" buttons,
