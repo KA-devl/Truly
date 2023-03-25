@@ -45,7 +45,7 @@
 <!-- End Card Section -->
 <div class="flex flex-row justify-between w-full mb-1 mt-4 sm:mb-0">
   
-  <h2 class="text-2xl font-md text-gray-800 mt-4 ">Job postings</h2>
+  <h2 class="text-2xl font-md text-gray-800 mt-4 "></h2>
 
   <div class="text-end">
     <form
@@ -80,7 +80,6 @@
 <script>
 import UserTable from '../components/UserTable.vue';
 import { onMounted,ref } from 'vue';
-import userService from '../services/userService';
 import UserSideBar from '../components/UserSideBar.vue';
 import { useUserStore } from '../store/user';
 import adminService from '../services/adminService';
@@ -99,7 +98,8 @@ export default {
         
         onMounted(async () => {
             user.value = await userStore.fetchUser();
-            data.value =  await adminService.getUsers();
+            
+            data.value = await adminService.getUsers();
         });
 
         return {
