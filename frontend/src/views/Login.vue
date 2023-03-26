@@ -113,8 +113,13 @@ export default {
       if (isUsernameValid.value && isPasswordValid.value) {
 
         try {
-           await userStore.login(username.value, password.value);
-          router.push({ name: "Dashboard" });
+           let data = await userStore.login(username.value, password.value);
+           console.log(data);
+           if (data.userType === 'admin') {
+            router.push({ name: "ManageUsers" });
+           } else {
+            router.push({ name: "Dashboard" });
+           }
         } catch (error) {
           console.log('ERROR', error)
           errorMsg.value = error.response.data.message;
