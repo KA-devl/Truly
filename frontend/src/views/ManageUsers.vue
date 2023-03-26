@@ -92,7 +92,7 @@ export default {
     },
     setup() {
         const data = ref(null);
-        const headers = ["Name", "Username","Created at", "UserType", ""];
+        const headers = ["Display Name", "Username","Created on", "User Type", ""];
         const user = ref(null);
         const userStore = useUserStore();
         
