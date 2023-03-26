@@ -67,7 +67,7 @@
                     </tr>
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
-                <tbody v-if="user.userType === 'candidate'">
+                <tbody v-if="user.userType === 'candidate' || user.userType === 'admin'">
 
                     <Alert :errorMsg="errorMsg" />
                     <Alert :applyLoading="applyLoading" />
@@ -125,6 +125,16 @@
                                 </span>
                             </span>
                         </td>
+                        <td v-if="user.userType === 'admin'" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                            <div class="sm:col-span-2 flex justify-between items-center">
+                                <button @click="deleteJob(job._id)"
+                                    class="inline-block bg-red-500 hover:bg-red-700 active:bg-red-800 focus-visible:ring ring-magenta-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+                                    Remove
+                                </button>
+
+                            </div>
+                        </td>
+                        <div v-else>
                         <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
                                 Applied
@@ -136,7 +146,7 @@
                             </button>
 
                         </td>
-
+                    </div>
 
                     </tr>
                 </tbody>
@@ -187,6 +197,7 @@
 <script>
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
+import adminService from "../services/adminService";
 import { ref } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
@@ -240,12 +251,21 @@ export default {
             } return false;
         }
 
+        const deleteJob = async (jobId) => {
+            try {
+                await adminService.deleteJob(jobId);
+                window.location.reload();
+            } catch (error) {
+                console.log('ERROR', error)
+            }
+        }
+
         const formatDate = (unformattedDate) => {
             const date = DateTime.fromISO(unformattedDate);
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return { formatDate, isJobApplied, applyForJob, errorMsg, successMsg, applyLoading }
+        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading }
 
     }
 }
