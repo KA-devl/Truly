@@ -131,7 +131,24 @@ export default {
             currentPage.value += 1;
         };
 
-        return { formatDate, errorMsg, successMsg, currentPage, totalPages, paginatedData, prevPage, nextPage };
+        const deleteUser = async (id) => {
+            try {
+                await adminService.deleteUser(id);
+                successMsg.value = "User deleted successfully";
+
+                setTimeout(() => {
+                    successMsg.value = null;
+                }, 3000);
+                window.location.reload();
+            } catch (error) {
+                errorMsg.value = error.response.data.error;
+                setTimeout(() => {
+                    errorMsg.value = null;
+                }, 3000);
+            }
+        };
+
+        return { formatDate, deleteUser, errorMsg, successMsg, currentPage, totalPages, paginatedData, prevPage, nextPage };
     }
 };
 </script> 
