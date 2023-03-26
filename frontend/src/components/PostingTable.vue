@@ -197,6 +197,7 @@
 <script>
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
+import adminService from "../services/adminService";
 import { ref } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
@@ -250,12 +251,21 @@ export default {
             } return false;
         }
 
+        const deleteJob = async (jobId) => {
+            try {
+                await adminService.deleteJob(jobId);
+                window.location.reload();
+            } catch (error) {
+                console.log('ERROR', error)
+            }
+        }
+
         const formatDate = (unformattedDate) => {
             const date = DateTime.fromISO(unformattedDate);
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return { formatDate, isJobApplied, applyForJob, errorMsg, successMsg, applyLoading }
+        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading }
 
     }
 }
