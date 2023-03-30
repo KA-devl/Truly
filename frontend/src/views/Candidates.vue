@@ -1,5 +1,7 @@
 <template>
   <UserSideBar />
+  <Alert :errorMsg="errorMsg"/>
+  <Alert :successMsg="successMsg"/>
   <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
@@ -75,26 +77,36 @@ import UserSideBar from '../components/UserSideBar.vue';
 import { onMounted, ref } from 'vue';
 import { useRoute } from "vue-router";
 import employerService from '../services/employerService';
+import Alert from '../components/Alert.vue';
 
 export default {
   components: {
-    UserSideBar
+    UserSideBar, Alert
   },
   setup() {
     const data = ref(null);
     const route = useRoute();
     // Get current Id of route
     const currentId = route.params.jobId;
+    const errorMsg = ref(null);
+    const successMsg = ref(null);
 
 
     const setCandidateJobStatusToInterview = async (applicationId) => {
 
       try {
-        await employerService.setApplicationToInterview(applicationId)
-
+         await employerService.setApplicationToInterview(applicationId);
+         successMsg.value = 'Candidate selected for interview';
+          data.value = await employerService.getAllCandidatesOfJob(currentId);
+          setTimeout(() => {
+          successMsg.value = '';
+        }, 6000)
       } catch (error) {
         console.log('ERROR', error)
-
+        errorMsg.value = error.response.data.message;
+        setTimeout(() => {
+          errorMsg.value = '';
+        }, 6000)
       }
 
     }
@@ -106,7 +118,7 @@ export default {
       }
     })
 
-    return { data, setCandidateJobStatusToInterview }
+    return { data, setCandidateJobStatusToInterview, errorMsg, successMsg }
 
   }
 }
