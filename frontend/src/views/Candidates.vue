@@ -8,15 +8,22 @@
         yet..</h2>
       <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="container m-auto grid grid-cols-3 px-4 md:px-8 mx-auto space-x-4 space-y-4">
-
-          <div v-for="user in data" :key="user._id" >
+          <div v-for="user in data" :key="user._id">
 
             <div>
               <div class="bg-white shadow-xl rounded-lg py-3">
-                <div >
+                <div>
                   <h3 class="text-center text-xl text-gray-900 font-medium leading-8">{{ user.candidateId.name }}</h3>
                   <div class="text-center text-gray-400 text-xs font-semibold">
                     <p>{{ user.candidateId.username }}</p>
+                  </div>
+                  <div v-if="user.candidateId.avatar.imageUrl !== 'undefined'"
+                    class="mt-2 flex flex-row  justify-center items-center">
+                    <img v-if="user.candidateId.avatar.imageUrl === 'undefined'" class="w-32 h-32 rounded-full "
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzl1DW0w9lJrVWAMzVhAzg-ZSd-L0QiAGOoqtP58&s"
+                      alt="" />
+                    <img class="w-32 h-32 rounded-full " :src="user.candidateId.avatar.imageUrl" alt="" />
+                    
                   </div>
                   <table class="text-xs my-3">
                     <tbody>
