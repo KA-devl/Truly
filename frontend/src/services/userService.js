@@ -31,4 +31,16 @@ export default {
     );
     return res;
   },
+  async updateUserAvatar(userId, resume) {
+    const res = await axios.put(
+      `${localUrl}/update-avatar/${userId}`,
+      resume,
+      {
+        headers: {
+            'Content-Type': 'multipart/image'
+        }
+      }
+    );
+    return res;
+  },
 };

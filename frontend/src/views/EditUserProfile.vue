@@ -15,6 +15,27 @@
                     </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user.name }}</h1>
                     <h3 class="text-gray-600 font-lg text-semibold leading-6">@{{ user.username }}</h3>
+
+                    <!-- Avatar -->
+                    <div v-if="user.avatar.imageUrl !== 'undefined'" class="mt-2  ">
+                        <img class="w-32 h-32 rounded-full " :src="user.avatar.imageUrl" alt="" />
+                    </div>
+
+                    <div v-if="user.avatar.imageUrl === 'undefined'" class="mt-2  ">
+                        <img class="w-32 h-32 rounded-full "
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzl1DW0w9lJrVWAMzVhAzg-ZSd-L0QiAGOoqtP58&s"
+                            alt="" />
+                    </div>
+
+
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
+                        avatar</label>
+                    <input class="block w-full text-sm text-gray-500 border bg-gray-50 rounded-lg cursor-pointer "
+                        id="drop-zone-avatar" ref="file" type="file" @change="handleFileUpload()">
+                    <p class="mt-1 text-sm text-gray-500" id="file_input_help">JPG, PNG only </p>
+
+
+
                     <ul
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
@@ -102,7 +123,7 @@ export default {
         const user = ref(null);
         const userStore = useUserStore();
         const isEdit = ref(false);
-
+        const file = ref(null);
         const name = ref(null);
         const username = ref(null);
         const email = ref(null);
@@ -139,11 +160,28 @@ export default {
 
             isEdit.value = false;
 
-
         }
 
 
-        return { isEdit, user, userStore, username, name, email, mobileNumber, saveEdit, formatDate }
+        const handleFileUpload = async () => {
+            let formData = new FormData();
+            formData.append('image', file.value.files[0]);
+
+            console.log(user.value.id, formData)
+
+            try {
+
+                await userService.updateUserAvatar(user.value.id, formData);
+                console.log('file updated succesfully')
+                user.value = await userStore.fetchUser();
+            } catch (error) {
+                console.log('ERROR', error)
+
+            }
+        }
+
+
+        return { isEdit, user, userStore, username, name, email, mobileNumber, saveEdit, formatDate, handleFileUpload,file}
 
     }
 }
