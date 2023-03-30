@@ -23,7 +23,7 @@
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzl1DW0w9lJrVWAMzVhAzg-ZSd-L0QiAGOoqtP58&s"
                       alt="" />
                     <img class="w-32 h-32 rounded-full " :src="user.candidateId.avatar.imageUrl" alt="" />
-                    
+
                   </div>
                   <table class="text-xs my-3">
                     <tbody>
@@ -44,10 +44,13 @@
                   </table>
 
                   <div class="text-center my-3">
-                    <button class=" text-white py-1 px-4 rounded-full  bg-red-500 hover:bg-red-600 font-medium">Reject
+                    <button v-if="user.applicationStatus[0] === 'active'" class=" text-white py-1 px-4 rounded-full  bg-red-500 hover:bg-red-600 font-medium">Reject
                     </button>
-                    <button
-                      class=" text-white py-1 px-4 rounded-full ml-2 bg-green-500 hover:bg-green-600 font-medium">Hire
+                    <button v-if="user.applicationStatus[0] === 'active'"  class=" text-white py-1 px-4 rounded-full ml-2 bg-green-500 hover:bg-green-600 font-medium"
+                      @click="setCandidateJobStatusToInterview(user._id)">Interview
+                    </button>
+                    <button v-if="user.applicationStatus[0] === 'interview'"  class=" text-white py-1 px-4 rounded-full ml-2 bg-blue-500 hover:bg-blue-600 font-medium" disabled
+                      >Selected for interview
                     </button>
 
                   </div>
@@ -83,6 +86,19 @@ export default {
     // Get current Id of route
     const currentId = route.params.jobId;
 
+
+    const setCandidateJobStatusToInterview = async (applicationId) => {
+
+      try {
+        await employerService.setApplicationToInterview(applicationId)
+
+      } catch (error) {
+        console.log('ERROR', error)
+
+      }
+
+    }
+
     onMounted(async () => {
       if (currentId) {
         data.value = await employerService.getAllCandidatesOfJob(currentId);
@@ -90,7 +106,7 @@ export default {
       }
     })
 
-    return { data }
+    return { data, setCandidateJobStatusToInterview }
 
   }
 }

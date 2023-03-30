@@ -19,5 +19,11 @@ export default {
   async getAllCandidatesOfJob(jobId){
     const res = await axios.get(`${localUrl}/get-application-job/${jobId}`);
     return res.data.data;
-  }
+  },
+  async setApplicationToInterview(applicationId){
+    console.log('the application is', applicationId);
+    const res = await axios.put(`${localUrl}/update-application-interview/${applicationId}`);
+    return res.data;
+  },
+  
 }
