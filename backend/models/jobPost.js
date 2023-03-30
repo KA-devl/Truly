@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const jobApplication = require('./jobApplication');
+const mongoose = require("mongoose");
+const jobApplication = require("./jobApplication");
 
 const JobPostingSchema = new mongoose.Schema({
   name: {
@@ -8,16 +8,19 @@ const JobPostingSchema = new mongoose.Schema({
     trim: true,
     maxlength: 50,
   },
-
+  image: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   authorId: {
     type: mongoose.Schema.ObjectId,
-    ref: 'user',
+    ref: "user",
     required: true,
     validate: {
       validator: async function (value) {
         const user = await mongoose
-          .model('user')
-          .findOne({ _id: value, userType: 'employer' });
+          .model("user")
+          .findOne({ _id: value, userType: "employer" });
         return !!user;
       },
       message:
@@ -38,7 +41,7 @@ const JobPostingSchema = new mongoose.Schema({
   jobStatus: {
     type: [String],
     required: true,
-    enum: ['contractual', 'permanent', 'temporary', 'full-time', 'part-time'],
+    enum: ["contractual", "permanent", "temporary", "full-time", "part-time"],
   },
   creationDate: {
     type: Date,
@@ -50,14 +53,24 @@ const JobPostingSchema = new mongoose.Schema({
   },
 });
 
+const jobPost = mongoose.model("jobPost", JobPostingSchema);
+
+jobPost
+  .findOne({ id: this.authorId })
+  .populate("user")
+  .exec((err, result) => {
+    if (err) return err;
+    console.log(result)
+  });
+
 // when a job post is deleted it set all its candidates applications to inactive
-JobPostingSchema.pre('remove', async function (next) {
+JobPostingSchema.pre("remove", async function (next) {
   const jobApp = await jobApplication.updateMany(
     { jobPostId: this._id },
-    { applicationStatus: 'inactive' }
+    { applicationStatus: "inactive" }
   );
 
   next();
 });
 
-module.exports = mongoose.model('jobPost', JobPostingSchema);
+module.exports = jobPost;
