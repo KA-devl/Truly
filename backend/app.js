@@ -54,8 +54,10 @@ require('./routes/user/login')(app);
 require('./routes/candidate/createApplication')(app);
 require('./routes/candidate/getAllJobs')(app);
 require('./routes/candidate/getJobAppliedFor')(app);
+require('./routes/candidate/getAllinterviews')(app);
 require('./routes/admin/deleteUser')(app);
 require('./routes/admin/getUsers')(app);
+
 
 server = app.listen(
   PORT,
