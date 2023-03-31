@@ -6,6 +6,10 @@ export default {
     const res = await axios.post(`${localUrl}/signup`, user);
     return res;
   },
+  async getJob(jobId){
+    const res = await axios.get(`${localUrl}/get-job/${jobId}`);
+    return res.data.data
+  },
   async getAllJobs() {
     const res = await axios.get(`${localUrl}/get-jobs`);
     console.log('jobs are', res)
