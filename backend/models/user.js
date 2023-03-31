@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema(
     resume: {
       resumeUrl: { type: String, default: 'undefined' },
       cloudinaryId: { type: String, default: 'undefined' },
-    }
+    },
   },
 
   {
