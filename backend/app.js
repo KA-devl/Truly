@@ -58,8 +58,8 @@ require('./routes/candidate/getAllinterviews')(app);
 require('./routes/admin/deleteUser')(app);
 require('./routes/admin/getUsers')(app);
 
-
 server = app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} on ${PORT}`)
 );
+module.exports = { app, server };

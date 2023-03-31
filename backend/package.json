@@ -6,7 +6,7 @@
   "scripts": {
     "start": "set NODE_ENV=production && node server",
     "dev": "nodemon server",
-    "test": "jest"
+   "test": "jest --detectOpenHandles "
   },
   "author": "Anes and his soen341 team",
   "license": "ISC",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "jest": "^29.4.3",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3"
   }
 }
