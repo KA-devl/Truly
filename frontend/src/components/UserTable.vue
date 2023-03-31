@@ -17,9 +17,12 @@
                         <td class="px-12 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <a href="#" class="relative block">
-                                        <img alt="Logo"
-                                            src="https://avatarfiles.alphacoders.com/296/thumb-296257.jpg"
+                                    <a v-if="data.avatar.imageUrl !== 'undefined'" href="#" class="relative block">
+                                        <img alt="Logo" :src="data.avatar.imageUrl"
+                                            class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                    </a>
+                                    <a v-if="data.avatar.imageUrl === 'undefined'" href="#" class="relative block">
+                                        <img alt="Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzl1DW0w9lJrVWAMzVhAzg-ZSd-L0QiAGOoqtP58&s"
                                             class="mx-auto object-cover rounded-full h-10 w-10 " />
                                     </a>
                                 </div>
