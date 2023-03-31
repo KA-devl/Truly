@@ -9,7 +9,7 @@ async function getAllinterviews(req, res) {
     });
     if (getAllinterviews == 0)
       return res
-        .json({ sucess: false, message: `No job applications found` });
+        .json({ sucess: false, message: `No interviews found` });
 
     res.status(201).json({ sucess: true, data: getAllinterviews });
   } catch (err) {
