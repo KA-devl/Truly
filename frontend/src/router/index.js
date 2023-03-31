@@ -14,6 +14,7 @@ import Services from "../views/Services.vue";
 import Candidates from "../views/Candidates.vue";
 import ManageJobs from "../views/ManageJobs.vue";
 import ManageUsers from "../views/ManageUsers.vue";
+import AlternateJob from "../views/AlternateJob.vue";
 
 const routes = [
   {
@@ -140,6 +141,15 @@ const routes = [
     path: "/candidates/:jobId",
     meta: {
       title: "Candidates",
+      auth: true,
+    },
+  },
+  {
+    path: "/job2",
+    name: "AlternateJob",
+    component: AlternateJob,
+    meta: {
+      title: "AlternateJob",
       auth: true,
     },
   },
