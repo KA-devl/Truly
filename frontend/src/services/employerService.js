@@ -25,5 +25,10 @@ export default {
     const res = await axios.put(`${localUrl}/update-application-interview/${applicationId}`);
     return res.data;
   },
+  async setApplicationToRejected(applicationId){
+    console.log('the application is', applicationId);
+    const res = await axios.put(`${localUrl}/update-application-rejected/${applicationId}`);
+    return res.data;
+  },
   
 }

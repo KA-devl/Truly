@@ -1,7 +1,7 @@
 <template>
   <UserSideBar />
-  <Alert :errorMsg="errorMsg"/>
-  <Alert :successMsg="successMsg"/>
+  <Alert :errorMsg="errorMsg" />
+  <Alert :successMsg="successMsg" />
   <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
       <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
@@ -46,13 +46,21 @@
                   </table>
 
                   <div class="text-center my-3">
-                    <button v-if="user.applicationStatus[0] === 'active'" class=" text-white py-1 px-4 rounded-full  bg-red-500 hover:bg-red-600 font-medium">Reject
+                    <button v-if="user.applicationStatus[0] === 'active'"
+                      class=" text-white py-1 px-4 rounded-full  bg-red-500 hover:bg-red-600 font-medium"
+                      @click="rejectCandidate(user._id)">Reject
                     </button>
-                    <button v-if="user.applicationStatus[0] === 'active'"  class=" text-white py-1 px-4 rounded-full ml-2 bg-green-500 hover:bg-green-600 font-medium"
-                      @click="setCandidateJobStatusToInterview(user._id)">Interview
+                    <button v-if="user.applicationStatus[0] === 'active'"
+                      class=" text-white py-1 px-4 rounded-full ml-2 bg-green-500 hover:bg-green-600 font-medium"
+                      @click="interviewCandidate(user._id)">Interview
                     </button>
-                    <button v-if="user.applicationStatus[0] === 'interview'"  class=" text-white py-1 px-4 rounded-full ml-2 bg-blue-500 hover:bg-blue-600 font-medium" disabled
-                      >Selected for interview
+                    <button v-if="user.applicationStatus[0] === 'interview'"
+                      class=" text-white py-1 px-4 rounded-full ml-2 bg-blue-500 hover:bg-blue-600 font-medium"
+                      disabled>Selected for interview
+                    </button>
+                    <button v-if="user.applicationStatus[0] === 'rejected'"
+                      class=" text-white py-1 px-4 rounded-full ml-2 bg-red-500 hover:bg-red-600 font-medium"
+                      disabled>Rejected for interview
                     </button>
 
                   </div>
@@ -92,13 +100,31 @@ export default {
     const successMsg = ref(null);
 
 
-    const setCandidateJobStatusToInterview = async (applicationId) => {
+    const interviewCandidate = async (applicationId) => {
 
       try {
-         await employerService.setApplicationToInterview(applicationId);
-         successMsg.value = 'Candidate selected for interview';
-          data.value = await employerService.getAllCandidatesOfJob(currentId);
-          setTimeout(() => {
+        await employerService.setApplicationToInterview(applicationId);
+        successMsg.value = 'Candidate selected for interview';
+        data.value = await employerService.getAllCandidatesOfJob(currentId);
+        setTimeout(() => {
+          successMsg.value = '';
+        }, 6000)
+      } catch (error) {
+        console.log('ERROR', error)
+        errorMsg.value = error.response.data.message;
+        setTimeout(() => {
+          errorMsg.value = '';
+        }, 6000)
+      }
+
+    }
+    const rejectCandidate = async (applicationId) => {
+
+      try {
+        await employerService.setApplicationToRejected(applicationId);
+        successMsg.value = 'Candidate rejected for interview';
+        data.value = await employerService.getAllCandidatesOfJob(currentId);
+        setTimeout(() => {
           successMsg.value = '';
         }, 6000)
       } catch (error) {
@@ -118,7 +144,7 @@ export default {
       }
     })
 
-    return { data, setCandidateJobStatusToInterview, errorMsg, successMsg }
+    return { data, interviewCandidate, rejectCandidate, errorMsg, successMsg }
 
   }
 }
