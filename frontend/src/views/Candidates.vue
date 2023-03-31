@@ -31,7 +31,7 @@
                     <tbody>
                       <tr>
                         <td class="px-2 py-2 text-gray-500 font-semibold">Resume</td>
-                        <td class="px-2 py-2"><a class="text-blue-500" :href="user.candidateId.resume.resumeUrl"> Click
+                        <td class="px-2 py-2"><a class="text-blue-500" :href="user.candidateId.resume.resumeUrl" target="_blank"> Click
                             for resume</a></td>
                       </tr>
                       <tr>
