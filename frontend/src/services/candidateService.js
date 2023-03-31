@@ -7,5 +7,9 @@ export default {
     console.log('the job is', jobPackage);
     const res = await axios.post(`${localUrl}/apply-for-job`, jobPackage);
     return res.data;
+  },
+  async getSelectedForInterviewJobs(userId){
+    const res = await axios.get(`${localUrl}/get-all-interviews/${userId}`);
+    return res.data.data
   }
 }

@@ -1,8 +1,11 @@
 <template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
+
   <UserSideBar/>
   <div >
+    
     <div class="p-4 sm:ml-64">
       <div v-if="user" class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+
         <CandidateDashboard v-if="user.userType === 'candidate'" :user="user"/>
         <EmployerDashboard  v-if="user.userType === 'employer'" :user="user" />
         <AdminPanel v-if="user.userType === 'admin'" :user="user" />
