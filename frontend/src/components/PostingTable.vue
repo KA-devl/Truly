@@ -79,11 +79,14 @@
                                             class="mx-auto object-cover rounded-full h-10 w-10 " />
                                     </a>
                                 </div>
-                                <div class="ml-3">
-                                    <p class="text-gray-900 whitespace-no-wrap">
+                                <div class="flex items-center ml-4">
+                                <router-link v-if="job._id" :to="{ name: 'JobDescription', params: { jobId: job._id } }">
+                                    <p class="text-gray-900 whitespace-no-wrap hover:text-blue-500">
                                         {{ job.name }}
                                     </p>
-                                </div>
+                                </router-link>
+                            </div>
+                                
                             </div>
                         </td>
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">

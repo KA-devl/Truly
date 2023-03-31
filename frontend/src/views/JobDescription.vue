@@ -1,101 +1,470 @@
 <template>
-  <div class="bg-white py-24 sm:py-32">
-    <UserSideBar/>
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto grid max-w-4xl grid-cols-1 items-start gap-y-16 gap-x-8 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-        <div class="lg:pr-4">
-          <div class="relative overflow-hidden rounded-3xl bg-blue-600 px-6 pb-9 pt-64 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
-            <img class="absolute inset-0 h-full w-full object-cover brightness-125 saturate-0" src="https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg" alt="" />
-            <div class="absolute inset-0 bg-blue-600 mix-blend-multiply" />
-            <svg viewBox="0 0 1097 845" aria-hidden="true" class="absolute top-1/2 left-1/2 -ml-16 w-[68.5625rem] -translate-x-1/2 -translate-y-1/2 transform-gpu blur-3xl">
-              <path fill="url(#e7ccf164-908d-46dd-9194-2f8a16ad5a93)" fill-opacity=".4" d="M301.174 646.641 193.541 844.786 0 546.172l301.174 100.469 193.845-356.855c1.241 164.891 42.802 431.935 199.124 180.978 195.402-313.696 143.295-588.18 284.729-419.266 113.148 135.13 124.068 367.989 115.378 467.527L811.753 372.553l20.102 451.119-530.681-177.031Z" />
-              <defs>
-                <linearGradient id="e7ccf164-908d-46dd-9194-2f8a16ad5a93" x1="1097.04" x2="-141.165" y1=".22" y2="363.075" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#776FFF" />
-                  <stop offset="1" stop-color="#FF4694" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <figure class="relative isolate">
-              <svg viewBox="0 0 162 128" fill="none" aria-hidden="true" class="absolute -top-4 -left-2 -z-10 h-32 stroke-white/20">
-                <path id="0ef284b8-28c2-426e-9442-8655d393522e" d="M65.5697 118.507L65.8918 118.89C68.9503 116.314 71.367 113.253 73.1386 109.71C74.9162 106.155 75.8027 102.28 75.8027 98.0919C75.8027 94.237 75.16 90.6155 73.8708 87.2314C72.5851 83.8565 70.8137 80.9533 68.553 78.5292C66.4529 76.1079 63.9476 74.2482 61.0407 72.9536C58.2795 71.4949 55.276 70.767 52.0386 70.767C48.9935 70.767 46.4686 71.1668 44.4872 71.9924L44.4799 71.9955L44.4726 71.9988C42.7101 72.7999 41.1035 73.6831 39.6544 74.6492C38.2407 75.5916 36.8279 76.455 35.4159 77.2394L35.4047 77.2457L35.3938 77.2525C34.2318 77.9787 32.6713 78.3634 30.6736 78.3634C29.0405 78.3634 27.5131 77.2868 26.1274 74.8257C24.7483 72.2185 24.0519 69.2166 24.0519 65.8071C24.0519 60.0311 25.3782 54.4081 28.0373 48.9335C30.703 43.4454 34.3114 38.345 38.8667 33.6325C43.5812 28.761 49.0045 24.5159 55.1389 20.8979C60.1667 18.0071 65.4966 15.6179 71.1291 13.7305C73.8626 12.8145 75.8027 10.2968 75.8027 7.38572C75.8027 3.6497 72.6341 0.62247 68.8814 1.1527C61.1635 2.2432 53.7398 4.41426 46.6119 7.66522C37.5369 11.6459 29.5729 17.0612 22.7236 23.9105C16.0322 30.6019 10.618 38.4859 6.47981 47.558L6.47976 47.558L6.47682 47.5647C2.4901 56.6544 0.5 66.6148 0.5 77.4391C0.5 84.2996 1.61702 90.7679 3.85425 96.8404L3.8558 96.8445C6.08991 102.749 9.12394 108.02 12.959 112.654L12.959 112.654L12.9646 112.661C16.8027 117.138 21.2829 120.739 26.4034 123.459L26.4033 123.459L26.4144 123.465C31.5505 126.033 37.0873 127.316 43.0178 127.316C47.5035 127.316 51.6783 126.595 55.5376 125.148L55.5376 125.148L55.5477 125.144C59.5516 123.542 63.0052 121.456 65.9019 118.881L65.5697 118.507Z" />
-                <use href="#0ef284b8-28c2-426e-9442-8655d393522e" x="86" />
-              </svg>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png" alt="" class="h-12 w-auto" />
-              <blockquote class="mt-6 text-xl font-semibold leading-8 text-white">
-                <p>“I love working at Google!”</p>
-              </blockquote>
-              <figcaption class="mt-6 text-sm leading-6 text-gray-300"><strong class="font-semibold text-white">Anas Senouci,</strong> CEO at Google</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div>
-          <div class="text-base leading-7 text-gray-700 lg:max-w-lg">
-            <button type="button" class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Apply</button>
-            <p class="text-base font-semibold leading-7 text-blue-600">Google</p>
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Software engineers and designers</h1> 
-            <div class="max-w-xl">
-              <p class="mt-6">Software engineers and designers research, design, evaluate, integrate and maintain software applications, technical environments, operating systems, embedded software, information warehouses and telecommunications software. They are employed in information technology consulting firms, information technology research and development firms, and information technology units throughout the private and public sectors, or they may be self-employed.</p>
-              <br>
-              <h2 class="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">Job duties</h2>
-              <ul>
-                <li>&#x2022; Collect and document users' requirements and develop logical and physical specifications </li>
-                <li>&#x2022; Research, evaluate and synthesize technical information to design, develop and test computer-based systems including mobile applications </li>
-                <li>&#x2022; Develop data, process and network models to optimize architecture and to evaluate the performance and reliability of designs </li>
-                <li>&#x2022; Plan, design and coordinate the development, installation, integration and operation of computer-based systems including mobile applications </li>
-              </ul>
-              <br>
-              <h2 class="text-gray-800 text-xl sm:text-2xl font-semibold mb-2 md:mb-4">Essential Skills and Qualifications:</h2>
-              <p class="mt-8">
-                  <ul>
-                  <li>&#x2022; University degree in computer science or engineering (or equivalent) </li>
-                  <li>&#x2022; Junior or Intermediate level experience in embedded system testing, design and engineering </li>
-                  <li>&#x2022; 2+ years of C development (in an embedded environment is an asset) </li>
-                  <li>&#x2022; Working knowledge of QNX or other embedded operating system </li>
-                  <li>&#x2022; Familiar with source versioning, problem reporting (SVN, Git, JIRA) </li>
-                  </ul>
-              </p>
+  <div class="bg-white ">
+
+    <body class="font-inter antialiased bg-white text-gray-800 tracking-tight">
+      <!-- Page wrapper -->
+      <div class="flex flex-col min-h-screen overflow-hidden">
+        <!-- Site header -->
+
+        <!-- Page content -->
+        <main class="grow">
+          <!-- Page content -->
+          <section>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+              <div class="pt-28 pb-8 md:pt-36 md:pb-16">
+                <div class="md:flex md:justify-between" data-sticky-container>
+                  <!-- Sidebar -->
+                  <aside
+                    class="mb-8 md:mb-0 md:w-64 lg:w-72 md:ml-12 lg:ml-20 md:shrink-0 md:order-1"
+                  >
+                    <div
+                      data-sticky
+                      data-margin-top="32"
+                      data-sticky-for="768"
+                      data-sticky-wrap
+                    >
+                      <div
+                        class="relative bg-gray-50 rounded-xl border border-gray-200 p-5"
+                      >
+                        <div class="text-center mb-6">
+                          <img
+                            class="inline-flex mb-2"
+                            src="https://storage.googleapis.com/support-kms-prod/ZAl1gIwyUsvfwxoW9ns47iJFioHXODBbIkrK"
+                            width="72"
+                            height="72"
+                            alt="Company 01"
+                          />
+                          <h2 class="text-lg font-bold text-gray-800">
+                            Google
+                          </h2>
+                        </div>
+
+                        <div class="flex justify-center md:justify-start mb-5">
+                          <ul class="inline-flex flex-col space-y-2">
+                            <li class="flex items-center">
+                              <svg
+                                class="shrink-0 fill-gray-400 mr-3"
+                                width="14"
+                                height="14"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M9.707 4.293a1 1 0 0 0-1.414 1.414L10.586 8H2V2h3a1 1 0 1 0 0-2H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h8.586l-2.293 2.293a1 1 0 1 0 1.414 1.414l4-4a1 1 0 0 0 0-1.414l-4-4Z"
+                                />
+                              </svg>
+                              <span class="text-sm text-gray-600"
+                                >24 August, 2024</span
+                              >
+                            </li>
+                            <li class="flex items-center">
+                              <svg
+                                class="shrink-0 fill-gray-400 mr-3"
+                                width="14"
+                                height="16"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <circle cx="7" cy="7" r="2" />
+                                <path
+                                  d="M6.3 15.7c-.1-.1-4.2-3.7-4.2-3.8C.7 10.7 0 8.9 0 7c0-3.9 3.1-7 7-7s7 3.1 7 7c0 1.9-.7 3.7-2.1 5-.1.1-4.1 3.7-4.2 3.8-.4.3-1 .3-1.4-.1Zm-2.7-5 3.4 3 3.4-3c1-1 1.6-2.2 1.6-3.6 0-2.8-2.2-5-5-5S2 4.2 2 7c0 1.4.6 2.7 1.6 3.7 0-.1 0-.1 0 0Z"
+                                />
+                              </svg>
+                              <span class="text-sm text-gray-600"
+                                >NYC, United States / Remote friendly</span
+                              >
+                            </li>
+                            <li class="flex items-center">
+                              <svg
+                                class="shrink-0 fill-gray-400 mr-3"
+                                width="16"
+                                height="12"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M15 0H1C.4 0 0 .4 0 1v10c0 .6.4 1 1 1h14c.6 0 1-.4 1-1V1c0-.6-.4-1-1-1Zm-1 10H2V2h12v8Z"
+                                />
+                                <circle cx="8" cy="6" r="2" />
+                              </svg>
+                              <span class="text-sm text-gray-600"
+                                >$75K - $100K</span
+                              >
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="max-w-xs mx-auto mb-5">
+                          <button
+                            type="button"
+                            class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                          >
+                            Apply
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </aside>
+
+                  <!-- Main content -->
+                  <div class="md:grow">
+                    <!-- Job description -->
+                    <div class="pb-8">
+                      <div class="mb-4"></div>
+                      <h1 class="text-4xl font-extrabold font-inter mb-10">
+                        Front-End Developer
+                      </h1>
+                      <!-- Job description -->
+                      <div class="space-y-8 mb-8">
+                        <div>
+                          <h3 class="text-xl font-bold text-gray-800 mb-3">
+                            The Role
+                          </h3>
+                          <div class="text-gray-500 space-y-3">
+                            <p>
+                              As a Front-End Developer at our company, you will
+                              be responsible for developing and maintaining the
+                              user interface of our web applications. You will
+                              work closely with designers, back-end developers,
+                              and product managers to create user-friendly and
+                              engaging experiences for our customers. You should
+                              have a strong understanding of web technologies
+                              and be proficient in HTML, CSS, and JavaScript.
+                              You should be familiar with popular front-end
+                              frameworks such as React, Angular, or Vue.js and
+                              be able to create responsive designs that work
+                              across multiple devices.
+                            </p>
+                            <p>
+                              You will be responsible for developing and testing
+                              code, as well as troubleshooting and debugging
+                              issues in production. You should be able to work
+                              in a fast-paced environment and be comfortable
+                              with continuous integration and deployment.
+                            </p>
+                            <p>
+                              Overall, this is a challenging and rewarding role
+                              for a talented Front End Developer who is
+                              passionate about creating high-quality user
+                              experiences.
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 class="text-xl font-bold text-gray-800 mb-3">
+                            About You
+                          </h3>
+                          <div class="text-gray-500 space-y-3">
+                            <p>
+                              You love building great software. Your work could
+                              be supporting new feature development, migrating
+                              existing features, and creating other mobile and
+                              web solutions for customers. You'll have a primary
+                              focus on frontend development using Javascript.
+                              Our client's tech stack is JavaScript, primarily
+                              using React. A strong understanding of JS core
+                              (ES2019+) is required, with some exposure in Java
+                              as back-end technology. We use modern tools, which
+                              means you'll have the opportunity to work with
+                              Webpack, Redux, Apollo, Styled Components, and
+                              much more.
+                            </p>
+                            <p>
+                              You love learning. Engineering is an ever-evolving
+                              world. You enjoy playing with new tech and
+                              exploring areas that you might not have experience
+                              with yet. You are self-driven, self-learner
+                              willing to share knowledge and participate
+                              actively in your community.
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 class="text-xl font-bold text-gray-800 mb-3">
+                            Things You Might Do
+                          </h3>
+                          <div class="text-gray-500 space-y-3">
+                            <p>
+                              As a Front End Developer at our company, you will
+                              have the opportunity to work on a wide range of
+                              projects across the organization. You will
+                              collaborate with designers, back-end developers,
+                              and other team members to create user-friendly and
+                              engaging experiences for our clients and
+                              customers. Here are some things you might do in
+                              this role:
+                            </p>
+                            <ul class="list-disc list-inside space-y-3">
+                              <li>
+                                You will have the opportunity to give back to
+                                the community by contributing to open source
+                                projects and writing blog posts about your work.
+                              </li>
+                              <li>
+                                We create active teams that work on internal and
+                                external projects together, giving you
+                                opportunities to stay relevant with the latest
+                                technologies and learn from experts worldwide.
+                                You will be encouraged to share your knowledge
+                                and expertise with your colleagues, and to learn
+                                from them in turn.
+                              </li>
+                              <li>
+                                You will have the opportunity to interact
+                                directly with internal and external clients to
+                                represent our company and its values. You will
+                                be responsible for understanding client needs,
+                                communicating with them effectively, and
+                                ensuring that our work meets their expectations.
+                              </li>
+                              <li>
+                                As part of our remote-first lifestyle, we
+                                believe it's important to come together as a
+                                team to work, meet in person, and have fun. You
+                                may have the opportunity to travel to company
+                                events and meet other team members from around
+                                the world.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Social share -->
+                    </div>
+
+                    <!-- Related jobs -->
+                    <div class="mb-8">
+                      <h4 class="text-2xl font-bold font-inter mb-8">
+                        Related Jobs
+                      </h4>
+                      <!-- List container -->
+                      <div class="flex flex-col border-t border-gray-200">
+                        <!-- Item -->
+                        <div
+                          class="[&:nth-child(-n+12)]:-order-1 border-b border-gray-200 group"
+                        >
+                          <div class="px-4 py-6">
+                            <div
+                              class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5"
+                            >
+                              <div class="shrink-0">
+                                <img
+                                  src="https://static.vecteezy.com/system/resources/previews/004/263/114/original/meta-logo-meta-by-facebook-icon-editorial-logo-for-social-media-free-vector.jpg"
+                                  width="56"
+                                  height="56"
+                                  alt="Company 02"
+                                />
+                              </div>
+                              <div
+                                class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0"
+                              >
+                                <div>
+                                  <div class="flex items-start space-x-2">
+                                    <div
+                                      class="text-sm text-gray-800 font-semibold mb-1"
+                                    >
+                                      Meta
+                                    </div>
+                                  </div>
+                                  <div class="mb-2">
+                                    <a
+                                      class="text-lg text-gray-800 font-bold"
+                                      href="job-post.html"
+                                      >Senior Software Engineer</a
+                                    >
+                                  </div>
+                                  <div class="-m-1">
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >$140K - $170K</a
+                                    >
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >🇺🇸 NYC</a
+                                    >
+                                  </div>
+                                </div>
+                                <div
+                                  class="min-w-[120px] flex items-center lg:justify-end space-x-3 lg:space-x-0"
+                                >
+                                  <div class="lg:hidden group-hover:lg:block">
+                                    <button
+                                      type="button"
+                                      class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                    >
+                                      Apply
+                                    </button>
+                                  </div>
+                                  <div
+                                    class="group-hover:lg:hidden text-sm italic text-gray-500"
+                                  >
+                                    4h
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item -->
+                        <div
+                          class="[&:nth-child(-n+12)]:-order-1 border-b border-gray-200 group"
+                        >
+                          <div class="px-4 py-6">
+                            <div
+                              class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5"
+                            >
+                              <div class="shrink-0">
+                                <img
+                                  src="https://static.vecteezy.com/system/resources/previews/004/263/114/original/meta-logo-meta-by-facebook-icon-editorial-logo-for-social-media-free-vector.jpg"
+                                  width="56"
+                                  height="56"
+                                  alt="Company 02"
+                                />
+                              </div>
+                              <div
+                                class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0"
+                              >
+                                <div>
+                                  <div class="flex items-start space-x-2">
+                                    <div
+                                      class="text-sm text-gray-800 font-semibold mb-1"
+                                    >
+                                      Meta
+                                    </div>
+                                  </div>
+                                  <div class="mb-2">
+                                    <a
+                                      class="text-lg text-gray-800 font-bold"
+                                      href="job-post.html"
+                                      >Staff Software Engineer</a
+                                    >
+                                  </div>
+                                  <div class="-m-1">
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >$110K - $140K</a
+                                    >
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >🇺🇸 NYC</a
+                                    >
+                                  </div>
+                                </div>
+                                <div
+                                  class="min-w-[120px] flex items-center lg:justify-end space-x-3 lg:space-x-0"
+                                >
+                                  <div class="lg:hidden group-hover:lg:block">
+                                    <button
+                                      type="button"
+                                      class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                    >
+                                      Apply
+                                    </button>
+                                  </div>
+                                  <div
+                                    class="group-hover:lg:hidden text-sm italic text-gray-500"
+                                  >
+                                    7h
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Item -->
+                        <div
+                          class="[&:nth-child(-n+12)]:-order-1 border-b border-gray-200 group"
+                        >
+                          <div class="px-4 py-6">
+                            <div
+                              class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5"
+                            >
+                              <div class="shrink-0">
+                                <img
+                                  src="https://storage.googleapis.com/support-kms-prod/ZAl1gIwyUsvfwxoW9ns47iJFioHXODBbIkrK"
+                                  width="56"
+                                  height="56"
+                                  alt="Company 01"
+                                />
+                              </div>
+                              <div
+                                class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0"
+                              >
+                                <div>
+                                  <div class="flex items-start space-x-2">
+                                    <div
+                                      class="text-sm text-gray-800 font-semibold mb-1"
+                                    >
+                                      Google
+                                    </div>
+                                  </div>
+                                  <div class="mb-2">
+                                    <a
+                                      class="text-lg text-gray-800 font-bold"
+                                      href="job-post.html"
+                                      >Data Scientist</a
+                                    >
+                                  </div>
+                                  <div class="-m-1">
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >$80K - $110K</a
+                                    >
+                                    <a
+                                      class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                      href="#0"
+                                      >🇺🇸 United States</a
+                                    >
+                                  </div>
+                                </div>
+                                <div
+                                  class="min-w-[120px] flex items-center lg:justify-end space-x-3 lg:space-x-0"
+                                >
+                                  <div class="lg:hidden group-hover:lg:block">
+                                    <button
+                                      type="button"
+                                      class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                    >
+                                      Apply
+                                    </button>
+                                  </div>
+                                  <div
+                                    class="group-hover:lg:hidden text-sm italic text-gray-500"
+                                  >
+                                    2d
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-          </div>
-          <dl class="mt-10 grid grid-cols-2 gap-8 border-t border-gray-900/10 pt-10 sm:grid-cols-4">
-            <div v-for="(stat, statIdx) in stats" :key="statIdx">
-              <dt class="text-sm font-semibold leading-6 text-gray-600">{{ stat.label }}</dt>
-              <dd class="mt-2 text-3xl font-bold leading-10 tracking-tight text-gray-900">{{ stat.value }}</dd>
-            </div>
-          </dl>
-          <div class="mt-10 flex">
-            <a href="#" class="text-base font-semibold leading-7 text-blue-600">Learn more about our company <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
-    </div>
+    </body>
   </div>
 </template>
 
 <script>
-import { useUserStore } from '../store/user';
-import UserSideBar from '../components/UserSideBar.vue';
-const stats = [
-    { label: 'Founded', value: '2021' },
-    { label: 'Employees', value: '37' },
-    { label: 'Countries', value: '12' },
-    { label: 'Raised', value: '$25M' },
-  ]
+import { useUserStore } from "../store/user";
+
 export default {
-  components:{
-    UserSideBar
+  components: {
   },
   setup() {
     const user = useUserStore().user;
 
-    return { user }
-  }
-}
-
-
-
-
+    return { user };
+  },
+};
 </script>
 
 <style></style>

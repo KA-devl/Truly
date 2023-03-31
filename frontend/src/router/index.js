@@ -4,7 +4,6 @@ import SignUp from "../views/SignUp.vue";
 import Home from "../views/Home.vue";
 import EditUserProfile from "../views/EditUserProfile.vue";
 import Dashboard from "../views/Dashboard.vue";
-import JobDescription from "../views/JobDescription.vue";
 import CreateJobPosting from "../views/CreateJobPosting.vue";
 import MyResume from "../views/MyResume.vue";
 import MyResumev2 from "../views/MyResumev2.vue";
@@ -14,7 +13,7 @@ import Services from "../views/Services.vue";
 import Candidates from "../views/Candidates.vue";
 import ManageJobs from "../views/ManageJobs.vue";
 import ManageUsers from "../views/ManageUsers.vue";
-import AlternateJob from "../views/AlternateJob.vue";
+import AlternateJob from "../views/JobDescription.vue";
 
 const routes = [
   {
@@ -32,15 +31,6 @@ const routes = [
     component: Dashboard,
     meta: {
       title: "Dashboard",
-      auth: true,
-    },
-  },
-  {
-    path: "/job",
-    name: "JobDescription",
-    component: JobDescription,
-    meta: {
-      title: "JobDescription",
       auth: true,
     },
   },
@@ -145,11 +135,11 @@ const routes = [
     },
   },
   {
-    path: "/job2",
-    name: "AlternateJob",
+    path: "/job-description/:jobId",
+    name: "JobDescription",
     component: AlternateJob,
     meta: {
-      title: "AlternateJob",
+      title: "JobDescription",
       auth: true,
     },
   },
