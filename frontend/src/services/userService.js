@@ -8,6 +8,7 @@ export default {
   },
   async getAllJobs() {
     const res = await axios.get(`${localUrl}/get-jobs`);
+    console.log('jobs are', res)
     return res.data.data;
   },
   async updateUserProfile(userId, tempUser) {

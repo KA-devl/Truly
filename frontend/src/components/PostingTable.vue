@@ -10,19 +10,11 @@
                         </th>
                     </tr>
                 </thead>
-
                 <!-- EMPLOYER TABLE BODY-->
                 <tbody v-if="user.userType === 'employer'">
                     <tr v-for="job in data" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <a href="#" class="relative block">
-                                        <img alt="Logo"
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAlJ6No3s5MBB3r7JyNzE7_fIR_24RYS_FcXC8qoiL4lvtuSghgUzYC7jBmGflwLWTfZg&usqp=CAU"
-                                            class="mx-auto object-cover rounded-full h-10 w-10 " />
-                                    </a>
-                                </div>
                                 <router-link v-if="job._id" :to="{ name: 'Candidates', params: { jobId: job._id } }">
                                     <p class="text-gray-900 whitespace-no-wrap hover:text-blue-500">
                                         {{ job.name }}
@@ -77,9 +69,13 @@
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <a href="#" class="relative block">
+                                    <a v-if="job.authorId.avatar.imageUrl !== 'undefined'" href="#" class="relative block">
+                                        <img alt="Logo" :src="job.authorId.avatar.imageUrl"
+                                            class="mx-auto object-cover rounded-full h-10 w-10 " />
+                                    </a>
+                                    <a v-if="job.authorId.avatar.imageUrl === 'undefined'" href="#" class="relative block">
                                         <img alt="Logo"
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAlJ6No3s5MBB3r7JyNzE7_fIR_24RYS_FcXC8qoiL4lvtuSghgUzYC7jBmGflwLWTfZg&usqp=CAU"
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHzl1DW0w9lJrVWAMzVhAzg-ZSd-L0QiAGOoqtP58&s"
                                             class="mx-auto object-cover rounded-full h-10 w-10 " />
                                     </a>
                                 </div>
@@ -135,18 +131,18 @@
                             </div>
                         </td>
                         <div v-else>
-                        <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
-                                Applied
-                            </button>
-                        </td>
-                        <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <button @click="applyForJob(job._id)" class="text-indigo-600 hover:text-indigo-900">
-                                Apply
-                            </button>
+                            <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
+                                    Applied
+                                </button>
+                            </td>
+                            <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                                <button @click="applyForJob(job._id)" class="text-indigo-600 hover:text-indigo-900">
+                                    Apply
+                                </button>
 
-                        </td>
-                    </div>
+                            </td>
+                        </div>
 
                     </tr>
                 </tbody>
