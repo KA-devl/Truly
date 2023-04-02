@@ -30,7 +30,7 @@ describe('getAllinterviews', () => {
     const jobApplications = [
       {
         _id: '6420a1964e8ee54cf530f767',
-        candidateId: '641d2207b47d92a84e53d649',
+        candidateId: '641d2207b47d92a84e53d648',
         jobPostId: '641fbd0f1c79826f993f9e4d',
         applicationStatus: ['interview'],
         authorId: '641fbcc71c79826f993f9e35',
