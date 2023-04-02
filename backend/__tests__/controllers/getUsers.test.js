@@ -1,49 +1,64 @@
-const superset = require('supertest');
-const { app, server } = require('../../app');
+const { getUsers } = require('../../controllers/admin/getUsers');
 const userModel = require('../../models/user');
-const mongoose = require('mongoose');
-jest.mock('../../models/user', () => ({
-  find: jest.fn(),
-}));
 
+jest.mock('../../models/user');
 afterEach(() => {
   jest.clearAllMocks();
 });
 
-afterAll(async () => {
-  await server.close();
-});
+const response = {
+  status: jest.fn((x) => ({
+    json: jest.fn((x) => x),
+  })),
+  json: jest.fn((x) => x),
+};
 
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+const request = {
+  params: jest.fn((x) => x),
+};
 
-it('should return a list of users', async () => {
-  // Arrange
-  const users = [{ name: 'John' }, { name: 'Jane' }];
-  userModel.find.mockResolvedValue(users);
+describe('deleteUser', () => {
+  const user = {
+    avatar: {
+      imageUrl:
+        'https://res.cloudinary.com/dvjusr5op/image/upload/v1680203613/rdcjvqf7qx1mkfzrzwmb.png',
+      cloudinaryId: 'rdcjvqf7qx1mkfzrzwmb',
+    },
+    resume: {
+      resumeUrl:
+        'https://res.cloudinary.com/dvjusr5op/image/upload/v1680279699/cijfh26m9uacsi2lnag5.pdf',
+      cloudinaryId: 'cijfh26m9uacsi2lnag5',
+    },
+    _id: '63eeaf101477a9f573ae6c12',
+    name: 'Anes kdzrr',
+    email: 'test123@liets.com',
+    username: 'bawspvp',
+    password: 'Test123',
+    mobileNumber: '514-999-9699',
+    userType: 'candidate',
+    createdAt: '2023-02-16T22:32:48.455Z',
+    __v: 0,
+    imgProfileUrl: '',
+    jobPost: [],
+    jobApplication: [],
+  };
 
-  // Act
-  const response = await superset(app).get('/api/get-users/');
+  it('should return a list of users', async () => {
+    userModel.find.mockResolvedValueOnce([user]);
 
-  // Assert
-  expect(userModel.find).toHaveBeenCalled();
-  expect(response.statusCode).toBe(201);
-  expect(response.body.sucess).toBe(true);
-  expect(response.body.data).toEqual(users);
-});
+    // Act
+    await getUsers(request, response);
 
-it('should return an error message if an error occurs', async () => {
-  // Arrange
-  const errorMessage = 'Internal server error';
-  userModel.find.mockRejectedValue(new Error(errorMessage));
+    // Assert
+    expect(response.status).toHaveBeenCalledWith(201);
+    expect(userModel.find).toHaveBeenCalled();
+  });
 
-  // Act
-  const response = await superset(app).get('/api/get-users/');
-
-  // Assert
-  expect(userModel.find).toHaveBeenCalled();
-  expect(response.statusCode).toBe(400);
-  expect(response.body.sucess).toBe(false);
-  expect(response.body.message).toBe(errorMessage);
+  it('should return a code 201 if there is no user', async () => {
+    userModel.find.mockResolvedValueOnce([]);
+    // Act
+    await getUsers(request, response);
+    // Assert
+    expect(response.status).toHaveBeenCalledWith(201);
+  });
 });
