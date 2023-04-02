@@ -5,10 +5,12 @@ async function deleteJobPosting(req, res) {
   try {
     const jobpost = await jobPosting.findById(req.params.id);
 
-    if (!jobpost)
-      return res.status(400).json({ sucess: false, message: err.message });
+    if (!jobpost || jobpost == 0)
+      return res
+        .status(400)
+        .json({ sucess: false, message: 'The job id is invalid' });
 
-    jobpost.remove();
+    jobPosting.remove(jobpost);
 
     res.status(201).json({
       sucess: true,
@@ -16,7 +18,7 @@ async function deleteJobPosting(req, res) {
       data: jobpost,
     });
   } catch (err) {
-    res.status(400).json({ sucess: false, message: `The job id is invalid` });
+    res.status(400).json({ sucess: false, message: err.message });
   }
 }
 
