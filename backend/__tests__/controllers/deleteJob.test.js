@@ -39,7 +39,7 @@ describe('deleteJob', () => {
   });
 
   it('should return an error if the job  is not found', async () => {
-    Jobposting.findById.mockResolvedValueOnce(null);
+    Jobposting.findById.mockResolvedValueOnce([]);
     Jobposting.remove.mockResolvedValueOnce(job);
     await deleteJobPosting(request, response);
 
