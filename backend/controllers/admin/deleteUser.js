@@ -8,7 +8,9 @@ async function deleteUser(req, res) {
     await cloudinary.uploader.destroy(user.resume.cloudinaryId);
     // delete the user avatar from the cloud
     await cloudinary.uploader.destroy(user.avatar.cloudinaryId);
-    user.remove();
+    userModel.remove(user);
+    // user.remove();
+
     console.log('user deleted successfully');
     if (!user)
       return res

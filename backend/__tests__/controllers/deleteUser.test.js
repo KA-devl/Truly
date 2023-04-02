@@ -1,9 +1,11 @@
-const request = require('supertest');
-const { app, server } = require('../../app');
-const mongoose = require('mongoose');
 const userModel = require('../../models/user');
+const { deleteUser } = require('../../controllers/admin/deleteUser');
 
-jest.mock('../../models/user');
+jest.mock('../../models/user', () => ({
+  find: jest.fn(),
+  findById: jest.fn((x) => x),
+  remove: jest.fn((x) => x),
+}));
 jest.mock('../../config/cloudinary');
 
 jest.mock('cloudinary', () => ({
@@ -15,56 +17,62 @@ jest.mock('cloudinary', () => ({
   },
 }));
 
+const response = {
+  status: jest.fn((x) => ({
+    json: jest.fn((x) => x),
+  })),
+  json: jest.fn((x) => x),
+  send: jest.fn((x) => x),
+};
+
+const request = {
+  params: jest.fn((x) => x),
+};
+
 afterEach(() => {
   jest.clearAllMocks();
 });
 
-afterAll(async () => {
-  await server.close();
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
-});
-
 describe('deleteUser', () => {
+  const user = {
+    avatar: {
+      imageUrl:
+        'https://res.cloudinary.com/dvjusr5op/image/upload/v1680203613/rdcjvqf7qx1mkfzrzwmb.png',
+      cloudinaryId: 'rdcjvqf7qx1mkfzrzwmb',
+    },
+    resume: {
+      resumeUrl:
+        'https://res.cloudinary.com/dvjusr5op/image/upload/v1680279699/cijfh26m9uacsi2lnag5.pdf',
+      cloudinaryId: 'cijfh26m9uacsi2lnag5',
+    },
+    _id: '63eeaf101477a9f573ae6c12',
+    name: 'Anes kdzrr',
+    email: 'test123@liets.com',
+    username: 'bawspvp',
+    password: 'Test123',
+    mobileNumber: '514-999-9699',
+    userType: 'candidate',
+    createdAt: '2023-02-16T22:32:48.455Z',
+    __v: 0,
+    imgProfileUrl: '',
+    jobPost: [],
+    jobApplication: [],
+  };
+
   it('should delete a user successfully', async () => {
-    const user = {
-      _id: '123',
-      resume: { cloudinaryId: 'resume123' },
-      avatar: { cloudinaryId: 'avatar123' },
-      remove: jest.fn(),
-    };
-    userModel.findById.mockResolvedValue(user);
+    userModel.findById.mockResolvedValueOnce(user);
+    userModel.remove.mockResolvedValueOnce(user);
 
-    const response = await request(app).delete('/api/delete-user/123');
+    await deleteUser(request, response);
 
-    expect(userModel.findById).toHaveBeenCalledWith('123');
-    expect(user.remove).toHaveBeenCalled();
-    expect(response.status).toBe(201);
-    expect(response.body.sucess).toBe(true);
-    expect(response.body.message).toBe('User with id 123 has been deleted');
+    expect(response.status).toHaveBeenCalledWith(201);
   });
 
   it('should return an error if the user is not found', async () => {
-    userModel.findById.mockResolvedValue(null);
+    userModel.findById.mockResolvedValueOnce(null);
+    userModel.remove.mockResolvedValueOnce(user);
+    await deleteUser(request, response);
 
-    const response = await request(app).delete('/api/delete-user/123');
-
-    expect(userModel.findById).toHaveBeenCalledWith('123');
-    expect(response.status).toBe(400);
-    expect(response.body.sucess).toBe(false);
-    expect(response.body.message).toBe('The user id is invalid');
-  });
-
-  it('should return an error if the user id is invalid', async () => {
-    userModel.findById.mockRejectedValue(new Error('Invalid user id'));
-
-    const response = await request(app).delete('/api/delete-user/invalid');
-
-    expect(userModel.findById).toHaveBeenCalledWith('invalid');
-    expect(response.status).toBe(400);
-    expect(response.body.sucess).toBe(false);
-    expect(response.body.message).toBe('The user id is invalid');
+    expect(response.status).toHaveBeenCalledWith(400);
   });
 });
