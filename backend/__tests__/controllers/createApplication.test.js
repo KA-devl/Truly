@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Application = require('../../models/jobApplication');
 const {
   createApplication,
@@ -23,10 +22,6 @@ const response = {
 // Set up cleanup functions for testing
 afterEach(() => {
   jest.clearAllMocks();
-});
-
-afterAll(async () => {
-  await mongoose.connection.close();
 });
 
 describe('createApplication', () => {
