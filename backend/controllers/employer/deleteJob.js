@@ -6,19 +6,16 @@ async function deleteJobPosting(req, res) {
     const jobpost = await jobPosting.findById(req.params.id);
 
     if (!jobpost || jobpost == 0)
-      return res
-        .status(400)
-        .json({ sucess: false, message: 'The job id is invalid' });
+      return res.status(400).json({ sucess: false, message: err.message });
 
-    jobPosting.remove(jobpost);
-
+    await jobPosting.remove({ _id: jobpost._id });
     res.status(201).json({
       sucess: true,
       message: `Job with id ${req.params.id} has been deleted`,
       data: jobpost,
     });
   } catch (err) {
-    res.status(400).json({ sucess: false, message: err.message });
+    res.status(400).json({ sucess: false, message: `The job id is invalid` });
   }
 }
 
