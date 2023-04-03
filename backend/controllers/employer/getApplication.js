@@ -12,8 +12,6 @@ async function getApplication(req, res) {
         message: `No job application was found for this employer`,
       });
 
-    console.log(typeof getAllApplication);
-
     res.status(201).json({ sucess: true, data: getAllApplication });
   } catch (err) {
     res.status(400).json({ sucess: false, message: err.message });

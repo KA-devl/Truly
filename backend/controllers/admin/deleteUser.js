@@ -10,7 +10,6 @@ async function deleteUser(req, res) {
     await cloudinary.uploader.destroy(user.avatar.cloudinaryId);
     await userModel.remove({ _id: user._id });
 
-    console.log('user deleted successfully');
     if (!user)
       return res
         .status(400)
