@@ -5,10 +5,13 @@ async function getApplicationJob(req, res) {
   try {
     const getAllApplication = await Application.find({
       jobPostId: req.params.jobid,
-    }).populate({
+    });
+
+    await Application.populate(getAllApplication, {
       path: 'candidateId',
       model: 'user',
     });
+
     if (!getAllApplication)
       return res.status(400).json({
         sucess: false,

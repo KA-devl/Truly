@@ -6,6 +6,8 @@ async function getUsers(req, res) {
 
     if (user === null)
       return res.status(400).json({ sucess: false, message: err.message });
+    else if (user === [])
+      return res.status(200).json({ sucess: true, message: 'No such user' });
 
     res.status(201).json({ sucess: true, data: user });
   } catch (err) {

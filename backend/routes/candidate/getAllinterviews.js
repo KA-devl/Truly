@@ -1,4 +1,6 @@
-const { getAllinterviews } = require('../../controllers/candidate/getAllinterviews');
+const {
+  getAllinterviews,
+} = require('../../controllers/candidate/getAllinterviews');
 
 // GET ALL JOBS POSTING
 module.exports = (app) => {
