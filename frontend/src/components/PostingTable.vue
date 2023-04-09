@@ -12,7 +12,7 @@
                 </thead>
                 <!-- EMPLOYER TABLE BODY-->
                 <tbody v-if="user.userType === 'employer'">
-                    <tr v-for="job in data" :key="job._id">
+                    <tr v-for="job in paginatedData" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
                                 <router-link v-if="job._id" :to="{ name: 'Candidates', params: { jobId: job._id } }">
