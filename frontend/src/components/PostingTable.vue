@@ -65,7 +65,7 @@
                     <Alert :applyLoading="applyLoading" />
                     <Alert :successMsg="successMsg" />
 
-                    <tr v-for="job in data" :key="job._id">
+                    <tr v-for="job in paginatedData" :key="job._id">
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
@@ -80,13 +80,14 @@
                                     </a>
                                 </div>
                                 <div class="flex items-center ml-4">
-                                <router-link v-if="job._id" :to="{ name: 'JobDescription', params: { jobId: job._id } }">
-                                    <p class="text-gray-900 whitespace-no-wrap hover:text-blue-500">
-                                        {{ job.name }}
-                                    </p>
-                                </router-link>
-                            </div>
-                                
+                                    <router-link v-if="job._id"
+                                        :to="{ name: 'JobDescription', params: { jobId: job._id } }">
+                                        <p class="text-gray-900 whitespace-no-wrap hover:text-blue-500">
+                                            {{ job.name }}
+                                        </p>
+                                    </router-link>
+                                </div>
+
                             </div>
                         </td>
                         <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
@@ -153,7 +154,7 @@
 
             <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
                 <div class="flex items-center">
-                    <button type="button"
+                    <button @click="backPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border rounded-l-xl hover:bg-gray-100">
                         <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792"
                             xmlns="http://www.w3.org/2000/svg">
@@ -162,23 +163,12 @@
                             </path>
                         </svg>
                     </button>
-                    <button type="button"
+                    <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)" type="button"
                         class="w-full px-4 py-2 text-base text-indigo-500 bg-white border-t border-b hover:bg-gray-100 ">
-                        1
+                        {{ item }}
                     </button>
-                    <button type="button"
-                        class="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100">
-                        2
-                    </button>
-                    <button type="button"
-                        class="w-full px-4 py-2 text-base text-gray-600 bg-white border-t border-b hover:bg-gray-100">
-                        3
-                    </button>
-                    <button type="button"
-                        class="w-full px-4 py-2 text-base text-gray-600 bg-white border hover:bg-gray-100">
-                        4
-                    </button>
-                    <button type="button"
+
+                    <button @click="nextPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-100">
                         <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792"
                             xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +187,7 @@
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
 import adminService from "../services/adminService";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
     emits: ["appliedForJobSignal"],
@@ -209,6 +199,34 @@ export default {
         const errorMsg = ref(null);
         const successMsg = ref(null);
         const applyLoading = ref(null);
+
+
+        let page = ref(1);
+
+        const perPage = 5;
+
+        const paginatedData = computed(() =>
+            props.data.slice((page.value - 1) * perPage, page.value * perPage)
+        );
+
+        const nextPage = () => {
+            if (page.value !== Math.ceil(props.data.length / perPage)) {
+                page.value += 1;
+            }
+        };
+
+        const backPage = () => {
+            if (page.value !== 1) {
+                page.value -= 1;
+            }
+        };
+
+        const goToPage = (numPage) => {
+            page.value = numPage;
+        };
+
+
+
 
         const applyForJob = async (jobPostId) => {
             applyLoading.value = 'Applying for job...';
@@ -264,7 +282,7 @@ export default {
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading }
+        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading, paginatedData, perPage, page, nextPage, backPage, goToPage }
 
     }
 }
