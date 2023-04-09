@@ -6,11 +6,12 @@
       <div class="flex flex-col min-h-screen overflow-hidden">
         <!-- Site header -->
 
-
         <!-- Page content -->
         <main class="grow">
           <!-- Page content -->
           <section>
+            <Alert :errorMsg="errorMsg" />
+            <Alert :successMsg="successMsg" />
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
               <div class="pt-28 pb-8 md:pt-36 md:pb-16">
                 <div class="md:flex md:justify-between" data-sticky-container>
@@ -19,12 +20,12 @@
                     <div data-sticky data-margin-top="32" data-sticky-for="768" data-sticky-wrap>
                       <div class="relative bg-gray-50 rounded-xl border border-gray-200 p-5">
                         <div class="text-center mb-6">
-                          <img class="inline-flex mb-2"
-                            :src="data.authorId.avatar.imageUrl"
-                            width="72" height="72" alt="Company 01" />
+                          <img class="inline-flex mb-2" :src="data.authorId.avatar.imageUrl" width="72" height="72"
+                            alt="Company 01" />
                           <h2 class="text-lg font-bold text-gray-800">
                             {{ data.authorId.name }}
                           </h2>
+                     
                         </div>
 
                         <div class="flex justify-center md:justify-start mb-5">
@@ -35,7 +36,7 @@
                                 <path
                                   d="M9.707 4.293a1 1 0 0 0-1.414 1.414L10.586 8H2V2h3a1 1 0 1 0 0-2H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h8.586l-2.293 2.293a1 1 0 1 0 1.414 1.414l4-4a1 1 0 0 0 0-1.414l-4-4Z" />
                               </svg>
-                              <span class="text-sm text-gray-600">{{ data.creationDate }}</span>
+                              <span class="text-sm text-gray-600">{{ formatDate }}</span>
                             </li>
                             <li class="flex items-center">
                               <svg class="shrink-0 fill-gray-400 mr-3" width="14" height="16"
@@ -56,15 +57,16 @@
                               <span class="text-sm text-gray-600">To be discussed</span>
                             </li>
 
-                            
+
                           </ul>
                         </div>
 
                         <div class="max-w-xs mx-auto mb-5">
-                          <button type="button"
-                            class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                          <button @click="applyForJob(currentId)" type="button"
+                            class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2">
                             Apply
                           </button>
+                          
                         </div>
                       </div>
                     </div>
@@ -78,7 +80,7 @@
                       <h1 class="text-4xl font-extrabold font-inter mb-10">
                         {{ data.name }}
                       </h1>
-                      
+
                       <!-- Job description -->
                       <div class="space-y-8 mb-8">
                         <div>
@@ -89,12 +91,14 @@
                             <p>
                               {{ data.description }}
                             </p>
-                            
-                             
-                            <div >
-                              Contract type : <span class="bg-blue-500 text-white py-1 px-3 rounded-full font-semibold ">{{ data.jobStatus[0] }}</span>
+
+
+                            <div>
+                              Contract type : <span
+                                class="bg-blue-500 text-white py-1 px-3 rounded-full font-semibold ">{{ data.jobStatus[0]
+                                }}</span>
                             </div>
-                            
+
                           </div>
                         </div>
 
@@ -105,7 +109,6 @@
                       </div>
                       <!-- Social share -->
                     </div>
-
                     <!-- Related jobs -->
                     <div class="mb-8">
                       <h4 class="text-2xl font-bold font-inter mb-8">
@@ -162,25 +165,70 @@
 <script>
 
 import { useRoute } from "vue-router";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import userService from "../services/userService";
+import { DateTime } from "luxon";
+import candidateService from "../services/candidateService";
+import Alert from '../components/Alert.vue';
+import { useUserStore } from "../store/user";
 
 export default {
   components: {
-  },
+        Alert
+    },
   setup() {
     const route = useRoute();
+    const userStore = useUserStore();
+    const user= ref(null);
     // Get current Id of route
     const currentId = route.params.jobId;
     const data = ref(null);
+    const errorMsg = ref(null);
+    const successMsg = ref(null);
 
+    const formatDate = computed(() => {
+      const date = DateTime.fromISO(data.value.creationDate);
+      return date.toLocaleString(DateTime.DATETIME_MED);
+    });
+
+
+    const applyForJob = async (jobPostId) => {
+      const date = new Date();
+      const isoDate = date.toISOString();
+      let jobPackage = {
+        candidateId: user.value.id,
+        jobPostId: jobPostId,
+        applicationStatus: "active",
+        cv: user.value.resume.resumeUrl,
+        creationDate: isoDate
+      }
+
+      try {
+        await candidateService.applyForJob(jobPackage);
+        successMsg.value = 'Successfully applied for the job!'
+
+        setTimeout(() => {
+          successMsg.value = '';
+        }, 6000)
+
+
+      } catch (error) {
+        console.log('ERROR', error)
+        errorMsg.value = error.response.data.message;
+        setTimeout(() => {
+          errorMsg.value = '';
+        }, 6000)
+      }
+
+    }
     onMounted(async () => {
       if (currentId) {
         data.value = await userService.getJob(currentId);
-        console.log('data is ', data.value)
+        console.log('DATA', data.value)
       }
+      user.value = await userStore.fetchUser();
     })
-    return { data };
+    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob };
   },
 };
 </script>
