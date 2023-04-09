@@ -61,8 +61,13 @@
                           </ul>
                         </div>
 
-                        <div class="max-w-xs mx-auto mb-5">
-                          <button @click="applyForJob(currentId)" type="button"
+                        <div class="max-w-xs inline-flex center mb-5">
+                          <div v-if="isJobApplied(currentId)" type="button"
+                            class="flex-shrink-0 px-4 py-2 text-base text-white bg-green-500  focus:ring-4 focus:ring-blue-300 font-medium rounded-full mr-2 mb-2">
+                            Already applied for this job!
+                          </div>
+                          
+                          <button v-else @click="applyForJob(currentId)" type="button"
                             class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2">
                             Apply
                           </button>
@@ -221,6 +226,12 @@ export default {
       }
 
     }
+
+    const isJobApplied = (jobId) => {
+            if (user.value && user.value.jobApplication.find(e => e.jobPostId === jobId)) {
+                return true;
+            } return false;
+        }
     onMounted(async () => {
       if (currentId) {
         data.value = await userService.getJob(currentId);
@@ -228,9 +239,8 @@ export default {
       }
       user.value = await userStore.fetchUser();
     })
-    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob };
+    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob, isJobApplied };
   },
 };
 </script>
 
-<style></style>
