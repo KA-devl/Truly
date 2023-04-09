@@ -114,48 +114,9 @@
                       </div>
                       <!-- Social share -->
                     </div>
-                    <!-- Related jobs -->
-                    <div class="mb-8">
-                      <h4 class="text-2xl font-bold font-inter mb-8">
-                        Related Jobs
-                      </h4>
-                      <!-- List container -->
-                      <div class="flex flex-col border-t border-gray-200">
-                        <!-- Item -->
-                        <div class="[&:nth-child(-n+12)]:-order-1 border-b border-gray-200 group">
-                          <div class="px-4 py-6">
-                            <div class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5">
-                              <div class="shrink-0">
-                                <img
-                                  src="https://static.vecteezy.com/system/resources/previews/004/263/114/original/meta-logo-meta-by-facebook-icon-editorial-logo-for-social-media-free-vector.jpg"
-                                  width="56" height="56" alt="Company 02" />
-                              </div>
-                              <div class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0">
-                                <div>
-                                  <div class="flex items-start space-x-2">
-                                    <div class="text-sm text-gray-800 font-semibold mb-1">
-                                      Meta
-                                    </div>
-                                  </div>
-                                  <div class="mb-2">
-                                    <a class="text-lg text-gray-800 font-bold" href="job-post.html">Senior Software
-                                      Engineer</a>
-                                  </div>
-                                  <div class="-m-1">
-                                    <a class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
-                                      href="#0">$140K - $170K</a>
-                                    <a class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
-                                      href="#0">🇺🇸 NYC</a>
-                                  </div>
-                                </div>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
+                  <div v-if="JobList">
+                    <RelatedJobs :JobList = "JobList" />
+                  </div>
                   </div>
                 </div>
               </div>
@@ -176,10 +137,13 @@ import { DateTime } from "luxon";
 import candidateService from "../services/candidateService";
 import Alert from '../components/Alert.vue';
 import { useUserStore } from "../store/user";
+import RelatedJobs from "../components/RelatedJobs.vue";
+
 
 export default {
   components: {
-        Alert
+        Alert,
+        RelatedJobs
     },
   setup() {
     const route = useRoute();
@@ -190,6 +154,7 @@ export default {
     const data = ref(null);
     const errorMsg = ref(null);
     const successMsg = ref(null);
+    const JobList = ref(null);
 
     const formatDate = computed(() => {
       const date = DateTime.fromISO(data.value.creationDate);
@@ -238,8 +203,10 @@ export default {
         console.log('DATA', data.value)
       }
       user.value = await userStore.fetchUser();
+      JobList.value = await userService.getAllJobs();
+   
     })
-    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob, isJobApplied };
+    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob, isJobApplied, JobList };
   },
 };
 </script>
