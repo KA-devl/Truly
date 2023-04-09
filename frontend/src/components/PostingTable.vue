@@ -152,7 +152,7 @@
                 </tbody>
             </table>
 
-            <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
+            <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">Page {{ page }}
                 <div class="flex items-center">
                     <button @click="backPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border rounded-l-xl hover:bg-gray-100">
@@ -163,11 +163,11 @@
                             </path>
                         </svg>
                     </button>
-                    <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)" type="button"
-                        class="w-full px-4 py-2 text-base text-indigo-500 bg-white border-t border-b hover:bg-gray-100 ">
-                        {{ item }}
-                    </button>
-
+                   
+                    <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)"
+                        class="w-full px-4 py-2 text-base text-blue-500 bg-white border-t border-b hover:bg-gray-100 pagination- ">
+                        {{ item }} </button>
+                
                     <button @click="nextPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-100">
                         <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792"
@@ -177,8 +177,11 @@
                             </path>
                         </svg>
                     </button>
+
+                  
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
@@ -287,3 +290,8 @@ export default {
     }
 }
 </script>
+<style>
+button.active {
+    background-color: #4CAF50;
+}
+</style>
