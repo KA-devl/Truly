@@ -6,11 +6,11 @@ async function getApplication(req, res) {
     const getAllApplication = await Application.find({
       candidateId: req.params.id,
     });
-    if (getAllApplication == 0)
+    if (getAllApplication.length === 0)
       return res
-        .status(400)
-        .json({ sucess: false, message: `No job applications found` });
-
+        .status(200)
+        .json({ sucess: true, message: `No job applications found` });
+    else if (getAllApplication);
     res.status(201).json({ sucess: true, data: getAllApplication });
   } catch (err) {
     res.status(400).json({ sucess: false, message: err.message });

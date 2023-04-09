@@ -12,7 +12,7 @@ async function rejected(req, res) {
       }
     );
 
-    if (!jobApp)
+    if (!jobApp || jobApp == 0)
       return res.status(400).json({
         sucess: false,
         message: `The job Application  id entered is invalid`,

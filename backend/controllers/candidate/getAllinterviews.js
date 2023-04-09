@@ -5,17 +5,17 @@ async function getAllinterviews(req, res) {
   try {
     const getAllinterviews = await Application.find({
       candidateId: req.params.id,
-      applicationStatus : ['interview']
+      applicationStatus: ['interview'],
     });
-    if (getAllinterviews == 0)
-      return res
-        .json({ sucess: false, message: `No interviews found` });
 
-    res.status(201).json({ sucess: true, data: getAllinterviews });
+    if (getAllinterviews.length === 0)
+      return res
+        .status(200)
+        .json({ sucess: false, message: `No interviews found` });
+    else res.status(201).json({ sucess: true, data: getAllinterviews });
   } catch (err) {
     res.status(400).json({ sucess: false, message: err.message });
   }
 }
 
 module.exports = { getAllinterviews };
-
