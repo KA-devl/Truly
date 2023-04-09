@@ -11,9 +11,7 @@
         <div class="px-4 py-6">
           <div class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5">
             <div class="shrink-0">
-              <img
-                :src="job.authorId.avatar.imageUrl"
-                width="56" height="56" alt="Company 02" />
+              <img :src="job.authorId.avatar.imageUrl" width="56" height="56" alt="Company 02" />
             </div>
             <div class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0">
               <div>
@@ -23,7 +21,11 @@
                   </div>
                 </div>
                 <div class="mb-2">
-                  <a class="text-lg text-gray-800 font-bold" href="job-post.html"> {{ job.name }}</a>
+                  <router-link :to="{ name: 'JobDescription', params: { jobId: job._id } }">
+                    <p class="text-lg text-gray-800 font-bold hover:text-blue-500">
+                      {{ job.name }}
+                    </p>
+                  </router-link>
                 </div>
                 <div class="-m-1">
                   <a class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
@@ -43,16 +45,18 @@
 </template>
 
 <script>
-import {computed} from "vue";
+import { computed, watch } from "vue";
 import { DateTime } from 'luxon';
 
 export default {
   props: ["JobList"],
   setup(props) {
+      // fetch the user information when params change
+     
     const formatDate = (unformattedDate) => {
-            const date = DateTime.fromISO(unformattedDate);
-            return date.toLocaleString(DateTime.DATETIME_MED);
-        };
+      const date = DateTime.fromISO(unformattedDate);
+      return date.toLocaleString(DateTime.DATETIME_MED);
+    };
     const shuffledArray = computed(() => {
       const shuffled = [...props.JobList].sort(() => 0.5 - Math.random());
 

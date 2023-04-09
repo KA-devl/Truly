@@ -152,6 +152,9 @@ const router = createRouter({
 
 // Route guard for auth routes
 router.beforeEach(async (to, from, next) => {
+  console.log('to: ', to);
+  console.log('from: ', from);
+
   const user = await useUserStore().fetchUser();
 
   if (to.matched.some((res) => res.meta.auth)) {

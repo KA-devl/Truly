@@ -25,7 +25,7 @@
                           <h2 class="text-lg font-bold text-gray-800">
                             {{ data.authorId.name }}
                           </h2>
-                     
+
                         </div>
 
                         <div class="flex justify-center md:justify-start mb-5">
@@ -36,7 +36,7 @@
                                 <path
                                   d="M9.707 4.293a1 1 0 0 0-1.414 1.414L10.586 8H2V2h3a1 1 0 1 0 0-2H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h8.586l-2.293 2.293a1 1 0 1 0 1.414 1.414l4-4a1 1 0 0 0 0-1.414l-4-4Z" />
                               </svg>
-                              <span class="text-sm text-gray-600">{{ formatDate }}</span>
+                              <span class="text-sm text-gray-600">{{ formatDate(data.creationDate) }}</span>
                             </li>
                             <li class="flex items-center">
                               <svg class="shrink-0 fill-gray-400 mr-3" width="14" height="16"
@@ -66,12 +66,12 @@
                             class="flex-shrink-0 px-4 py-2 text-base text-white bg-green-500  focus:ring-4 focus:ring-blue-300 font-medium rounded-full mr-2 mb-2">
                             Already applied for this job!
                           </div>
-                          
+
                           <button v-else @click="applyForJob(currentId)" type="button"
                             class="flex-shrink-0 px-4 py-2 text-base text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mr-2 mb-2">
                             Apply
                           </button>
-                          
+
                         </div>
                       </div>
                     </div>
@@ -114,9 +114,52 @@
                       </div>
                       <!-- Social share -->
                     </div>
-                  <div v-if="JobList">
-                    <RelatedJobs :JobList = "JobList" />
-                  </div>
+                    <div v-if="JobList">
+                      <!-- Related jobs -->
+                      <div class="mb-8">
+                        <h4 class="text-2xl font-bold font-inter mb-8">
+                          Related Jobs
+                        </h4>
+                        <!-- List container -->
+                        <div v-for="job in shuffledArray" class="flex flex-col border-t border-gray-200">
+                          <!-- Item -->
+                          <div class="[&:nth-child(-n+12)]:-order-1 border-b border-gray-200 group">
+                            <div class="px-4 py-6">
+                              <div class="sm:flex items-center space-y-3 sm:space-y-0 sm:space-x-5">
+                                <div class="shrink-0">
+                                  <img :src="job.authorId.avatar.imageUrl" width="56" height="56" alt="Company 02" />
+                                </div>
+                                <div
+                                  class="grow lg:flex items-center justify-between space-y-5 lg:space-x-2 lg:space-y-0">
+                                  <div>
+                                    <div class="flex items-start space-x-2">
+                                      <div class="text-sm text-gray-800 font-semibold mb-1">
+                                        {{ job.authorId.name }}
+                                      </div>
+                                    </div>
+                                    <div class="mb-2">
+                                      <router-link :to="{ name: 'JobDescription', params: { jobId: job._id } }">
+                                        <p class="text-lg text-gray-800 font-bold hover:text-blue-500">
+                                          {{ job.name }}
+                                        </p>
+                                      </router-link>
+                                    </div>
+                                    <div class="-m-1">
+                                      <a class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                        href="#0"> {{ formatDate(job.creationDate) }}</a>
+                                      <a class="text-xs text-gray-500 font-medium inline-flex px-2 py-0.5 bg-gray-100 hover:text-gray-600 rounded-md m-1 whitespace-nowrap transition duration-150 ease-in-out"
+                                        href="#0">{{ job.jobStatus[0] }}</a>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -131,7 +174,7 @@
 <script>
 
 import { useRoute } from "vue-router";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import userService from "../services/userService";
 import { DateTime } from "luxon";
 import candidateService from "../services/candidateService";
@@ -142,13 +185,13 @@ import RelatedJobs from "../components/RelatedJobs.vue";
 
 export default {
   components: {
-        Alert,
-        RelatedJobs
-    },
+    Alert,
+    RelatedJobs
+  },
   setup() {
     const route = useRoute();
     const userStore = useUserStore();
-    const user= ref(null);
+    const user = ref(null);
     // Get current Id of route
     const currentId = route.params.jobId;
     const data = ref(null);
@@ -156,10 +199,18 @@ export default {
     const successMsg = ref(null);
     const JobList = ref(null);
 
-    const formatDate = computed(() => {
-      const date = DateTime.fromISO(data.value.creationDate);
+
+
+    const formatDate = (unformattedDate) => {
+      const date = DateTime.fromISO(unformattedDate);
       return date.toLocaleString(DateTime.DATETIME_MED);
-    });
+    };
+
+    const shuffledArray = computed(() => {
+      const shuffled = [...JobList.value].sort(() => 0.5 - Math.random());
+
+      return shuffled.slice(0, 3);
+    })
 
 
     const applyForJob = async (jobPostId) => {
@@ -193,10 +244,17 @@ export default {
     }
 
     const isJobApplied = (jobId) => {
-            if (user.value && user.value.jobApplication.find(e => e.jobPostId === jobId)) {
-                return true;
-            } return false;
-        }
+      if (user.value && user.value.jobApplication.find(e => e.jobPostId === jobId)) {
+        return true;
+      } return false;
+    }
+
+    watch(
+      () => route.params.jobId,
+      async newId => {
+        data.value = await userService.getJob(newId)
+      }
+    )
     onMounted(async () => {
       if (currentId) {
         data.value = await userService.getJob(currentId);
@@ -204,9 +262,9 @@ export default {
       }
       user.value = await userStore.fetchUser();
       JobList.value = await userService.getAllJobs();
-   
+
     })
-    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob, isJobApplied, JobList };
+    return { data, formatDate, currentId, errorMsg, successMsg, user, applyForJob, isJobApplied, JobList, shuffledArray };
   },
 };
 </script>
