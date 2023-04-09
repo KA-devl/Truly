@@ -20,10 +20,10 @@
                       <div class="relative bg-gray-50 rounded-xl border border-gray-200 p-5">
                         <div class="text-center mb-6">
                           <img class="inline-flex mb-2"
-                            src="https://storage.googleapis.com/support-kms-prod/ZAl1gIwyUsvfwxoW9ns47iJFioHXODBbIkrK"
+                            :src="data.authorId.avatar.imageUrl"
                             width="72" height="72" alt="Company 01" />
                           <h2 class="text-lg font-bold text-gray-800">
-                            Google
+                            {{ data.authorId.name }}
                           </h2>
                         </div>
 
@@ -177,6 +177,7 @@ export default {
     onMounted(async () => {
       if (currentId) {
         data.value = await userService.getJob(currentId);
+        console.log('data is ', data.value)
       }
     })
     return { data };
