@@ -252,7 +252,8 @@ export default {
     watch(
       () => route.params.jobId,
       async newId => {
-        data.value = await userService.getJob(newId)
+        data.value = await userService.getJob(newId);
+        JobList.value = await userService.getAllJobs();
       }
     )
     onMounted(async () => {
