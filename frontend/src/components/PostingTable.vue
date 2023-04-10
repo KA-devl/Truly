@@ -249,12 +249,10 @@ export default {
             try {
                 await candidateService.applyForJob(jobPackage);
                 successMsg.value = 'Successfully applied for the job!'
-
+                window.location.reload();
                 setTimeout(() => {
                     successMsg.value = '';
                 }, 6000)
-
-
             } catch (error) {
                 console.log('ERROR', error)
                 errorMsg.value = error.response.data.message;

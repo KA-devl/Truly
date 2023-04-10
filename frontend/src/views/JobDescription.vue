@@ -228,6 +228,8 @@ export default {
         await candidateService.applyForJob(jobPackage);
         successMsg.value = 'Successfully applied for the job!'
 
+        window.location.reload();
+        
         setTimeout(() => {
           successMsg.value = '';
         }, 6000)
