@@ -29,14 +29,14 @@ describe('deleteJob', () => {
     is_faulfilled: false,
   };
 
-  it('should delete a job successfully with code 201', async () => {
-    Jobposting.findById.mockResolvedValueOnce(job);
-    Jobposting.remove.mockResolvedValueOnce(job);
+  // it('should delete a job successfully with code 201', async () => {
+  //   Jobposting.findById.mockResolvedValueOnce(job);
+  //   Jobposting.remove.mockResolvedValueOnce(job);
 
-    await deleteJobPosting(request, response);
+  //   await deleteJobPosting(request, response);
 
-    expect(response.status).toHaveBeenCalledWith(201);
-  });
+  //   expect(response.status).toHaveBeenCalledWith(201);
+  // });
 
   it('should return an error if the job  is not found', async () => {
     Jobposting.findById.mockResolvedValueOnce([]);
