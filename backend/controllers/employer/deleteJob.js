@@ -8,7 +8,7 @@ async function deleteJobPosting(req, res) {
     if (!jobpost || jobpost == 0)
       return res.status(400).json({ sucess: false, message: err.message });
 
-    await jobPosting.remove({ _id: jobpost._id });
+    await jobpost.remove();
     res.status(201).json({
       sucess: true,
       message: `Job with id ${req.params.id} has been deleted`,

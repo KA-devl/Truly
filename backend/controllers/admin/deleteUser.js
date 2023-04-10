@@ -8,7 +8,7 @@ async function deleteUser(req, res) {
     await cloudinary.uploader.destroy(user.resume.cloudinaryId);
     // delete the user avatar from the cloud
     await cloudinary.uploader.destroy(user.avatar.cloudinaryId);
-    await userModel.remove({ _id: user._id });
+    await user.remove();
 
     if (!user)
       return res
@@ -21,7 +21,7 @@ async function deleteUser(req, res) {
       data: user,
     });
   } catch (err) {
-    res.status(400).json({ sucess: false, message: `The user id is invalid` });
+    res.status(400).json({ sucess: false, message: err.message });
   }
 }
 module.exports = { deleteUser };

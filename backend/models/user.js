@@ -93,20 +93,16 @@ userSchema.pre('remove', async function (next) {
     await JobPosting.remove({ authorId: this._id });
 
     // // before an employer
-    // is deleted , all the jobs application associated with this employer are set to innactive
-    await mongoose
-      .model('jobApplication')
-      .updateMany({ authorId: this._id }, { applicationStatus: 'inactive' });
+    // is deleted , all the jobs application associated with this employer are deleted
+    await mongoose.model('jobApplication').deleteMany({ authorId: this._id });
     next();
 
     // before a candidate is deleted , all it jobs application are deleted
   } else if (this.userType === 'candidate') {
-    const jobApp = await jobApplication.findById(this._id);
-    if (!jobApp) {
-      next();
-      return;
-    }
-    jobApp.remove();
+    await mongoose
+      .model('jobApplication')
+      .deleteMany({ candidateId: this._id });
+
     next();
   }
   next();
