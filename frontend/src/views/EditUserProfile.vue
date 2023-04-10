@@ -13,6 +13,10 @@
                 <div v-if="user" class="bg-white p-3 border-t-4 border-blue-500 bg-gray-50 rounded-lg">
                     <div class="image overflow-hidden">
                     </div>
+                    <div v-if="user.userType === 'admin'">
+                        <h1 class="text-red-600 font-bold text-xl leading-8 my-1">Admin Account</h1>
+                        <h2 class="text-gray-600">Modify and Delete Users and Jobs</h2>
+                    </div>
                     <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{ user.name }}</h1>
                     <h3 class="text-gray-600 font-lg text-semibold leading-6">@{{ user.username }}</h3>
 
