@@ -29,24 +29,23 @@
           </h3>
         </div>
         <!-- Modal body -->
-        <p class="text-sm font-normal text-gray-500 p-5">You have been selected to the following interviews. Please expect to be contacted in the next day.</p>
-        <div v-for="job in selectedForInterviewJobs" class="px-6 ">
-          
-          
-              <div
-                class="flex items-center p-3 mb-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow ">
+        <p class="text-sm font-normal text-gray-500 p-5">You have been selected to the following interviews. Please expect
+          to be contacted in the next day.</p>
+        <div v-if="selectedForInterviewJobs" v-for="job in selectedForInterviewJobs" :key="job.id" class="px-6 ">
+          <div class="flex items-center p-3 mb-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50  group ">
 
-                <img :src="job.authorId.avatar.imageUrl" width="56" height="56" alt="Company 02" />
+            <img :src="job.authorId.avatar.imageUrl" width="56" height="56" alt="Company 02" />
 
-                <span class="flex-1 ml-3 whitespace-nowrap">{{ job.jobPostId.name }}</span>
-                <span
-                  class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded ">{{ job.jobPostId.jobStatus[0] }}</span>
-                  <span
-                  class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-green-200 rounded ">{{ job.applicationStatus[0] }}</span>
-              </div>
-           
+            <span  v-if="job.jobPostId.name.length > 15" class="flex-1 ml-3 whitespace-nowrap">{{ job.jobPostId.name.slice(0,15) }}..</span>
+            <span  v-else class="flex-1 ml-3 whitespace-nowrap"> {{ job.jobPostId.name }}</span>
+            <span
+              class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded ">{{
+                job.jobPostId.jobStatus[0] }}</span>
+            <span
+              class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-green-200 rounded ">{{
+                job.applicationStatus[0] }}</span>
+          </div>
         </div>
-
         <div>
           <br>
         </div>
