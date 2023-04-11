@@ -141,11 +141,7 @@
             class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
             placeholder="Search" />
         </div>
-        <button
-          class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
-          type="submit">
-          Filter
-        </button>
+      
       </form>
     </div>
   </div>
