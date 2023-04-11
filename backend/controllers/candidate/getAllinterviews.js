@@ -6,6 +6,12 @@ async function getAllinterviews(req, res) {
     const getAllinterviews = await Application.find({
       candidateId: req.params.id,
       applicationStatus: ['interview'],
+    }).populate({
+      path: 'jobPostId',
+      model: 'jobPost',
+    }).populate({
+      path: 'authorId',
+      model: 'user',
     });
 
     if (getAllinterviews.length === 0)
