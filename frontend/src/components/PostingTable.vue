@@ -152,7 +152,7 @@
                 </tbody>
             </table>
 
-            <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">Page {{ page }}
+            <div class="flex flex-col items-center px-5 py-5 bg-white xs:flex-row xs:justify-between">
                 <div class="flex items-center">
                     <button @click="backPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border rounded-l-xl hover:bg-gray-100">
