@@ -7,10 +7,10 @@
 
   <!-- Main modal -->
   <div v-if="isModalOpen" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
-  <div v-if="isModalOpen" class="fixed z-50 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-    <div class="relative w-full max-w-md max-h-full">
+  <div v-if="isModalOpen" class=" fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex mt-10 mb-10 ">
+    <div class="relative w-full max-w-md max-h-full overflow-y-auto ">
       <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div class="relative bg-white rounded-lg shadow ">
         <button @click="isModalOpen = false" type="button"
           class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
           data-modal-hide="crypto-modal">
@@ -31,7 +31,7 @@
         <!-- Modal body -->
         <p class="text-sm font-normal text-gray-500 p-5">You have been selected to the following interviews. Please expect
           to be contacted in the next day.</p>
-        <div v-if="selectedForInterviewJobs" v-for="job in selectedForInterviewJobs" :key="job.id" class="px-6 ">
+        <div v-if="selectedForInterviewJobs" v-for="job in selectedForInterviewJobs" :key="job.id" class="px-6  ">
           <div class="flex items-center p-3 mb-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50  group ">
 
             <img :src="job.authorId.avatar.imageUrl" width="56" height="56" alt="Company 02" />
