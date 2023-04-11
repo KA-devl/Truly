@@ -163,11 +163,11 @@
                             </path>
                         </svg>
                     </button>
-                   
+
                     <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)"
                         class="w-full px-4 py-2 text-base text-blue-500 bg-white border-t border-b hover:bg-gray-100 pagination- ">
                         {{ item }} </button>
-                
+
                     <button @click="nextPage" type="button"
                         class="w-full p-4 text-base text-gray-600 bg-white border-t border-b border-r rounded-r-xl hover:bg-gray-100">
                         <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792"
@@ -178,10 +178,10 @@
                         </svg>
                     </button>
 
-                  
+
                 </div>
             </div>
-            
+
         </div>
     </div>
 </template>
@@ -194,7 +194,7 @@ import { ref, computed } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
     emits: ["appliedForJobSignal"],
-    props: ["data", "headers", "user"],
+    props: ["data", "headers", "user", "searchFilter"],
     components: {
         Alert
     },
@@ -203,13 +203,12 @@ export default {
         const successMsg = ref(null);
         const applyLoading = ref(null);
 
-
         let page = ref(1);
 
         const perPage = 5;
 
         const paginatedData = computed(() =>
-            props.data.slice((page.value - 1) * perPage, page.value * perPage)
+            filteredItems.value.slice((page.value - 1) * perPage, page.value * perPage)
         );
 
         const nextPage = () => {
@@ -229,6 +228,16 @@ export default {
         };
 
 
+        const filteredItems = computed(() => {
+        console.log('yooo', props.data)
+        console.log('yooo2', props.searchFilter)
+            if (props.data) {
+                return props.data.filter((item) => {
+                    return item.name.toLowerCase().includes(props.searchFilter.toLowerCase())
+                })
+            } else return [];
+           
+        })
 
 
         const applyForJob = async (jobPostId) => {
@@ -283,7 +292,7 @@ export default {
             return date.toLocaleString(DateTime.DATETIME_MED);
         };
 
-        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading, paginatedData, perPage, page, nextPage, backPage, goToPage }
+        return { formatDate, isJobApplied, applyForJob, deleteJob, errorMsg, successMsg, applyLoading, paginatedData, perPage, page, nextPage, backPage, goToPage, filteredItems }
 
     }
 }

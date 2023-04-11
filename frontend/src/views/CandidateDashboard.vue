@@ -135,14 +135,14 @@
       Open positions
     </h2>
     <div class="text-end">
-      <form class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
+      <form @submit.prevent="searchFilterData" class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
         <div class=" relative ">
-          <input type="text" id="&quot;form-subscribe-Filter"
+          <input  v-model="searchFilter" type="text" 
             class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
             placeholder="Search" />
         </div>
         <button
-          class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white dark:bg-blue-500 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-purple-200"
+          class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
           type="submit">
           Filter
         </button>
@@ -153,7 +153,7 @@
   </div>
   <div class="flex items-center justify-center mb-1 rounded">
     <div v-if="data" class=" w-full">
-      <PostingTable :data="data" :headers="headers" :user="user" />
+      <PostingTable :data="data" :headers="headers" :user="user" :searchFilter="searchFilter" />
     </div>
   </div>
 </template>
@@ -175,6 +175,8 @@ export default {
     const data = ref(null);
     const isModalOpen = ref(false);
     const selectedForInterviewJobs = ref(null);
+    const searchFilter = ref("");
+  
 
     const headers = ["Job Title", "Position Type", "Created at", "Status", ""];
 
@@ -187,7 +189,7 @@ export default {
 
     })
 
-    return { data, headers, selectedForInterviewJobs, isModalOpen }
+    return { data, headers, selectedForInterviewJobs, isModalOpen,searchFilter }
   }
 }
 
