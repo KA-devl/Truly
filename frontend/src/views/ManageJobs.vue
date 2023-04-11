@@ -48,18 +48,14 @@
   <h2 class="text-2xl font-md text-gray-800 mt-4 ">Job postings</h2>
 
   <div class="text-end">
-    <form
+    <form @submit.prevent="searchFilterData"
       class="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
       <div class=" relative ">
-        <input type="text" id="&quot;form-subscribe-Filter"
-          class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
-          placeholder="Search" />
+        <input  v-model="searchFilter" type="text" 
+            class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
+            placeholder="Search" />
       </div>
-      <button
-        class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white dark:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:dark:bg-blue-500 focus:ring-offset-2 focus:ring-offset-purple-200"
-        type="submit">
-        Filter
-      </button>
+  
     </form>
   </div>
 </div>
@@ -67,7 +63,7 @@
 </div>
 <div class="flex items-center justify-center mb-4 rounded">
   <div v-if="data" class=" w-full">
-    <PostingTable :headers="headers" :data="data" :user="user"/>
+    <PostingTable :headers="headers" :data="data" :user="user" :searchFilter="searchFilter"/>
   </div>
 </div>
 
@@ -95,6 +91,7 @@ export default {
         const headers = ["Job Title", "Position Type","Created at", "Status", ""];
         const user = ref(null);
         const userStore = useUserStore();
+        const searchFilter = ref("");
         
         onMounted(async () => {
             user.value = await userStore.fetchUser();
@@ -105,6 +102,7 @@ export default {
             data,
             headers,
             user,
+            searchFilter
         }
     }
 }
