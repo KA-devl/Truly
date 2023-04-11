@@ -135,12 +135,12 @@
                             </div>
                         </td>
                         <div v-else>
-                            <td v-if="isJobApplied(job._id)" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                            <td v-if="isJobApplied(job._id)" class="px-10 py-8 text-sm bg-white border-b border-gray-200">
                                 <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
                                     Applied
                                 </button>
                             </td>
-                            <td v-else class="px-10 py-5 text-sm bg-white border-b border-gray-200">
+                            <td v-else class="px-10 py-8 text-sm bg-white border-b border-gray-200">
                                 <button @click="applyForJob(job._id)" class="text-indigo-600 hover:text-indigo-900">
                                     Apply
                                 </button>
@@ -164,7 +164,7 @@
                         </svg>
                     </button>
 
-                    <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)"
+                    <button v-for="item in Math.ceil(filteredItems.length / perPage)" :key="item" @click="() => goToPage(item)"
                         class="w-full px-4 py-2 text-base text-blue-500 bg-white border-t border-b hover:bg-gray-100 pagination- ">
                         {{ item }} </button>
 
@@ -227,10 +227,7 @@ export default {
             page.value = numPage;
         };
 
-
         const filteredItems = computed(() => {
-        console.log('yooo', props.data)
-        console.log('yooo2', props.searchFilter)
             if (props.data) {
                 return props.data.filter((item) => {
                     return item.name.toLowerCase().includes(props.searchFilter.toLowerCase())
@@ -238,7 +235,6 @@ export default {
             } else return [];
            
         })
-
 
         const applyForJob = async (jobPostId) => {
             applyLoading.value = 'Applying for job...';

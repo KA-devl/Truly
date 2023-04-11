@@ -172,17 +172,11 @@ export default {
     const isModalOpen = ref(false);
     const selectedForInterviewJobs = ref(null);
     const searchFilter = ref("");
-  
-
     const headers = ["Job Title", "Position Type", "Created at", "Status", ""];
-
 
     onMounted(async () => {
       data.value = await userService.getAllJobs();
       selectedForInterviewJobs.value = await candidateService.getSelectedForInterviewJobs(props.user._id);
-      console.log(selectedForInterviewJobs.value)
-
-
     })
 
     return { data, headers, selectedForInterviewJobs, isModalOpen,searchFilter }
