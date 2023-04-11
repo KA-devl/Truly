@@ -12,11 +12,9 @@ export default {
   },
   async getAllJobs() {
     const res = await axios.get(`${localUrl}/get-jobs`);
-    console.log('jobs are', res)
     return res.data.data;
   },
   async updateUserProfile(userId, tempUser) {
-    console.log("the temp data is", tempUser.data);
     const res = await axios.put(
       `${localUrl}/edit-profile/${userId}`,
       tempUser.data

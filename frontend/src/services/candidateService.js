@@ -11,5 +11,10 @@ export default {
   async getSelectedForInterviewJobs(userId){
     const res = await axios.get(`${localUrl}/get-all-interviews/${userId}`);
     return res.data.data
+  },
+  async getJobAppliedFor(userId){
+    const res = await axios.get(`${localUrl}/get-application-candidate/${userId}`);
+    console.log('the res is', res.data.data)
+    return res.data.data
   }
 }
