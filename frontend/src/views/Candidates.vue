@@ -62,18 +62,11 @@
                       class=" text-white py-1 px-4 rounded-full ml-2 bg-red-500 hover:bg-red-600 font-medium"
                       disabled>Rejected for interview
                     </button>
-
                   </div>
-
                 </div>
               </div>
             </div>
-
           </div>
-
-
-
-
         </div>
       </div>
     </div>
