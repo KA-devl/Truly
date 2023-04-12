@@ -52,7 +52,7 @@
                             </span>
                         </td>
 
-                        <td>
+                        <td class="px-0 py-0 text-sm bg-white border-b border-gray-200">
                             <div class="sm:col-span-2 flex justify-between items-center">
                                 <button @click="deleteJob(job._id)"
                                     class="inline-block hover:bg-red-300 active:bg-red-500 focus-visible:ring ring-magenta-300 text-black text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3">
