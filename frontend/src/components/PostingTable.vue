@@ -51,10 +51,15 @@
                                 </span>
                             </span>
                         </td>
-                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <!-- <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                Apply
-                            </a> -->
+
+                        <td>
+                            <div class="sm:col-span-2 flex justify-between items-center">
+                                <button @click="deleteJob(job._id)"
+                                    class="inline-block bg-red-500 hover:bg-red-700 active:bg-red-800 focus-visible:ring ring-magenta-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+                                    Remove
+                                </button>
+
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -190,6 +195,7 @@
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
 import adminService from "../services/adminService";
+import employerService from '../services/employerService';
 import { ref, computed } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
@@ -276,7 +282,14 @@ export default {
 
         const deleteJob = async (jobId) => {
             try {
-                await adminService.deleteJob(jobId);
+                if (props.user.userType === 'admin')
+                {
+                    await adminService.deleteJob(jobId);
+                }
+                else if (props.user.userType === 'employer'){
+                    await employerService.deleteJob(jobId);
+                }
+                
                 window.location.reload();
             } catch (error) {
                 console.log('ERROR', error)

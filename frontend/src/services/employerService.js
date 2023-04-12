@@ -8,6 +8,12 @@ export default {
     const res = await axios.post(`${localUrl}/create-job`, job);
     return res.data;
   },
+  async deleteJob(jobId){
+    console.log('the job is', jobId);
+    const res = await axios.delete(`${localUrl}/delete-job/${jobId}`);
+    return res.data;
+  },
+
   async getCreatedJobs(userId) {//created jobs of the employer 
     const res = await axios.get(`${localUrl}/get-jobs/${userId}`);
     return res.data.data;
