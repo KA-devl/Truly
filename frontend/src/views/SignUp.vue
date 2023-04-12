@@ -73,7 +73,7 @@
 
       <!-- image -->
       <div class="md:block hidden w-1/2">
-        <img class="rounded-2xl"
+        <img class="rounded-2xl" alt = "Sign up image"
           src="https://images.pexels.com/photos/4065617/pexels-photo-4065617.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
       </div>
     </div>

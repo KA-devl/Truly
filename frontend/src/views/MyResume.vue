@@ -143,7 +143,6 @@
   import ProjectCard from '../components/ProjectCard.vue';
   import { ref } from 'vue';
   import { useUserStore } from '../store/user';
-  import employerService from '../services/employerService';
   
   export default {
     components: {
@@ -154,7 +153,6 @@
       ProjectCard,
     },
     setup() {
-      const user = useUserStore().user;
     
       // FETCH SKILLS, EDUCATIONS, WORK EXPERIENCES, AND PROJECTS FROM BACKEND. SKILLS SHOULD BE A STRING ARRAY
         //Temporary skills array
@@ -324,64 +322,36 @@
         skills.value.push(skill);
       }
 
-      const defineError = (resume) => {
-        for (let education of resume.educations)
-        {
-          if (!education.school) {
-            return "School input is missing"
-          }
-          else if (!education.degreeType) {
-            return "Degree type input is missing"
-          }
-          else if (!education.specialization) {
-            return "Specialization input is missing"
-          }
-          else if (!education.start) {
-            return "Start date input is missing"
-          }
-          else if (!education.end) {
-            return "End date input is missing"
-          }
+          const defineError = (resume) => {
+      const hasMissingData = (item) => {
+        if (!item.school) {
+          return "School input is missing";
+        } else if (!item.degreeType) {
+          return "Degree type input is missing";
+        } else if (!item.specialization) {
+          return "Specialization input is missing";
+        } else if (!item.start) {
+          return "Start date input is missing";
+        } else if (!item.end) {
+          return "End date input is missing";
         }
+        return false;
+      };
 
-        for (let work of resume.workExperiences)
-        {
-          if (!work.company) {
-            return "Company input is missing"
-          } else if (!work.jobtitle) {
-            return "Job title input is missing"
-          } else if (!work.location) {
-            return "Location input is missing"
-          } else if (!work.jobtype) {
-            return "Job type input is missing"
-          } else if (!work.start) {
-            return "Start date input is missing"
-          } else if (!work.end) {
-            return "End date input is missing"
-          }
-        }
-
-        for (let project of resume.projects)
-        {
-          if (!project.title) {
-            return "Project title input is missing"
-          }
-          else if (!project.role) {
-            return "Role input is missing"
-          }
-          else if (!project.start) {
-            return "Start date input is missing"
-          }
-          else if (!project.end) {
-            return "End date input is missing"
-          }
-          else if (!project.description) {
-            return "Project description input is missing"
-          }
-        }
-
-        return "";
+      if (resume.educations.some(hasMissingData)) {
+        return "Education information is incomplete";
       }
+
+      if (resume.workExperiences.some(hasMissingData)) {
+        return "Work experience information is incomplete";
+      }
+
+      if (resume.projects.some(hasMissingData)) {
+        return "Project information is incomplete";
+      }
+
+      return "";
+    };
   
       return {
         skills,

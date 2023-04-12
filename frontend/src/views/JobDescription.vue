@@ -246,9 +246,7 @@ export default {
     }
 
     const isJobApplied = (jobId) => {
-      if (user.value && user.value.jobApplication.find(e => e.jobPostId === jobId)) {
-        return true;
-      } return false;
+      return !!(user.value && user.value.jobApplication.find(e => e.jobPostId === jobId));
     }
 
     watch(

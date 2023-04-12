@@ -1,0 +1,6 @@
+projectKey=VueLovers-soen341project2023_V2
+serverUrl=http://localhost:9000
+serverVersion=10.0.0.68432
+dashboardUrl=http://localhost:9000/dashboard?id=VueLovers-soen341project2023_V2
+ceTaskId=AYdzt85jgx8Bltt92dL6
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYdzt85jgx8Bltt92dL6
