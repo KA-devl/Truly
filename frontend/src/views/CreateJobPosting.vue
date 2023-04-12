@@ -8,8 +8,6 @@
           <!-- text - start -->
           <div class="mb-10 md:mb-16">
             <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Add a posting</h2>
-
-            <!-- <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto"></p> -->
           </div>
           <!-- text - end -->
           <div v-if="successMsg" class=" hadow-lg mt-10">
@@ -32,12 +30,6 @@
               <input v-model="title" name="jobtitle" autocomplete="off"
                 class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
-
-            <!-- <div class="sm:col-span-2">
-        <label for="salary" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Tags*</label>
-        <span class="text-sm font-normal text-gray-600 dark:text-gray-400"> (Separate tags with ';')</span>
-        <input type="text" name="salary" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
-      </div> -->
 
             <div class="sm:col-span-2">
               <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Type*</label>
@@ -72,10 +64,6 @@
               </select>
             </div>
 
-            <!-- <div class="sm:col-span-2">
-        <label for="salary" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Start Date*</label>
-        <input type="date" name="salary" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
-      </div> -->
 
             <div class="sm:col-span-2">
               <label for="message" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Job Description*</label>
@@ -101,8 +89,6 @@
                 </div>
               </div>
             </div>
-           
-            <!-- <p class="text-gray-400 text-xs">By signing up to our newsletter you agree to our <a href="#" class="hover:text-indigo-500 active:text-indigo-600 underline transition duration-100">Privacy Policy</a>.</p> -->
           </form>
           <!-- form - end -->
         </div>

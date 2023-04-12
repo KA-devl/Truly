@@ -138,7 +138,8 @@ export default {
           setTimeout(() => {
             errorMsg.value = null
           }, 6000)
-        } if (!username.value) {
+        } 
+        if (!username.value) {
           errorMsg.value = "Username cannot be empty"
           setTimeout(() => {
             errorMsg.value = null
@@ -156,7 +157,6 @@ export default {
             errorMsg.value = null
           }, 6000)
         }
-
       }
     }
 

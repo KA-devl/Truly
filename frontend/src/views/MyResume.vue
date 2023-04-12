@@ -79,33 +79,6 @@
               <hr />
               </div>
               
-  
-              <!-- <div class="sm:col-span-2">
-                <label for="jobtitle" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Field*</label>
-                <select
-                  class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2">
-                  <option selected disabled value="">Choose a field</option>
-                  <option value="food">Agriculture, Food, and Natural Resources</option>
-                  <option value="const">Architecture and Construction</option>
-                  <option value="arts">Arts, Audio/Video Technology, and Communication</option>
-                  <option value="busi">Business and Finance</option>
-                  <option value="edu">Education and Training</option>
-                  <option value="gov">Government and Public Administration</option>
-                  <option value="health">Health Science</option>
-                  <option value="info">Information Technology</option>
-                  <option value="mark">Marketing</option>
-                  <option value="sci">Science, Technology, Engineering, and Math</option>
-                  <option value="law">Law, Public Safety, Corrections, and Security</option>
-                  <option value="other">Other</option>
-                </select>
-              </div> -->
-  
-              <!-- <div class="sm:col-span-2">
-          <label for="salary" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Start Date*</label>
-          <input type="date" name="salary" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-blue-500 rounded outline-none transition duration-100 px-3 py-2" />
-        </div> -->
-  
-  
               <div class="sm:col-span-2 flex justify-between items-center">
                 <button @click="saveResume"
                   class="inline-block bg-blue-500 hover:bg-blue-700 active:bg-blue-800 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
@@ -126,7 +99,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <p class="text-gray-400 text-xs">By signing up to our newsletter you agree to our <a href="#" class="hover:text-indigo-500 active:text-indigo-600 underline transition duration-100">Privacy Policy</a>.</p> -->
             </form>
             <!-- form - end -->
           </div>
@@ -322,7 +294,7 @@
         skills.value.push(skill);
       }
 
-          const defineError = (resume) => {
+    const defineError = (resume) => {
       const hasMissingData = (item) => {
         if (!item.school) {
           return "School input is missing";

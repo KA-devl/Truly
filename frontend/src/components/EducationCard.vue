@@ -60,23 +60,16 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 
 export default {
     props: ["education", "removeEducation"],
     setup(props) {
 
-        const remove = () => {
-        }
         
         const editEducationInfo = (event) => {
             
             let temp = props.education
             temp[event.target.name] = event.target.value
-
-
-            //console.log(props.education[event.target.name]);
-            //console.log(event.target.value);
         }
 
         return {

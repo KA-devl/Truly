@@ -51,11 +51,7 @@
                                 </span>
                             </span>
                         </td>
-                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200">
-                            <!-- <a href="#" class="text-indigo-600 hover:text-indigo-900">
-                                Apply
-                            </a> -->
-                        </td>
+                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200"> </td>
                     </tr>
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
@@ -266,9 +262,7 @@ export default {
         }
 
         const isJobApplied = (jobId) => {
-            if (props.user.jobApplication.find(e => e.jobPostId === jobId)) {
-                return true;
-            } return false;
+            return !!(props.user.jobApplication.find(e => e.jobPostId === jobId));
         }
 
         const deleteJob = async (jobId) => {

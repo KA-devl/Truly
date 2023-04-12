@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { computed, watch } from "vue";
+import { computed } from "vue";
 import { DateTime } from 'luxon';
 
 export default {
