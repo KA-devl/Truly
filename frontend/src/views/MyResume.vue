@@ -9,7 +9,6 @@
             <div class="mb-10 md:mb-16">
               <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">My Resume</h2>
   
-              <!-- <p class="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto"></p> -->
             </div>
             <!-- text - end -->
   
@@ -114,7 +113,6 @@
   import WorkExperienceCard from '../components/WorkExperienceCard.vue';
   import ProjectCard from '../components/ProjectCard.vue';
   import { ref } from 'vue';
-  import { useUserStore } from '../store/user';
   
   export default {
     components: {
@@ -126,76 +124,12 @@
     },
     setup() {
     
-      // FETCH SKILLS, EDUCATIONS, WORK EXPERIENCES, AND PROJECTS FROM BACKEND. SKILLS SHOULD BE A STRING ARRAY
-        //Temporary skills array
       const skills = ref(["C++", "Java", "C#", "JavaScript", "React"]);
 
-      // Dummy Educations array variable 
-    //   const educations = ref([
-    //     {
-    //         id: 1,
-    //         school: "Concordia",
-    //         degreeType: "bachelor",
-    //         specialization: "Software Engineering",
-    //         grade: "4.20",
-    //         start: "2022-01",
-    //         end: "2025-12",
-    //     },
-    //     {
-    //         id: 2,
-    //         school: "Polytechnique",
-    //         degreeType: "bachelor",
-    //         specialization: "Mechanical Engineering",
-    //         grade: "3.54",
-    //         start: "2021-07",
-    //         end: "2021-12",
-    //     }
-    //   ]);
+      const educations = ref([]);
 
-    const educations = ref([]);
-
-    // DUMMY WORK EXPERIENCES VARIABLE
-    // const workExperiences = ref([
-    //   {
-    //     id: 1,
-    //     company: "Google",
-    //     start: "2021-07",
-    //     end: "2021-12",
-    //     jobtype: "full-time",
-    //     location: "Pasadena",
-    //     jobtitle: "Automation Engineer",
-    //     message: "Built the mars rover from A to Z alone.",
-    //     competencies: [
-    //       "C++",
-    //       "AutoCAD",
-    //       "Arduino",
-    //       "SolidWorks",
-    //       "VSCode",
-    //       "Excel"
-    //     ]
-    //   }
-    // ]);
 
       const workExperiences = ref([]);
-
-    //   const projects = ref([
-    //   {
-    //     id: 1,
-    //     start: "2021-07",
-    //     end: "2021-12",
-    //     title: "Mars Rover",
-    //     role: "Backend Dev",
-    //     description: "Built the mars rover from A to Z alone.",
-    //     competencies: [
-    //       "C++",
-    //       "AutoCAD",
-    //       "Arduino",
-    //       "SolidWorks",
-    //       "VSCode",
-    //       "Excel"
-    //     ]
-    //   }
-    // ]);
 
       const projects = ref([]);
 
