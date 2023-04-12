@@ -1,7 +1,7 @@
 <template>
     <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
         <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
-            <table class="min-w-full leading-normal">
+            <table class="min-w-full leading-normal"> <!-- Job postings table -->
                 <thead>
                     <tr>
                         <th v-for="header in headers" :key="header" scope="col"
@@ -134,7 +134,6 @@
 
                             </div>
                         </td>
-                        <div v-else>
                             <td v-if="isJobApplied(job._id)" class="px-10 py-8 text-sm bg-white border-b border-gray-200">
                                 <button class=" text-green-500  rounded-full cursor-not-allowed" disabled>
                                     Applied
@@ -146,8 +145,6 @@
                                 </button>
 
                             </td>
-                        </div>
-
                     </tr>
                 </tbody>
             </table>
