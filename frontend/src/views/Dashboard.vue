@@ -18,7 +18,7 @@
 import { useUserStore } from '../store/user';
 import UserSideBar from '../components/UserSideBar.vue';
 import CandidateDashboard from '../views/CandidateDashboard.vue'
-import EmployerDashboard from '../views/EmployerDashboard.vue'
+import EmployerDashboard from './EmployerDashBoard.vue'
 import ManageJobs from './ManageJobs.vue';
 import { onMounted,ref } from 'vue';
 import AdminPanel from './AdminPanel.vue';

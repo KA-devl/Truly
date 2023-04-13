@@ -109,7 +109,7 @@ export default {
   setup(props) {
     const data = ref(null);
     const totalAppliedJobs = ref(null);
-    const headers = ["Job Title", "Position Type", "Date Created", "Status"]
+    const headers = ["Job Title", "Position Type", "Date Created", "Status", ""]
     const searchFilter = ref("");
   
 
