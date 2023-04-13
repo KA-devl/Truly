@@ -53,7 +53,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://ca.linkedin.com/in/anes-khadiri-481187210" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://ca.linkedin.com/in/anes-khadiri-481187210" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -101,7 +101,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/mikelson-benjamin-360574258/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/mikelson-benjamin-360574258/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -149,7 +149,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/anas-senouci-b86085178/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/anas-senouci-b86085178/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -197,7 +197,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/zaheer-quraishi-399390186/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/zaheer-quraishi-399390186/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -245,7 +245,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/hugo-c-morin/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/hugo-c-morin/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -293,7 +293,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/nicholas-piperni/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/nicholas-piperni/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
@@ -341,7 +341,7 @@
               <!-- social - start -->
               <div class="flex justify-center">
                 <div class="flex gap-4">
-                  <a href="https://www.linkedin.com/in/arjun-gautam-3b8235141/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
+                  <a href="https://www.linkedin.com/in/arjun-gautam-3b8235141/" target="_blank" class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100" rel="noopener">
                     <svg
                       class="w-5 h-5"
                       width="24"
