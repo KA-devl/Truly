@@ -54,8 +54,7 @@
 
         <!-- image -->
         <div class="md:block hidden w-1/2">
-          <img class="rounded-2xl"
-            src="https://images.pexels.com/photos/4065620/pexels-photo-4065620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+          <img class="rounded-2xl" alt = "login page image" src="https://images.pexels.com/photos/4065620/pexels-photo-4065620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
         </div>
       </div>
     </section>
@@ -132,7 +131,7 @@ export default {
 
     }
 
-    return { username, password, login, userStore, showPassword, username, password, errorMsg, login, isUsernameValid, isPasswordValid, validateUsername, validatePassword, router }
+    return { username, password, login, userStore, showPassword, errorMsg, isUsernameValid, isPasswordValid, validateUsername, validatePassword, router }
 
   }
 

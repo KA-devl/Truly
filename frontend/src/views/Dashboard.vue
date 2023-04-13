@@ -1,4 +1,4 @@
-<template><!-- Both candidate and emplyer have same dashboard. To display the data for candidate, you would have something like: <div v-if userType=="candidate"> .... show the user dashbaord </div>-->
+<template>
 
   <UserSideBar/>
   <div >
@@ -22,7 +22,6 @@ import EmployerDashboard from './EmployerDashBoard.vue'
 import ManageJobs from './ManageJobs.vue';
 import { onMounted,ref } from 'vue';
 import AdminPanel from './AdminPanel.vue';
-//import getCreatedJobsService from '../services/employerService';
 
 export default {
   components:{
@@ -43,9 +42,5 @@ export default {
   }
 }
 
-
-
-
 </script>
 
-<style></style>

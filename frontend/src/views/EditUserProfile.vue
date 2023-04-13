@@ -2,7 +2,7 @@
     <UserSideBar />
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOWz) -->
+            <!-- ALL YOUR CODE MUST BE INSIDE THIS TAG (OR ELSE IT WILL CAUSE OVERFLOW) -->
 
             <h2 class="text-3xl font-semibold ">Edit profile</h2>
             <h2 class="text-2xl font-md text-gray-500 mt-4 ">Customize your website experience and manage your account
@@ -50,10 +50,6 @@
                 </div>
             </div>
 
-
-
-
-            
 
 
             <!-- About Section -->
@@ -190,7 +186,5 @@ export default {
     }
 }
 
-
 </script>
 
-<style></style>

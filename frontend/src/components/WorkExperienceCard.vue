@@ -71,7 +71,6 @@
     </template>
     
     <script>
-    import { ref } from 'vue';
     import AddTags from './AddTags.vue';
     
     export default {
