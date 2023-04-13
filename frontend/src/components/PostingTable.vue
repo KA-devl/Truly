@@ -51,7 +51,18 @@
                                 </span>
                             </span>
                         </td>
-                        <td class="px-10 py-5 text-sm bg-white border-b border-gray-200"> </td>
+                        <td class="px-0 py-0 text-sm bg-white border-b border-gray-200">
+                            <div class="sm:col-span-2 flex justify-between items-center">
+                                <button @click="deleteJob(job._id)"
+                                    class="inline-block hover:bg-red-300 active:bg-red-500 focus-visible:ring ring-magenta-300 text-black text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+</svg>
+
+                                </button>
+                                
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
                 <!-- CANDIDATE TABLE BODY -->
@@ -124,8 +135,11 @@
                         <td v-if="user.userType === 'admin'" class="px-10 py-5 text-sm bg-white border-b border-gray-200">
                             <div class="sm:col-span-2 flex justify-between items-center">
                                 <button @click="deleteJob(job._id)"
-                                    class="inline-block bg-red-500 hover:bg-red-700 active:bg-red-800 focus-visible:ring ring-magenta-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
-                                    Remove
+                                    class="inline-block hover:bg-red-300 active:bg-red-500 focus-visible:ring ring-magenta-300 text-black text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+</svg>
+
                                 </button>
 
                             </div>
@@ -183,6 +197,7 @@
 import { DateTime } from 'luxon';
 import candidateService from "../services/candidateService";
 import adminService from "../services/adminService";
+import employerService from '../services/employerService';
 import { ref, computed } from "vue";
 import Alert from "../components/Alert.vue";
 export default {
@@ -267,7 +282,14 @@ export default {
 
         const deleteJob = async (jobId) => {
             try {
-                await adminService.deleteJob(jobId);
+                if (props.user.userType === 'admin')
+                {
+                    await adminService.deleteJob(jobId);
+                }
+                else if (props.user.userType === 'employer'){
+                    await employerService.deleteJob(jobId);
+                }
+                
                 window.location.reload();
             } catch (error) {
                 console.log('ERROR', error)

@@ -85,7 +85,7 @@
               class="w-24 md:w-32 h-24 md:h-32 bg-gray-100 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4"
             >
               <img
-                src="https://media.discordapp.net/attachments/1063905586388938773/1095066774531219589/received_247348610970796.jpg?width=427&height=406"
+                src="https://res.cloudinary.com/dvjusr5op/image/upload/v1681335407/338717732_247348614304129_5471993182101782034_n_itwajn.jpg"
                 loading="lazy"
                 alt="Photo 2"
                 class="w-full h-full object-cover object-center"
