@@ -90,16 +90,16 @@ userSchema.post('save', function (error, doc, next) {
 userSchema.pre('remove', async function (next) {
   // before an employer is deleted , all it jobs posting are deleted
   if (this.userType === 'employer') {
-    await JobPosting.remove({ authorId: this._id });
+    JobPosting.remove({ authorId: this._id });
 
     // // before an employer
     // is deleted , all the jobs application associated with this employer are deleted
-    await mongoose.model('jobApplication').deleteMany({ authorId: this._id });
+    mongoose.model('jobApplication').deleteMany({ authorId: this._id });
     next();
 
     // before a candidate is deleted , all it jobs application are deleted
   } else if (this.userType === 'candidate') {
-    await mongoose
+    mongoose
       .model('jobApplication')
       .deleteMany({ candidateId: this._id });
 

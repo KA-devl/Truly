@@ -1,14 +1,14 @@
-const userModel = require('../../models/user');
-const cloudinary = require('../../config/cloudinary');
+import { findById } from '../../models/user';
+import { uploader } from '../../config/cloudinary';
 
 async function deleteUser(req, res) {
   try {
-    const user = await userModel.findById(req.params.id);
+    const user =  findById(req.params.id);
     // delete the user resume from the cloud
-    await cloudinary.uploader.destroy(user.resume.cloudinaryId);
+    await uploader.destroy(user.resume.cloudinaryId);
     // delete the user avatar from the cloud
-    await cloudinary.uploader.destroy(user.avatar.cloudinaryId);
-    await user.remove();
+    await uploader.destroy(user.avatar.cloudinaryId);
+    user.remove();
 
     if (!user)
       return res
@@ -24,4 +24,4 @@ async function deleteUser(req, res) {
     res.status(400).json({ sucess: false, message: err.message });
   }
 }
-module.exports = { deleteUser };
+export default { deleteUser };

@@ -1,5 +1,5 @@
 const userModel = require('../../models/user');
-const { deleteUser } = require('../../controllers/admin/deleteUser');
+const { deleteUser } = require('../../controllers/admin/deleteUser').default;
 
 jest.mock('../../models/user', () => ({
   find: jest.fn(),
@@ -58,15 +58,6 @@ describe('deleteUser', () => {
     jobPost: [],
     jobApplication: [],
   };
-
-  // it('should delete a user successfully', async () => {
-  //   userModel.findById.mockResolvedValueOnce(user);
-  //   userModel.remove.mockResolvedValueOnce(user);
-
-  //   await deleteUser(request, response);
-
-  //   expect(response.status).toHaveBeenCalledWith(201);
-  // });
 
   it('should return an error if the user is not found', async () => {
     userModel.findById.mockResolvedValueOnce(null);

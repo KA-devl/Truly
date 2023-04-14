@@ -3,7 +3,7 @@ const User = require('../../models/user');
 //UPDATE USER BY HIS ID
 async function updateUser(req, res) {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    const user = User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
