@@ -119,12 +119,6 @@
           </div>
           <p class="text-center mt-6">
             <a class="font-semibold text-blue-500 hover:underline cursor-pointer"
-              >Upload your Resume
-            </a>
-            - Get noticed by top employers!
-          </p>
-          <p class="text-center mt-6">
-            <a class="font-semibold text-blue-500 hover:underline cursor-pointer"
               >Post a job on Truly
             </a>
           </p>
